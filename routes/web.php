@@ -45,11 +45,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hover', function () {
-    //return view('auth.login');
-    return view('hover');
-});
-
 Route::get('/customer2', function () {
     dd(Customer::get());
 });
@@ -120,7 +115,6 @@ Route::resource('type-services', App\Http\Controllers\TypeServiceController::cla
 
 Route::resource('unit-measures', App\Http\Controllers\UnitMeasureController::class);
 
-Route::resource('Warranty', App\Http\Controllers\WarrantyController::class);
 //////////////////////////////////////// RUTAS PARA ENVÍO DE EMAIL ////////////////////////////////////////////////////
 Route::get('/tickets_mail', function () {
     $correo = new TicketsMailable;
