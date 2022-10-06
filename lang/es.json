@@ -879,5 +879,10 @@
     "Project" : "Proyecto",
     "Notify sales" : "Notificar a ventas",
     "notification sent to sales": "Notificación enviada a ventas",
-    "Finish":"Finalizar"
+    "Finish":"Finalizar",
+    "Order date":"Fecha de la orden",
+    "Maintenance type" : "Tipo de mantenimiento",
+    "Service type" : "Tipo de servicio",
+    "Order status" : "Estado de la orden",
+    "Orders":"Ordenes"
 }

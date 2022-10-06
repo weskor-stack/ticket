@@ -33,33 +33,36 @@ class NotifyTicketEndController extends Controller
     {
         $datas = $_GET['id_ticket'];
 
-        $ticket = Ticket::find($datas);
+        $ServiceOrder = ServiceOrder::find($datas);
+
+        $ticket = Ticket::find($ServiceOrder['ticket_id']);
 
         //$this->client($ticket);
         
         //$this->supervisor($ticket);
        
-
+        // return response()->json($ServiceOrder);
+        
         $serviceOrderId = ServiceOrder::select('order_service_id')
-        ->where('ticket_id', '=', $ticket['ticket_id'])->get();
+        ->where('order_service_id', '=', $ServiceOrder['order_service_id'])->get();
 
-        $serviceOrderId = preg_replace('/[^0-9]/', '', $serviceOrderId);
+        // return response()->json($serviceOrderId);
+
+        $serviceOrderId = $ServiceOrder['order_service_id'];
 
         $services = Service::select('order_service_id')
         ->where('order_service_id','=',$serviceOrderId)->get();
 
         $services = $services[0]['order_service_id'];
 
-        
+    
 
         $serviceOrder = ServiceOrder::select('order_service_id','date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'order_status_id', 'user_id', 'date_registration')
         ->where('order_service_id', '=', $services)->get();
 
-        $serviceOrder = explode('"',$serviceOrder);
-        $serviceOrder = preg_replace('/[^0-9]/', '', $serviceOrder);
 
         $service3 = Service::select('service_id')
-        ->where('order_service_id', '=', $serviceOrder[2])->get();
+        ->where('order_service_id', '=', $serviceOrder[0]['order_service_id'])->get();
 
         // $service3 = preg_replace('/[^0-9]/', '', $service3);
         $service3 = $service3[0]['service_id'];
@@ -95,9 +98,11 @@ class NotifyTicketEndController extends Controller
 
         $contacts = Contact::select('customer_id','name','last_name','phone','contact_id','job_title','second_last_name')
         ->where('contact_id', '=', $ticket['contact_id'])->get();
+        
 
         $customers = Customer::select('name','customer_id','address','phone')
         ->where('customer_id', '=', $contacts[0]['customer_id'])->get();
+        
 
         $tickets = $ticket['ticket_id'];
 
@@ -108,7 +113,7 @@ class NotifyTicketEndController extends Controller
         $employees = Employee::all();
 
         $serviceOrder2 = ServiceOrder::select('order_service_id','date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'order_status_id', 'user_id', 'date_registration')
-        ->where('ticket_id', '=', $ticket['ticket_id'])->get();
+        ->where('order_service_id', '=', $datas)->get();
         
         // return response()->json($ticket);
 

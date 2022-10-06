@@ -60,6 +60,7 @@ class ServiceOrderController extends Controller
         
         /*$service = Service::select('service_id', 'date_service', 'oreder_service_id', 'service_status_id', 'user_id', 'date_registration')
         ->where('order_service_id', '=', '2')->get();*/
+        
         $service = Service::pluck('order_service_id','service_id');
 
         $materialAssigned = new MaterialAssigned();
@@ -221,7 +222,7 @@ class ServiceOrderController extends Controller
         $employee_order = EmployeeOrder::select('order_service_id','employee_id','status_id')
         ->where('order_service_id', '=', $serviceOrder['order_service_id'])->get();
 
-        // return response()->json($employee_order);
+        // return response()->json($serviceOrder);
 
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2',
         'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure','material2','tool2','employee_assigned',

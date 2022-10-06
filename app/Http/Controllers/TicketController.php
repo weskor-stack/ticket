@@ -13,7 +13,6 @@ use App\Models\TypeService;
 use App\Models\TypeMaintenance;
 use App\Models\Priority;
 use App\Models\Status;
-use App\Models\Warranty;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use PDF;
@@ -85,10 +84,9 @@ class TicketController extends Controller
             ->get();
         
         $projects = Project::all();
-        $warranty_of = Warranty::all();
 
         return view('ticket.create', compact('ticket','status','customers2','contacts2','priority','customers','contacts','customer','contact',
-        'countries','projects','warranty_of'));
+        'countries','projects'));
         //return view('ticket.create', compact('ticket','status','priority','customers','contacts'));
     }
 

@@ -731,31 +731,7 @@
                             </span>
 
                             <div class="float-right">
-                                <style>
-                                    .myButton {
-                                        box-shadow: 3px 4px 0px 0px #899599;
-                                        background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
-                                        background-color:#ededed;
-                                        border-radius:15px;
-                                        border:1px solid #d6bcd6;
-                                        display:inline-block;
-                                        cursor:pointer;
-                                        color:#000000;
-                                        font-family:Arial;
-                                        font-size:17px;
-                                        padding:10px 16px;
-                                        text-decoration:none;
-                                        text-shadow:0px 1px 0px #e1e2ed;
-                                    }
-                                    .myButton:hover {
-                                        background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
-                                        background-color:#bab1ba;
-                                    }
-                                    .myButton:active {
-                                        position:relative;
-                                        top:1px;
-                                    }
-                                </style>
+                                <link rel="stylesheet" href="{{ asset('css/CSS_Service_order/CSS_Service_order.css') }}">
                                 <a href="{{ route('service-order.pdf','id_ticket='.$serviceOrder->order_service_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="material-icons">book</i>&nbsp; {{ __('PDF') }}</a>
                                 &nbsp;
                                 <a href="{{ route('tickets.index') }}" class="myButton"  data-placement="left"><i class="material-icons">keyboard_double_arrow_left</i>&nbsp;
@@ -1089,7 +1065,7 @@
                                     <td></td>
                                     
                                     <td style="text-align:right;" colspan="2">
-                                        @if($service->service_status_id=='2')
+                                        @if($serviceOrder->order_status_id=='8')
 
                                         @else
                                             @method('GET')
@@ -1110,7 +1086,7 @@
 									<th>{{ __('Service hour')}}</th>
 									<th>{{ __('Duration travel')}}</th>	
 									<th >{{ __('Employee')}}</th>
-									<th>{{ __('Actions') }}</th>
+									<th></th>
 
                                         
                                 </tr>
@@ -1133,12 +1109,16 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <form action="{{ route('order-employee-schedules.destroy',$schedule->order_employee_schedule_id) }}" method="POST">
-                                                
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete employee?')"><i class="material-icons" style="font-size:20px">delete</i>&nbsp; {{ __('Delete')}}</button>
-                                            </form>
+                                            @if($serviceOrder->order_status_id=='8')
+
+                                            @else
+                                                <form action="{{ route('order-employee-schedules.destroy',$schedule->order_employee_schedule_id) }}" method="POST">
+                                                    
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete employee?')"><i class="material-icons" style="font-size:20px">delete</i>&nbsp; {{ __('Delete')}}</button>
+                                                </form>
+                                            @endif
                                         </td>
                                                         
                                     </tr>        
@@ -1154,7 +1134,11 @@
                     @if($shcedules->isEmpty())
 
                         @else
-                            <a href="{{ route('notify-sales','id_ticket='.$serviceOrder->order_service_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('Finish') }}"><i class="material-icons">send</i>&nbsp; {{ __('Finish') }}</a>
+                            @if($serviceOrder->order_status_id=='8')
+
+                            @else
+                                <a href="{{ route('notify-sales','id_ticket='.$serviceOrder->order_service_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('Finish') }}"><i class="material-icons">send</i>&nbsp; {{ __('Finish') }}</a>
+                            @endif
                     @endif
                     <!----------------------->
                     </div>

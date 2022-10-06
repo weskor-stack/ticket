@@ -205,22 +205,21 @@ class ServiceController extends Controller
         $service2 = Service::select('order_service_id')
         ->where('order_service_id', '=', $datas)->get();
 
-        $service2 = preg_replace('/[^0-9]/', '', $service2);
+        $service2 = $service2[0]['order_service_id'];
 
         $serviceOrder = ServiceOrder::select('order_service_id','date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'order_status_id', 'user_id', 'date_registration')
         ->where('order_service_id', '=', $service2)->get();
 
-        $serviceOrder = explode('"',$serviceOrder);
-        $serviceOrder = preg_replace('/[^0-9]/', '', $serviceOrder);
+        $serviceOrder_id = $serviceOrder[0]['order_service_id'];
 
         $materialAssigneds = MaterialAssigned::select('material_id', 'quantity', 'order_service_id', 'user_id', 'date_registration')
-        ->where('order_service_id', '=', $serviceOrder[2])->get();
+        ->where('order_service_id', '=', $serviceOrder_id)->get();
 
         $toolAssigneds = ToolAssigned::select('tool_id', 'quantity', 'order_service_id', 'user_id', 'date_registration')
-        ->where('order_service_id', '=', $serviceOrder[2])->get();
+        ->where('order_service_id', '=', $serviceOrder_id)->get();
 
         $service3 = Service::select('service_id')
-        ->where('order_service_id', '=', $serviceOrder[2])->get();
+        ->where('order_service_id', '=', $serviceOrder_id)->get();
 
         $service3 = $service3[0]['service_id'];
 
@@ -254,7 +253,7 @@ class ServiceController extends Controller
         $serviceTaskSpecific = new ServiceTaskSpecific();
 
         $tickets_contact = Ticket::select('contact_id','ticket_id')
-        ->where('ticket_id', '=', $datas)->get();
+        ->where('ticket_id', '=', $serviceOrder[0]['ticket_id'])->get();
 
         $tickets = $tickets_contact[0]['ticket_id'];
 
