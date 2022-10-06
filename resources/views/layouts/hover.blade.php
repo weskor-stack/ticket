@@ -16,7 +16,7 @@
 
 
 
-<div  id="contenedor_principal"  class="hola" style="margin-left:0%;" onmouseleave="togeleador()" onmouseover="opacidad()">
+<div  id="contenedor_principal"  class="hola" style="margin-left:-.5%;" onmouseleave="togeleador()" onmouseover="opacidad()">
 
 
 

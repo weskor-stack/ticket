@@ -2,20 +2,20 @@
 .hola{
     margin-left: -8%;
   
-    background-color:  rgba(255, 255, 255, 0.9);
-    transition: margin-left .8s ease-out, background-color 2s ease-in;
+    background-color:  rgba(255, 255, 255, 0.93);
+    transition: margin-left .8s ease-out, background-color .5s ease-in;
     
     
 }
 .hola:hover{
     margin-left: 0%;
-    background-color:  rgba(255, 255, 255, 0.7);
+    background-color:  rgba(255, 255, 255, .1);
 }
 
 @keyframes entrada_boton {
     from  {width:100%; height:40px; }
 
-    to {width:120%; height:55px; }
+    to {width:120%; height:48px; }
 }
 
 .prueba_boton{
@@ -27,7 +27,7 @@
 
 
 @keyframes salida_boton{
-    from  {width:120%;}
+    from  {width:110%;}
 
     to {width:100%;}
 }

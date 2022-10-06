@@ -11,7 +11,7 @@
 
                 @includeif('partials.errors')
 
-                <div class="card card-default" style="width:80%; margin-left:15%;">
+                <div class="card card-default" >
                     <div class="card-header">
                         <span class="card-title">{{ __('Create Ticket')}}</span>
                     </div>
