@@ -115,6 +115,8 @@ Route::resource('type-services', App\Http\Controllers\TypeServiceController::cla
 
 Route::resource('unit-measures', App\Http\Controllers\UnitMeasureController::class);
 
+Route::resource('Warranty', App\Http\Controllers\WarrantyController::class);
+
 //////////////////////////////////////// RUTAS PARA ENVÍO DE EMAIL ////////////////////////////////////////////////////
 Route::get('/tickets_mail', function () {
     $correo = new TicketsMailable;
