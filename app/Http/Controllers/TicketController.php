@@ -10,6 +10,7 @@ use App\Models\Customer;
 use App\Models\TicketStatus;
 use App\Models\ServiceOrder;
 use App\Models\TypeService;
+use App\Models\Warranty;
 use App\Models\TypeMaintenance;
 use App\Models\Priority;
 use App\Models\Status;
@@ -84,9 +85,10 @@ class TicketController extends Controller
             ->get();
         
         $projects = Project::all();
+        $warranty_of = Warranty::all();
 
         return view('ticket.create', compact('ticket','status','customers2','contacts2','priority','customers','contacts','customer','contact',
-        'countries','projects'));
+        'countries','projects','warranty_of'));
         //return view('ticket.create', compact('ticket','status','priority','customers','contacts'));
     }
 
@@ -102,9 +104,9 @@ class TicketController extends Controller
         request()->validate(Ticket::$rules);
         $statement = DB::statement("SET @user_id = 9999");
 
-        $tickets = request()->except('_token','contact','customer_id','priority_id','project_id');
+        $tickets = request()->except('_token','contact','customer_id','priority_id','project_id_s','project_id');
 
-        $ticket_project = request()->except('_token','contact','customer_id','priority_id','subject','problem','contact_id');
+        $ticket_project = request()->except('_token','contact','customer_id','priority_id','subject','problem','contact_id','project_id_s');
 
         $fechaActual = date('y/m/d');
 
@@ -132,7 +134,7 @@ class TicketController extends Controller
 
         $data = Ticket::latest('ticket_id')->first();
 
-        //return response()->json($data['ticket_id']);
+            //return response()->json($data['ticket_id']);
         //$ticket = Ticket::create($request->all());
         $url = route('notify-ticket','id_ticket='.$data['ticket_id']);
         

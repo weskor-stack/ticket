@@ -15,7 +15,7 @@
 @keyframes entrada_boton {
     from  {width:100%; height:40px; }
 
-    to {width:120%; height:48px; }
+    to {width:110%; height:48px; }
 }
 
 .prueba_boton{

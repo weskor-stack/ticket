@@ -94,15 +94,18 @@
         <br>
         <div>
         {{ Form::label( __('Project')) }} 
-        <select name="project_id" id="project_id" class="form-select">
+        <select name="project_id_s" id="project_id_s" class="form-select">
                 <option value ="Project" selected disabled >{{ __('Project') }}</option>
                 @foreach($projects as $project)
                 
                     <option value="{{ $project->project_id }}
-                    @foreach($warranty_of as $cons_garantia) @if($cons_garantia->project_id == $project->project_id) ,{{$cons_garantia->date_end}} @endif @endforeach ">{{ $project->name }}</option>
+                    @foreach($warranty_of as $cons_garantia) @if($cons_garantia->project_id == $project->project_id) ,{{$cons_garantia->date_end}} @endif @endforeach  ">{{ $project->name }}</option>
+                    
+                    
                 @endforeach
             </select><br>
             <div  hidden id="status_warranty_principal">
+                <input type="text" name="project_id" id="project_id" style="margin-left:-15%;" hidden>
                 <div  class="spinner-grow" id="status_warranty_color" style="width:20px; height:20px;" data-toggle="tooltip" title="selecciona una opción"></div>
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> Garantía = <strong><span id="texto_status_garantía"></span></strong> <br> Fecha de hoy = 
                 <span  id="texto_fecha_hoy_garantia"></span> <br> Fecha de final = <strong><span id="texto_fecha_final_garantia"></span> </strong> </p> </div>

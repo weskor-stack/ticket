@@ -35,12 +35,13 @@
                     <p>Agrega la garantía de <strong><span id="nombre_proyecto_modal" class="text-warning"> </span></strong> </p><br>
                     <label for="fecha_inicio">Fecha inicio</label>
                     <br>
-                    <input type="text" id="save_data_modal" name="save_data_modal" hidden>
+                    <input type="text" id="save_data_modal" name="project_id" hidden>
                     
-                    <input type="date" id="fecha_inicio_combobx" name="fecha_inicio_combobx" required  ><br><br>
+                    <input type="date" id="fecha_inicio_combobx" name="date_start" required  ><br><br>
                     
                     <label for="fecha_final_combobx">Fecha final</label><br>
-                    <input type="date" id="fecha_final_combobx" name="fecha_final_combobx" required >
+                    <input type="date" id="fecha_final_combobx" name="date_end" required >
+                    <input autocomplete="off" readonly="readonly" name="user_id"  value="9999"  type="text" id="user_id" hidden>
                     <br>
 
           

@@ -90,34 +90,6 @@
 <script> 
 
 
-//    function prueba(){
-    
-//     contenedor_princ = document.getElementById("contenedor_principal");
-//     contenedor_princ.setAttribute('class','container prueba');
-
-//     document.getElementById("caca").setAttribute('style','background:purple;');
-  
-   
-//     }
-
-
-
-
-//    function prueba2(){
-    
-    
-
-// contenedor_princ = document.getElementById("contenedor_principal");
-// contenedor_princ.setAttribute('class','container prueba2');
-
-
-// document.getElementById("caca").setAttribute('style','background:cyan;');
-
-// setTimeout(() => { }, 500);
-
-// }
-
-
 
 
 

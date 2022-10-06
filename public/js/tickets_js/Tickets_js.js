@@ -6,7 +6,7 @@ $(document).ready(function(){
     let dia_hoy_transform = new Date().toLocaleDateString('en-CA');
     document.getElementById("texto_fecha_hoy_garantia").innerHTML = dia_hoy_transform;
     
-    if((document.getElementById("project_id").value) == "Project"){
+    if((document.getElementById("project_id_s").value) == "Project"){
         (document.getElementById("status_warranty_principal")).setAttribute("hidden","");
     }
 
@@ -15,11 +15,12 @@ $(document).ready(function(){
 });
 $(document).ready(function()
 {
-    $('#project_id').on('change', function()
+    $('#project_id_s').on('change', function()
     {
-        if( (document.getElementById("project_id").value) != "Project" )
+        if( (document.getElementById("project_id_s").value) != "Project" )
         {
             (document.getElementById("status_warranty_principal")).removeAttribute("hidden","");
+            
         }
 
 
@@ -46,12 +47,13 @@ $(document).ready(function()
       
       
             var btn_creacion_garantia = document.getElementById("boton_de_creacion_garantia");
-            var control_tabla = String(document.getElementById('project_id').value);
+            var control_tabla = String(document.getElementById('project_id_s').value);
             const control_tabla_transformada = (control_tabla).split(',');
       
       
         //alert(control_tabla_transformada[0]+" "+control_tabla_transformada[1]);
-
+        
+        document.getElementById("project_id").setAttribute('value',control_tabla_transformada[0]);
         if(control_tabla_transformada[1] == undefined)
             {
                 //alert("no tiene garantia hecha");
