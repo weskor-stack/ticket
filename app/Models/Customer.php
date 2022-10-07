@@ -35,6 +35,7 @@ class Customer extends Model
 		'name' => 'required',
 		'address' => 'required',
 		'email' => 'required',
+    'phone' => 'required',
     ];
 
     protected $perPage = 20;
