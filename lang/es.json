@@ -884,5 +884,7 @@
     "Maintenance type" : "Tipo de mantenimiento",
     "Service type" : "Tipo de servicio",
     "Order status" : "Estado de la orden",
-    "Orders":"Ordenes"
+    "Orders":"Ordenes",
+    "Job Title": "Titulo",
+    "Second last name":"Segundo apellido"
 }

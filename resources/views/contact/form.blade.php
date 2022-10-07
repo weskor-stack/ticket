@@ -3,14 +3,35 @@
         
         
         <div class="form-group">
+            {{ Form::label( __('Job Title')) }}
+
+            <select class="form-select" id="job_title" name="job_title" requiered>
+                <option value="Ing.">Ingeniero.</option>
+                <option value="Lic.">Licenciado.</option>
+                <!-- <option value="2">2 hrs.</option>
+                <option value="3">3 hrs.</option>
+                <option value="4">4 hrs.</option>
+                <option value="5">5 hrs.</option> -->
+            </select>
             {{ Form::label( __('Name')) }}
             {{ Form::text('name', $contact->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => __('Name'),'required']) }}
             {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
+        <div class="form-group">
+            
+            
+        </div>
+
         <div class="form-group">
             {{ Form::label( __('Last name')) }}
             {{ Form::text('last_name', $contact->last_name, ['class' => 'form-control' . ($errors->has('last_name') ? ' is-invalid' : ''), 'placeholder' => __('Last name'),'required']) }}
             {!! $errors->first('last_name', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label( __('Second last name')) }}
+            {{ Form::text('second_last_name', $contact->second_last_name, ['class' => 'form-control' . ($errors->has('second_last_name') ? ' is-invalid' : ''), 'placeholder' => __('Second last name'),'required']) }}
+            {!! $errors->first('second_last_name', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('E-mail') }}

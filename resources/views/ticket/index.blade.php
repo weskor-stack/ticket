@@ -93,7 +93,7 @@
                                                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                                         @method('GET')
                                                         <button title="{{ __('Create order') }}" type="button" class="open-AddDialog btn btn-primary" data-toggle="modal" data-target="#dialogo1" data-id="{{$ticket->ticket_id}}"><i class="material-icons" style="font-size:20px">bookmarks</i>&nbsp; {{ __('Create order') }}</button>
-                                                        <a title="{{ __('Order') }}" class="btn btn-warning" href="{{ route('inicio','id_ticket='.$ticket->ticket_id) }}"><i class="material-icons" style="font-size:20px">visibility</i>&nbsp; {{ __('Show Orders') }}</a>
+                                                        <a title="{{ __('Order') }}" class="btn btn-warning" href="{{ route('inicio','id_ticket='.$ticket->ticket_id) }}" hidden><i class="material-icons" style="font-size:20px">visibility</i>&nbsp; {{ __('Show Orders') }}</a>
                                                         
                                                     @else
                                                         @if($ticket->ticket_status_id == '4')

@@ -51,6 +51,10 @@ class CustomerController extends Controller
 
        $customers = request()->except('_token');
 
+       $customers['status_id'] = 1;
+       
+       $customers['user_id'] = 9999;
+
        $customer = Customer::select('name')
         ->where('name', '=', $customers['name'])->get();
 

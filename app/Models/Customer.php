@@ -35,7 +35,6 @@ class Customer extends Model
 		'name' => 'required',
 		'address' => 'required',
 		'email' => 'required',
-		'status_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -45,7 +44,7 @@ class Customer extends Model
      *
      * @var array
      */
-    protected $fillable = ['customer_id','name','address','email','status_id','user_id','date_registration'];
+    protected $fillable = ['customer_id','key','name','address','email','phone','status_id','user_id','date_registration'];
     //protected $fillable = ['customer_id','key','name','address','email','phone','status_id','user_id','date_registration'];
 
 

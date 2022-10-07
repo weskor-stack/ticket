@@ -35,6 +35,7 @@ class Contact extends Model
     static $rules = [
 		'name' => 'required',
 		'last_name' => 'required',
+    'second_last_name' => 'required',
 		'email' => 'required',
 		'phone' => 'required',
 		//'customer_id' => 'required',
@@ -49,7 +50,7 @@ class Contact extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','last_name','email','phone','customer_id','status_id','user_id'];
+    protected $fillable = ['name','last_name','second_last_name','email','phone','customer_id','status_id','user_id'];
 
 
     // /**

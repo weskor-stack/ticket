@@ -53,9 +53,13 @@ class ContactController extends Controller
 
         $contacts = request()->except('_token');
 
+        $contact['job_title'] = $contacts['job_title'];
+
         $contact['name'] = $contacts['name'];
 
         $contact['last_name'] = $contacts['last_name'];
+
+        $contact['second_last_name'] = $contacts['second_last_name'];
 
         $contact['email'] = $contacts['email'];
 
@@ -70,11 +74,14 @@ class ContactController extends Controller
         $contacto = Contact::select('name','last_name','email')
         ->where('name','=',$contact['name'])->get();
 
-        //$contacto = explode('"',$contacto);
+        // return response()->json($contact);
+        // $contacto = $contacto[0];
+        // $contacto = explode('"',$contacto);
+        // return response()->json($contacto);
         //return response()->json( $contact['name']." ".$contact['last_name'] );
 
-        if(empty($contacto)){
-            //return response()->json( $contacto);
+        if($contacto->isEmpty()){
+            // return response()->json($contacto." Esta vacio");
             Contact::insert($contact);
             //$contact = Contact::create($request->all());
     
@@ -86,6 +93,7 @@ class ContactController extends Controller
             /*return redirect()->back()
                 ->with('success', __('Contact created successfully'));*/
         }else{
+            
             if( $contact['last_name'] == $contacto[0]['last_name'] and $contact['email'] == $contacto[0]['email']){
                 return '<script>
                         alert("'.__('Duplicate contact, please perform the process again.').'"); 
