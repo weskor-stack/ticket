@@ -45,7 +45,7 @@
             <!--{{ Form::text('contact_id', $ticket->contact_id, ['class' => 'form-select, select2' . ($errors->has('contact_id') ? ' is-invalid' : ''), 'placeholder' => __('Contact')]) }}
             <a type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo2">+</a> <br>
             <a href="{{ route('contacts.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">{{ __('+') }}</a>-->
-            <input type="text" id="contact_id" name="contact_id" class="form-control.<?php echo ($errors->has('contact_id') ? ' is-invalid' : ''); ?>" required  hidden>
+            <input type="text" id="contact_id" name="contact_id" class="form-control.<?php echo ($errors->has('contact_id') ? ' is-invalid' : ''); ?>" required hidden>
             {!! $errors->first('contact_id', '<div class="invalid-feedback">:message</div>') !!}
             <script>
                 $('.select2').select2();
@@ -55,7 +55,7 @@
             <a  style="margin-left:620px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo2">+</a> <br>
 
             <script>
-                //$('.select2').select2();
+                // $('#contact').select2();
                 var customer = document.getElementById('customer_id').value;
                 $("#customer").on("select2:select", function (e) {
                         var countryId = $(this).val();
@@ -85,6 +85,106 @@
         </div>
         
         <br>
+
+        <div class="form-group">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+            <table class="table table-striped table-hover">
+                <thead class="thead">
+                    <tr style="text-align: center">
+                        <th></th>
+                                                                    
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="text-align: left; font-size: 15px; vertical-align: center;">
+                        <td><b>{{ _('Factory')}}:</b></td>
+                        <td>
+                            <select class="form-select" name="factory_id" id="factory_id" style="width:960px; height:38px;" required></select>
+
+                            <a  style="margin-left:980px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo4">+</a> <br>
+
+                            <div>
+                                <b>{{ __('Address') }}: </b>
+                                <div class="resultado"></div>
+                            </div>
+                            <!-- <input type="text" name="factory" id="factory2"> -->
+                        </td>                                          
+                    </tr>
+                    <tr>
+                        <td><b>{{ __('Site') }}:</b></td>
+                        <td>
+                            <input type="text" name="site" id="site" style="width:960px; height:38px;">
+                            <!-- <textarea name="site" id="site" cols="120" rows="5" ></textarea> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>{{ __('Location') }}:</b></td>
+                        <td>
+                            <div class="form-group">
+                                <input type="radio" name="location" id="location" value="L" checked>{{ __('Local') }} <br>
+                                <input type="radio" name="location" id="location" value="F">{{ __('Foreign') }} <br>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <script>
+                //$('.select2').select2();
+                var customer = document.getElementById('customer_id').value;
+                $("#customer").on("select2:select", function (e) {
+                        var countryId = $(this).val();
+                        customer = document.getElementById('customer_id').value= countryId;
+                        document.getElementById('customer_factory').value= countryId;
+                        $('#factory_id').html('');
+                        $.ajax({
+                            url: "{{ route('getFactories') }}?customer_id="+customer,
+                            type: 'get',
+                            success: function (res) {
+                                $('#factory_id').html("<option value=''>{{ __('Select fatory')}}</option>");
+                                $.each(res, function (key, value) {
+                                    $('#factory_id').append('<option value="' + value
+                                    .factory_id +'">' + value.name + '</option>');
+                                });
+                            }
+                        });
+                    
+
+                    $('#contact').on("change", function () {
+                        var contactId = this.value;
+                        // document.getElementById('factory2').value= contactId;
+                        document.getElementById('contact_factory').value= contactId;
+                        // alert( document.getElementById('contact_factory').value);
+                    });
+                });
+
+                $('#factory_id').on("change", function () {
+                        var contactId = this.value;
+                        const resultado = document.querySelector('.resultado');
+                        // resultado.textContent = contactId;
+                        // alert( document.getElementById('contact_factory').value);
+
+                        $('.resultado').html('');
+                        $.ajax({
+                            url: "{{ route('getAddress') }}?factory_id="+contactId,
+                            type: 'get',
+                            success: function (res) {
+                                // $('.resultado').html("<option value=''>{{ __('Select fatory')}}</option>");
+                                $.each(res, function (key, value) {
+                                    $('.resultado').append(value.address);
+                                });
+                            }
+                        });
+                    });
+            </script>
+
+            <script>$('.select2').select2();</script>
+
+        </div>
+        <br>
+
         <div>
             {{ Form::label( __('Priority')) }} 
             {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''), 'placeholder' => __('Priority'),'required']) }}
@@ -118,12 +218,7 @@
             
         </div>
         <br>
-        <div class="form-group" hidden>
-            {{ Form::label('user_id') }}
-            {{ Form::text('user_id', 9999) }}
-            {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        
+                
 
 
         

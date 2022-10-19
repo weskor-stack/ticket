@@ -7,6 +7,7 @@
                 <!-- cabecera del diálogo -->
                     <div class="modal-header">
                         <h4 class="modal-title">{{ __('Edit Material') }}</h4>
+                        <img src="{{ asset('images/icons/update2.png') }}" width="8%">
                     </div>
                 <!-- cuerpo del diálogo -->
                     <div class="modal-body">

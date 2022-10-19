@@ -16,6 +16,10 @@ use App\Http\Controllers\NotifySalesController;
 
 use App\Models\Employee;
 use App\Notifications\NotifyTicket;
+
+use App\Models\Factory;
+use App\Models\OrderPurchase;
+
 use Illuminate\Support\Facades\Notification;
 
 use App\Models\Customer;
@@ -27,8 +31,16 @@ use App\Models\Project;
 Route::get('dropdown', [DropdownController::class, 'view'])->name('dropdownView');
 Route::get('get-states', [DropdownController::class, 'getStates'])->name('getStates');
 Route::get('get-stock', [DropdownController::class, 'getStockes'])->name('getStockes');
+Route::get('get-factories', [DropdownController::class, 'getFactories'])->name('getFactories');
+Route::get('get-address', [DropdownController::class, 'getAddress'])->name('getAddress');
 
 Route::get('inicio', [ServiceOrderController::class, 'inicio'])->name('inicio');
+
+Route::resource('factories', App\Http\Controllers\FactoryController::class);
+
+Route::resource('order-purchases', App\Http\Controllers\OrderPurchaseController::class);
+
+Route::resource('ticket-locations', App\Http\Controllers\TicketLocationController::class);
 /*
 |--------------------------------------------------------------------------
 | Web Routes

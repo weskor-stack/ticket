@@ -19,10 +19,11 @@ use App\Models\MaterialAssigned;
 use App\Models\ToolAssigned;
 use App\Models\Tool;
 use App\Models\EmployeeOrder;
-use App\Models\{Employee,Hierarchical,HierarchicalPosition,EmployeeHierarchicalPosition,HierarchicalStructure};
+use App\Models\{Employee,Hierarchical,HierarchicalPosition,EmployeeHierarchicalPosition,HierarchicalStructure, TicketLocation, Factory};
 use App\Models\Department;
 use App\Models\SupervisorEmployee;
 use App\Models\OrderEmployeeSchedule;
+use App\Models\OrderPurchase;
 
 use DB;
 use Illuminate\Http\Request;
@@ -48,13 +49,25 @@ class ServiceOrderController extends Controller
         /*$serviceOrder2 = ServiceOrder::select('order_service_id', 'date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'status_order_id', 'user_id', 'date_registration')
         ->where('ticket_id', '=', $datas)->get();
 
-
+Ticket
         //return response()->json($serviceOrder);
 
         return view('service-order.index', compact('serviceOrders','serviceOrder2'))
             ->with('i', (request()->input('page', 1) - 1) * $serviceOrders->perPage());*/
+        $serviceOrder_factory = ServiceOrder::select('order_service_id', 'date_order', 'ticket_id', 'order_status_id', 'type_maintenance_id', 'type_service_id', 'user_id', 'date_registration')
+        ->where('order_service_id', '=', $datas)->get();
 
-        //return response()->json($datas);
+        $ticket_location = TicketLocation::find($serviceOrder_factory[0]['ticket_id']);/*select('ticket_id','factory_id','site','location')
+        ->where('ticket_id', '=', $serviceOrder_factory[0]['ticket_id'])->get();*/
+        
+
+        $factories = Factory::find($ticket_location['factory_id']);/*select( 'factory_id', 'key', 'name', 'address', 'customer_id', 'contact_id', 'user_id', 'date_registration')
+        ->where('factory_id', '=', $ticket_location[0]['factory_id'])->get();*/
+
+        $ticketLocation = TicketLocation::find($serviceOrder_factory[0]['ticket_id']);
+
+
+        // return response()->json($factories);
 
         $serviceOrders = ServiceOrder::paginate();
         
@@ -99,6 +112,10 @@ class ServiceOrderController extends Controller
         $serviceOrder2 = preg_replace('/[^0-9]/', '', $serviceOrder2);
         
         $serviceOrder = ServiceOrder::find($serviceOrder2);
+
+        $serviceOrder_id = $serviceOrder['order_status_id'];
+
+        // return response()->json($serviceOrder_id);
 
         $serviceOrder2 = ServiceOrder::select('order_service_id')
         ->where('order_service_id', '=', $datas)->get();
@@ -195,7 +212,12 @@ class ServiceOrderController extends Controller
         $customers = Customer::select('name','customer_id','address','phone')
         ->where('customer_id', '=', $contacts[0]['customer_id'])->get();
 
-       
+        $customers2 = Customer::find($contacts[0]['customer_id']);
+
+        $factory_customer = Factory::select('factory_id','name')
+        ->where('customer_id', '=', $customers2['customer_id'])->get();
+
+        // return response()->json($factory_customer);
         $employee_hierarchical_position = EmployeeHierarchicalPosition::all();/*('hierarchical_position_id','employee_id')
         ->where('employee_id', '=', $employeeOrders_data[0]['employee_id'])->get();*/
 
@@ -215,19 +237,27 @@ class ServiceOrderController extends Controller
 
         //return response()->json($employee);
 
-        $shcedules = OrderEmployeeSchedule::all();
+        $shcedules = OrderEmployeeSchedule::select('order_employee_schedule_id', 'time_entry', 'time_departure', 'lunchtime', 
+        'hours_service', 'hours_travel', 'date', 'order_service_id', 'employee_id', 'user_id', 'date_registration')
+        ->where('order_service_id', '=', $datas)->get();
 
         $orderEmployeeSchedule = new OrderEmployeeSchedule();
         
         $employee_order = EmployeeOrder::select('order_service_id','employee_id','status_id')
         ->where('order_service_id', '=', $serviceOrder['order_service_id'])->get();
 
-        // return response()->json($serviceOrder);
+        $orderPurchase = new OrderPurchase();
+
+        $orderPurchases = OrderPurchase::select('order_service_id','purchase_id','key')
+        ->where('order_service_id', '=', $datas)->get();
+
+        // return response()->json($orderPurchases);
 
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2',
         'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure','material2','tool2','employee_assigned',
         'contacts','customers','employeeOrders_data','employee_hierarchical_position','hierarchical_position','hierarchical',
-        'hierarchical_structure','shcedules','orderEmployeeSchedule','employee_order'))
+        'hierarchical_structure','shcedules','orderEmployeeSchedule','employee_order','orderPurchase','orderPurchases',
+        'serviceOrder_factory','ticket_location','factories','customers2','ticketLocation','factory_customer','serviceOrder_id'))
             ->with('i', (request()->input('page', 1) - 1) * $serviceOrders->perPage());
     }
 

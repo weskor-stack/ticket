@@ -32,6 +32,7 @@
                         
                         @include('ticket.modal.contact')
                         @include('ticket.modal.customer')
+                        @include('ticket.modal.factory')
                         @include('ticket.modal.warranty_m')
                     </div>
                     <div hidden>

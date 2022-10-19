@@ -886,5 +886,17 @@
     "Order status" : "Estado de la orden",
     "Orders":"Ordenes",
     "Job Title": "Titulo",
-    "Second last name":"Segundo apellido"
+    "Second last name":"Segundo apellido",
+    "Factory":"Fabrica",
+    "Site":"Sitio",
+    "Location": "Ubicación",
+    "Local":"Local",
+    "Foreign":"Foraneo",
+    "Purchase": "Orden de compra",
+    "View purchase" : "Orden de compra",
+    "Add purchase" : "Agregar orden de compra",
+    "OrderPurchase created successfully." : "Orden de compra almacenado satisfactoriamente",
+    "Update location" : "Actualizar ubicación",
+    "Updated successfully." : "Actualizado satisfactoriamente",
+    "Select fatory" : "Seleccionar fabrica"
 }
