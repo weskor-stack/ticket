@@ -32,14 +32,14 @@
             
 <form action="{{ route('Warranty.index') }}" method="post" function>
 @csrf
-                    <p>{{ __('Add warranty for')}}: <strong><span id="nombre_proyecto_modal" class="text-warning"> </span></strong> </p><br>
-                    <label for="fecha_inicio">{{ __('Start date')}}</label>
+                    <p><strong>{{ __('Add warranty for')}}: <br>- <span id="nombre_proyecto_modal" class="text-warning"> </span></strong> </p><br> 
+                    <label for="fecha_inicio"> <strong>{{ __('Start date')}} </strong></label> 
                     <br>
                     <input type="text" id="save_data_modal" name="project_id" hidden>
                     
                     <input type="date" id="fecha_inicio_combobx" name="date_start" required  ><br><br>
                     
-                    <label for="fecha_final_combobx">{{ __('End date')}}</label><br>
+                    <label for="fecha_final_combobx"><b>{{ __('End date')}}</b></label><br>
                     <input type="date" id="fecha_final_combobx" name="date_end" required >
                     <input autocomplete="off" readonly="readonly" name="user_id"  value="9999"  type="text" id="user_id" hidden>
                     <br>
