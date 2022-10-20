@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.hover')
+
 @section('template_title')
     Create Ticket
 @endsection
@@ -11,7 +11,7 @@
 
                 @includeif('partials.errors')
 
-                <div class="card card-default" style="width:80%; margin-left:15%;">
+                <div class="card card-default" >
                     <div class="card-header">
                         <span class="card-title">{{ __('Create Ticket')}}</span>
                     </div>
@@ -20,7 +20,7 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-                    <div class="card-body" style="width:80%; margin-left:2%;"> 
+                    <div class="card-body" style="width:100%; margin-left:10%;"> 
                         <form method="POST" action="{{ route('tickets.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 

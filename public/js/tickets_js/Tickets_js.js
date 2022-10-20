@@ -62,7 +62,7 @@ $(document).ready(function()
                 //alert("no tiene garantia hecha");
                 (document.getElementById("texto_fecha_final_garantia")).setAttribute("class","text-warning");
                 document.getElementById("texto_status_garantía").innerHTML = "No hecha";
-                document.getElementById("texto_fecha_final_garantia").innerHTML = "Sin garantía disponible";
+                document.getElementById("texto_fecha_final_garantia").innerHTML = "Sin definir";
                 (document.getElementById("texto_status_garantía")).setAttribute("class","text-warning");
                 color_garantia.setAttribute("class",clase_warning);
                 color_garantia.setAttribute("title","Garantía no dada de alta");

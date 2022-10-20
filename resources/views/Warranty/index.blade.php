@@ -1,8 +1,6 @@
 
 @extends('layouts.app')
 
-@extends('layouts.hover')
-
 
 
 

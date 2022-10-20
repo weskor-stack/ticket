@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.hover')
+
 @section('template_title')
     Update Ticket
 @endsection

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.hover')
+
 @section('template_title')
     {{ $ticket->name ?? 'Show Ticket' }}
 @endsection
