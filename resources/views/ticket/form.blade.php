@@ -215,12 +215,9 @@
                 <div  class="spinner-grow" id="status_warranty_color" style="width:20px; height:20px;" data-toggle="tooltip" title="selecciona una opción"></div>
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> Garantía = <strong><span id="texto_status_garantía"></span></strong> <br> Fecha de hoy = 
                 <span  id="texto_fecha_hoy_garantia"></span> <br> Fecha de final = <strong><span id="texto_fecha_final_garantia"></span> </strong> </p> </div>
-<<<<<<< HEAD
-                <a hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:88%; margin-top:-150px;"  id="boton_de_creacion_garantia">{{ __('Create waranty')}}</a>
-=======
-                <a hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:88%; margin-top:-150px;"  id="boton_de_creacion_garantia">{{ __('Create_waranty')}}</a>
-             
->>>>>>> ba2745f2bb98324823b01867f18d82ec132cccc5
+
+                <a hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:88%; margin-top:-150px;"  id="boton_de_creacion_garantia">{{ __('Create waranty')}}</a>           
+
             </div>
             
             <script src="{{ asset('js/tickets_js/Tickets_js.js') }}" defer></script>
