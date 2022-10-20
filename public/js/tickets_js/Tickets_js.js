@@ -12,17 +12,20 @@ $(document).ready(function(){
 
 
 
+
 });
 $(document).ready(function()
 {
+    document.getElementById("project_id_s").selectedIndex = "Proyecto";
     $('#project_id_s').on('change', function()
     {
+        
+
         if( (document.getElementById("project_id_s").value) != "Project" )
         {
             (document.getElementById("status_warranty_principal")).removeAttribute("hidden","");
             
         }
-
 
 
         function sleep (time) 
