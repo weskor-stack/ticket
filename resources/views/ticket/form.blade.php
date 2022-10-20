@@ -220,7 +220,7 @@
 
             </div>
             
-            <script src="{{ asset('js/tickets_js/Tickets_js.js') }}" defer></script>
+            <script src="{{ asset('js/tickets_js/Tickets_js_2.js') }}" defer></script>
             
         </div>
         <br>
