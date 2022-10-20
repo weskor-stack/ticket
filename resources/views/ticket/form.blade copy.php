@@ -100,9 +100,9 @@
                     <tr style="text-align: left; font-size: 15px; vertical-align: center;">
                         <td><b>{{ _('Factory')}}:</b></td>
                         <td>
-                            <select class="form-select" name="factory_id" id="factory_id" style="width:500px; height:38px;" required></select>
+                            <select class="form-select" name="factory_id" id="factory_id" style="width:600px; height:38px;" required></select>
 
-                            <a  style="margin-left:520px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo4">+</a> <br>
+                            <a  style="margin-left:620px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo4">+</a> <br>
 
                            
                             <!-- <input type="text" name="factory" id="factory2"> -->
@@ -114,7 +114,7 @@
                         </td>
                         <td>
                             <!-- <div class="resultado"></div> -->
-                            <input type="text" id="result" class="form-control" style="width:600px; height:38px;" dissabled>
+                            <input type="text" id="result" class="form-control" style="width:600px; height:38px;" disabled>
                         </td>
                     </tr>
                     <tr>
