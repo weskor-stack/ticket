@@ -16,11 +16,11 @@
 
 
 
-<div  id="contenedor_principal"  class="hola" style="margin-left:-.5%;" onmouseleave="togeleador()" onmouseover="opacidad()">
+<div  id="btn-group-vertical hola"  class="hola" style="margin-left:-.5%;" onmouseleave="togeleador()" onmouseover="opacidad()">
 
 
 
-        <div  class="btn-group-vertical hola"style="position:fixed; height:100%;">
+        <div  class=""style="position:fixed; height:100%;">
         
         <img  class="opacidad_inicio" id="logo_a" src="{{ asset('images/logoAutomatyco3.png') }}" style="width:100%; height:60px; margin-top:-100%;" alt="">
         

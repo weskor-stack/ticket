@@ -90,7 +90,7 @@
             {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''), 'placeholder' => __('Priority'),'required']) }}
             {!! $errors->first('priority_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-
+        
         <br>
         <div>
         {{ Form::label( __('Project')) }} 
@@ -110,6 +110,7 @@
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> Garantía = <strong><span id="texto_status_garantía"></span></strong> <br> Fecha de hoy = 
                 <span  id="texto_fecha_hoy_garantia"></span> <br> Fecha de final = <strong><span id="texto_fecha_final_garantia"></span> </strong> </p> </div>
                 <a hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:88%; margin-top:-150px;"  id="boton_de_creacion_garantia">{{ __('Create_waranty')}}</a>
+             
             </div>
             
             <script src="{{ asset('js/tickets_js/Tickets_js.js') }}" defer></script>
