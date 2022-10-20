@@ -32,14 +32,14 @@
             
 <form action="{{ route('Warranty.index') }}" method="post" function>
 @csrf
-                    <p>Agrega la garantía de <strong><span id="nombre_proyecto_modal" class="text-warning"> </span></strong> </p><br>
-                    <label for="fecha_inicio">Fecha inicio</label>
+                    <p>{{ __('Add warranty for')}}: <strong><span id="nombre_proyecto_modal" class="text-warning"> </span></strong> </p><br>
+                    <label for="fecha_inicio">{{ __('Start date')}}</label>
                     <br>
                     <input type="text" id="save_data_modal" name="project_id" hidden>
                     
                     <input type="date" id="fecha_inicio_combobx" name="date_start" required  ><br><br>
                     
-                    <label for="fecha_final_combobx">Fecha final</label><br>
+                    <label for="fecha_final_combobx">{{ __('End date')}}</label><br>
                     <input type="date" id="fecha_final_combobx" name="date_end" required >
                     <input autocomplete="off" readonly="readonly" name="user_id"  value="9999"  type="text" id="user_id" hidden>
                     <br>
@@ -52,8 +52,8 @@
                    
         </div>
          <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button> 
-                    <button  class="btn btn-success" onclick="save_data()">Guardar</button>                    
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Cancel')}}</button> 
+                    <button  class="btn btn-success" onclick="save_data()">{{ __('Save')}}</button>                    
                     
                     <script src="{{ asset('tickets_js/Tickets_js.js') }}" defer></script>
 

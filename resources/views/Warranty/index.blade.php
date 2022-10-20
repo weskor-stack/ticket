@@ -111,19 +111,19 @@
         <!--información del proyecto-->
         <!--mostrar cuando se haya seleccionado un proyecto-->
         <div  class="col-sm-12"style="background: rgb(0,0,0);
-background: linear-gradient(90deg, rgba(0,0,0,0.0) 0%, rgba(237,237,237,1) 50%, rgba(0,0,0,0.0) 100%);"> <strong> <center> Información del proyecto </center> </strong> </div>
+background: linear-gradient(90deg, rgba(0,0,0,0.0) 0%, rgba(237,237,237,1) 50%, rgba(0,0,0,0.0) 100%);"> <strong> <center> {{ __('Project info')}} </center> </strong> </div>
         <div  name="informacion_proyecto"   style="background:#f5f7fc;">
         <div >  
     <div>
     <div class="row">
             <div class="col-md-8">
                 <div class="pb-4">
-                    <label for="p_project" id="nombre_proyecto">nombre del proyecto</label>
+                    <label for="p_project" id="nombre_proyecto">{{ __('Project name')}}</label>
                     <input type="text", id="nombre_proyecto2" style="width:57%;" placeholder="" readonly="readonly" disabled >
                 </div>
                 <div class="row">
                     <div class="col-md-2">
-                        <label for="p_project">Status de proyecto</label>
+                        <label for="p_project">{{ __('Project status')}}</label>
                         <input type="text", id="status_input"  placeholder="" readonly="readonly"  disabled>
                     </div>
                     <div class="col-md-3" style="margin-left:60px; margin-top:23px; width:auto;">
@@ -133,11 +133,11 @@ background: linear-gradient(90deg, rgba(0,0,0,0.0) 0%, rgba(237,237,237,1) 50%, 
                     <br>
                 <div class="row">
                         <div class="col-md-3">
-                            <label for="p_project">Fecha inicio</label>
+                            <label for="p_project">{{ __('Start date')}}</label>
                             <input type="text", id="Fecha_inicio_vista" placeholder="Fecha inicio" readonly="readonly" disabled>
                         </div>
                         <div class="col-md-3">
-                            <label for="p_project">Fecha final</label>
+                            <label for="p_project">{{ __('End date')}}</label>
                             <input type="text", id="Fecha_final_vista" placeholder="Fecha final" readonly="readonly" disabled>
                             
                         </div>

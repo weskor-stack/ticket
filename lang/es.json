@@ -899,5 +899,15 @@
     "Update location" : "Actualizar ubicación",
     "Updated successfully." : "Actualizado satisfactoriamente",
     "Select fatory" : "Seleccionar fabrica",
-    "Create waranty": "Crear garantia"
+    "Create waranty": "Crear garantia",
+    "Today_date":"Fecha de hoy",
+    "Warranty":"Garantía",
+    "Final Date":"Fecha del final",
+    "Add warranty":"Añadir Garantía",
+    "Add warranty for":"Añadir garantía a ",
+    "Start date":"Fecha de inicio",
+    "End date":"Fecha final",
+    "Project status":"Status de proyecto",
+    "Project name":"Nombre del proyecto",
+    "Project info":"Información del proyecto"
 }
