@@ -222,15 +222,9 @@
             
             <script src="{{ asset('js/tickets_js/Tickets_js.js') }}" defer></script>
             
-            
-            
         </div>
         <br>
                 
-
-
-        
-
     </div>
     <br>
     <div class="box-footer mt20">
