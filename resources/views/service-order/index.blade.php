@@ -21,8 +21,8 @@
                                 </tr>
                             </thead>
                                 <tr>
-                                    <td style="width:10%"></td>
-                                    <td style="text-align: left">
+                                    <td style="width:5%"></td>
+                                    <td class="text-left" style="width:30%">
                                         @foreach($customers as $customer)
                                             <b>{{ __('Name')}}:</b> {{ $customer->name }}<br>
                                             @foreach($contacts as $contact)
@@ -36,8 +36,27 @@
                                         <b>{{ __('Date')}}:</b> {{\Carbon\Carbon::parse($serviceOrder->date_order)->format('d/m/Y')}}
                                         
                                     </td>
-                                    <td>
-                                        <b>{{ __('Ticket')}}:</b> {{ $serviceOrder->ticket->ticket_id }}<br>
+                                    <td class="text-left" style="width:30%">
+                                        <b>{{ __('Factory')}}:</b> {{ $factories->name }}<br>
+                                        <b>{{ __('Address')}}:</b> {{ $factories->address }}<br>
+                                        <b>{{ __('Site')}}:</b> {{ $ticket_location->site }}<br>
+                                        <b>{{ __('Location')}}:</b> 
+                                            @if($ticket_location->location == 'L')
+                                                {{ __('Local') }}
+                                            @else
+                                                {{ __('Foreign') }}
+                                            @endif
+                                        <br>
+                                        <br>
+                                        @if($serviceOrder_id=='8')
+
+                                        @else
+                                            <a type="submit" class="btn btn-info" data-toggle="modal" data-target="#location{{ $customers2->customer_id }}"><i class="material-icons" style="font-size:20px">edit</i>&nbsp; {{ __('Edit') }}</a>
+                                        @endif
+                                        @include('service-order.modal.location')
+                                    </td>
+                                    <td class="text-left" style="width:20%">
+                                        <b>{{ __('Ticket')}}:</b> {{ $serviceOrder->ticket_id }}<br>
                                         <b>{{ __('Order')}}:</b> {{ $serviceOrder->order_service_id }}<br>
                                         <b></b> <br>
                                         <b></b><br><br>
@@ -45,7 +64,7 @@
                                         <b></b> <br>
                                         <b></b> 
                                     </td>
-                                    <td>
+                                    <td class="text-left" style="width:15%">
                                         <br>
                                         <br>
                                         <br>
@@ -93,6 +112,7 @@
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
                                                                     <h4 class="modal-title">{{ __('Add material')}}</h4>
+                                                                    <img src="{{ asset('images/icons/add2.png') }}" width="8%">
                                                                 </div>
 
                                                             <!-- cuerpo del diálogo -->
@@ -127,6 +147,7 @@
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
                                                                     <h4 class="modal-title">{{ __('Add material')}}</h4>
+                                                                    <img src="{{ asset('images/icons/add2.png') }}" width="8%">
                                                                 </div>
 
                                                             <!-- cuerpo del diálogo -->
@@ -209,6 +230,7 @@
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
                                                                     <h4 class="modal-title">{{ __('Add tool')}}</h4>
+                                                                    <img src="{{ asset('images/icons/add2.png') }}" width="8%">
                                                                 </div>
 
                                                             <!-- cuerpo del diálogo -->
@@ -261,7 +283,8 @@
 
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
-                                                                    <h4 class="modal-title">{{ __('Add employee')}}</h4>            
+                                                                    <h4 class="modal-title">{{ __('Add employee')}}</h4>   
+                                                                    <img src="{{ asset('images/icons/add2.png') }}" width="8%">         
                                                                 </div>
                                                             <!-- cuerpo del diálogo -->
                                                                 <div class="modal-body">                
@@ -665,6 +688,7 @@
                                                                 <!-- cabecera del diálogo -->
                                                                     <div class="modal-header">
                                                                         <h4 class="modal-title">{{ __('Add')}}</h4>
+                                                                        <img src="{{ asset('images/icons/schedule.png') }}" width="6%">
                                                                     </div>
                                                                                     
                                                                 <!-- cuerpo del diálogo -->
@@ -751,7 +775,7 @@
                             <table class="table table-striped table-hover">
                                 <tr style="text-align: left">
                                     <td style="width:20%"></td>
-                                    <td style="width:30%">
+                                    <td style="width:25%">
                                         <div class="form-group">
                                         <legend>{{ __('Type of maintenance')}}</legend>
                                         @if ($serviceOrder->type_maintenance_id=='1')
@@ -802,7 +826,7 @@
                                             {!! $errors->first('type_service_id', '<div class="invalid-feedback">:message</div>') !!}-->
                                         </div>
                                     </td>
-                                    <td style="width:80%">
+                                    <td style="width:25%">
                                         <br>
                                         <br>
                                         <br>
@@ -812,7 +836,26 @@
                                             @method('GET')
                                             <a title="{{ __('Edit')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo4" ><i class="material-icons" style="font-size:20px">edit</i>&nbsp; {{ __('Edit')}}</a>
                                             <a title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_edit"><i class="material-icons">&#xe887;</i></a>
+
+                                            
                                         @endif
+
+                                        @include('service-order.modal.purchase')
+                                        @include('service-order.modal.purchase_index')
+
+                                        <!----------------------->
+                                        @if($orderPurchases->isEmpty())
+                                            <a title="{{ __('Purchase')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchase{{ $serviceOrder->order_service_id }}" ><i class="material-icons" style="font-size:20px">attach_money</i>&nbsp; {{ __('Purchase')}}</a>
+                                        @else
+                                            <a title="{{ __('View Purchase')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchase_index"><i class="material-icons" >visibility</i>&nbsp; {{__('Purchase')}}</a>
+                                            <!-- @if($serviceOrder->order_status_id=='8')
+
+                                            @else
+                                                <a title="{{ __('Purchase')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchase{{ $serviceOrder->order_service_id }}" ><i class="material-icons" style="font-size:20px">attach_money</i>&nbsp; {{ __('Purchase')}}</a>
+                                                <a title="{{ __('View Purchase')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchase_index"><i class="material-icons" >visibility</i>&nbsp; {{__('Purchase')}}</a>
+                                            @endif -->
+                                        @endif
+                                        <!----------------------->
                                     </td>
                                 </tr>
                             </table>
@@ -1133,12 +1176,12 @@
                     <!----------------------->
                     @if($shcedules->isEmpty())
 
-                        @else
-                            @if($serviceOrder->order_status_id=='8')
+                    @else
+                        @if($serviceOrder->order_status_id=='8')
 
-                            @else
-                                <a href="{{ route('notify-sales','id_ticket='.$serviceOrder->order_service_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('Finish') }}"><i class="material-icons">send</i>&nbsp; {{ __('Finish') }}</a>
-                            @endif
+                        @else
+                            <a href="{{ route('notify-sales','id_ticket='.$serviceOrder->order_service_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('Finish') }}"><i class="material-icons">send</i>&nbsp; {{ __('Finish') }}</a>
+                        @endif
                     @endif
                     <!----------------------->
                     </div>

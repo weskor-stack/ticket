@@ -59,7 +59,7 @@
 											<td style="text-align: center">{{ $employee->last_name }}</td>
 											<td style="text-align: center">{{ $employee->email }}</td>
 											<td style="text-align: center"></td>
-											<td style="text-align: center">{{ $employee->status->name }}</td>
+											<td style="text-align: center">{{ $employee->status_id }}</td>
 
                                             <td style="text-align: center">
                                                 <form action="{{ route('employees.destroy',$employee->employee_id) }}" method="POST">

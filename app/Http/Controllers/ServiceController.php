@@ -21,7 +21,8 @@ use App\Models\ToolUsed;
 use App\Models\Tool;
 use App\Models\Ticket;
 use App\Models\ServiceEmployee;
-//use App\Models\Activity;
+use App\Models\{TicketLocation, Factory};
+
 use App\Models\ServiceTaskSpecific;
 use DB;
 use Illuminate\Http\Request;
@@ -189,10 +190,20 @@ class ServiceController extends Controller
         //$serviceOrder = ServiceOrder::find();
         //return response()->json($tickets_contact[0]['contact_id']);
 
+        $serviceOrder_factory = ServiceOrder::select('order_service_id', 'date_order', 'ticket_id', 'order_status_id', 'type_maintenance_id', 'type_service_id', 'user_id', 'date_registration')
+        ->where('order_service_id', '=', $datas)->get();
+
+        $ticket_location = TicketLocation::find($serviceOrder_factory[0]['ticket_id']);/*select('ticket_id','factory_id','site','location')
+        ->where('ticket_id', '=', $serviceOrder_factory[0]['ticket_id'])->get();*/
+        
+
+        $factories = Factory::find($ticket_location['factory_id']);/*select( 'factory_id', 'key', 'name', 'address', 'customer_id', 'contact_id', 'user_id', 'date_registration')
+        ->where('factory_id', '=', $ticket_location[0]['factory_id'])->get();*/
+
         return view('service.index', compact('services','service','serviceOrder','serviceReport','employee','service2','serviceOrder','materialAssigneds','toolAssigneds',
         'serviceReports','serviceTaskSpecific', 'activity2','employeeOrders', 'materialUseds', 'materialUsed','materials2','tools2','toolUsed','toolUseds','tool2','material2',
         'service_report','customers','contacts','tickets_contact','tickets','service_employees','employees','employee_order','service5',
-        'serviceOrder_id'))
+        'serviceOrder_id','serviceOrder_factory','ticket_location','factories'))
             ->with('i', (request()->input('page', 1) - 1) * $services->perPage());
     }
 

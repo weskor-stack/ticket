@@ -39,8 +39,6 @@ class Ticket extends Model
 		//'status_ticket_id' => 'required',
 		'customer_id' => 'required',
 		'contact_id' => 'required',
-        'user_id' => 'required',
-		'priority_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -50,8 +48,8 @@ class Ticket extends Model
      *
      * @var array
      */
-    protected $fillable = ['subject', 'ticket_id','problem','customer_id','contact_id','user_id'];
-    //protected $fillable = ['subject','problem','date_ticket','customer_id','contact_id','priority_id','user_id'];
+    protected $fillable = ['subject', 'ticket_id','problem','customer_id','contact_id','user_id','ticket_priority_id'];
+    //protected $fillable = ['subject','problem','date_ticket','customer_id','contact_id','ticket_priority_id','user_id'];
 
 
     /**

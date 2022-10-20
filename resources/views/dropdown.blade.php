@@ -53,5 +53,37 @@
             });
         });
     </script>
+
+    <div>
+        {{ Form::label( __('Factories')) }} <br>
+        Texto seleccionado:<input type="text" id="factory_id" name="factory"><br>
+        <select class="form-select " id="factory"></select>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#customer').on('change', function () {
+                var countryId = $(this).val();
+                //document.getElementById('customer_id').value= countryId;
+                $('#factory').html('');
+                $.ajax({
+                    url: "{{ route('getFactories') }}?customer_id="+countryId,
+                    type: 'get',
+                    success: function (res) {
+                        $('#factory').html("<option value=''>{{ __('Select factory')}}</option>");
+                        $.each(res, function (key, value) {
+                            $('#factory').append('<option value="' + value
+                                .factory_id + '">' + value.factory_id + ' ' + value.name +'</option>');
+                        });
+                    }
+                });
+            });
+
+            $('#factory').on('change', function () {
+                var contactId = this.value;
+                document.getElementById('factory_id').value= contactId;
+                
+            });
+        });
+    </script>
 </body>
 </html>

@@ -53,4 +53,36 @@ class DropdownController extends Controller
         }
     }
 
+    /**
+     * return states list.
+     *
+     * @return json
+     */
+    public function getFactories(Request $request)
+    {
+        $factories = \DB::table('Customer.factory')
+            ->where('customer_id', $request->customer_id)
+            ->get();
+        
+        if (count($factories) > 0) {
+            return response()->json($factories);
+        }
+    }
+
+    /**
+     * return states list.
+     *
+     * @return json
+     */
+    public function getAddress(Request $request)
+    {
+        $factories = \DB::table('Customer.factory')
+            ->where('factory_id', $request->factory_id)
+            ->get();
+        
+        if (count($factories) > 0) {
+            return response()->json($factories);
+        }
+    }
+
 }

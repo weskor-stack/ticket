@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmployeeOrder;
 use App\Models\Employee;
-use App\Models\ServiceOrder;
-use DB;
+use App\Models\Department;
+use App\Models\SupervisorEmployee;
+use App\Models\Status;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 /**
- * Class EmployeeOrderController
+ * Class EmployeeController
  * @package App\Http\Controllers
  */
-class EmployeeOrderController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,13 +21,10 @@ class EmployeeOrderController extends Controller
      */
     public function index()
     {
-        //$datas = $_GET['order'];
-        $employeeOrders = EmployeeOrder::paginate();
+        $employees = Employee::paginate(3);
 
-        $serviceOrder = ServiceOrder::pluck('service_order_id','service_order_id');
-
-        return view('employee-order.index', compact('employeeOrders','serviceOrder'))
-            ->with('i', (request()->input('page', 1) - 1) * $employeeOrders->perPage());
+        return view('employee.index', compact('employees'))
+            ->with('i', (request()->input('page', 1) - 1) * $employees->perPage());
     }
 
     /**
@@ -37,10 +34,10 @@ class EmployeeOrderController extends Controller
      */
     public function create()
     {
-        $employeeOrder = new EmployeeOrder();
-        $employees = Employee::pluck('name','employee_id');
-        $serviceOrder = ServiceOrder::pluck('service_order_id','service_order_id');
-        return view('employee-order.create', compact('employeeOrder','employees','serviceOrder'));
+        $employee = new Employee();
+        $status = Status::pluck('name','status_id');
+        
+        return view('employee.create', compact('employee','status'));
     }
 
     /**
@@ -51,32 +48,23 @@ class EmployeeOrderController extends Controller
      */
     public function store(Request $request)
     {
-        $statement = DB::statement("SET @user_id = 9999");
-        request()->validate(EmployeeOrder::$rules);
+        request()->validate(Employee::$rules);
+        //$datosEmpleado = $request->all();
+        $datosEmpleado = $request->except('_token');
 
-        $employeeOrder = request()->except('_token');
+        if ($request->hasFile('picture')) {
+            $datosEmpleado['picture']=$request->file('picture')->store('uploads','public');
+            # code...
+        }
+        Employee::insert($datosEmpleado);
 
-        /*$url = redirect()->getUrlGenerator()->previous();
-        $components = parse_url($url);
-        parse_str($components['query'], $results);
-        //echo($results['id']);
-        $employeeOrder['service_order_id']=$results['order'];*/
-        
-        $employeeOrder['status_id']=1;
-        $employeeOrder['user_id']=9999;
+        //return response()->json($datosEmpleado);
+        // request()->validate(Employee::$rules);
 
-        //return response()->json($employeeOrder);
-        EmployeeOrder::insert($employeeOrder);
+        // $employee = Employee::create($request->all());
 
-        //$employeeOrder = EmployeeOrder::create($request->all());
-
-        $reports2 = ServiceOrder::select('order_service_id')
-        ->where('order_service_id', '=', $employeeOrder['order_service_id'])->get();
-
-        $reports2 = preg_replace('/[^0-9]/', '', $reports2);
-
-        return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', __('Employee created successfully'));
+        return redirect()->route('employees.index')
+             ->with('success', 'Employee created successfully.');
     }
 
     /**
@@ -87,9 +75,9 @@ class EmployeeOrderController extends Controller
      */
     public function show($id)
     {
-        $employeeOrder = EmployeeOrder::find($id);
+        $employee = Employee::find($id);
 
-        return view('employee-order.show', compact('employeeOrder'));
+        return view('employee.show', compact('employee'));
     }
 
     /**
@@ -100,27 +88,43 @@ class EmployeeOrderController extends Controller
      */
     public function edit($id)
     {
-        $employeeOrder = EmployeeOrder::find($id);
-        $employee = Employee::pluck('name','employee_id');
-        $serviceOrder = ServiceOrder::pluck('service_order_id','service_order_id');
-        return view('employee-order.edit', compact('employeeOrder','employee','serviceOrder'));
+        $employee = Employee::find($id);
+        $status = Status::pluck('name','status_id');
+       
+        return view('employee.edit', compact('employee','status'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  EmployeeOrder $employeeOrder
+     * @param  Employee $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EmployeeOrder $employeeOrder)
+    public function update(Request $request, $id)
     {
-        request()->validate(EmployeeOrder::$rules);
+        $datosEmpleado = $request->except('_token','_method');
+        //Employee::where('employee_id','=',$id) -> update($datosEmpleado);
+        
 
-        $employeeOrder->update($request->all());
+        if ($request->hasFile('picture')) {
+            $employee = Employee::find($id);
+            Storage::delete('public/'.$employee->picture);
+            $datosEmpleado['picture']=$request->file('picture')->store('uploads','public');
+            # code...
+        }
+        
+        $employee = Employee::find($id);
+        $status = Status::pluck('name','status_id');
+        
+        Employee::where('employee_id','=',$id) -> update($datosEmpleado);
+        
+        //return view('employee.edit', compact('employee','status','department'));
 
-        return redirect()->route('employee-orders.index')
-            ->with('success', __('EmployeeOrder updated successfully'));
+        return redirect()->route('employees.index')
+            ->with('success', 'Empleado actualizado correctamente.');
+        //return view('employee.edit', compact('employee','status','department'));
+        //return response()->json($datosEmpleado);
     }
 
     /**
@@ -130,35 +134,13 @@ class EmployeeOrderController extends Controller
      */
     public function destroy($id)
     {
-        $statement = DB::statement("SET @user_id = 9999");
-        $serviceOrder = ServiceOrder::find($id);
+        $employee = Employee::find($id);
 
-        $employeeOrder = EmployeeOrder::find($id);
-        //$employeeOrder = EmployeeOrder::find($id)->delete();
+        if (Storage::delete('public/'.$employee->picture)) {
+            Employee::destroy($id);
+        }
 
-        //$serviceOrder = $employeeOrder->order_service_id;
-
-        $array = explode ( ' ', $id );
-
-        $employeeOrders = EmployeeOrder::select('employee_id','order_service_id')
-        ->where('order_service_id', '=', $array[0])->where('employee_id', '=', $array[1])->get();
-        
-        //return response()->json($employeeOrders);
-
-        $reports2 = ServiceOrder::select('order_service_id')
-        ->where('order_service_id', '=', $array[0])->get();
-
-        $reports2 = preg_replace('/[^0-9]/', '', $reports2);
-
-        //return response()->json($reports2);
-
-        $employeeOrder = EmployeeOrder::where('order_service_id', '=', $array[0])->where('employee_id', '=', $array[1])->delete();
-        
-        /*$serviceOrder = ServiceOrder::select('service_order_id')->get();
-
-        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);*/
-
-        return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', __('Employee deleted successfully'));
+        return redirect()->route('employees.index')
+            ->with('success', 'Employee deleted successfully');
     }
 }

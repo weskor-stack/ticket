@@ -14,6 +14,7 @@
                 <div class="card card-default">
                     <div class="card-header">
                         <span class="card-title">Actualizar material</span>
+                        <img src="{{ asset('images/icons/update2.png') }}" width="8%">
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('material-assigneds.update', $materialAssigned->material_id) }}"  role="form" enctype="multipart/form-data">

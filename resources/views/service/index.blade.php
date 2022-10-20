@@ -23,8 +23,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="width:10%"></td>
-                                    <td style="text-align: left">
+                                    <td style="width:15%"></td>
+                                    <td class="text-left" style="width:25%">
                                         @foreach($customers as $customer)
                                             <b>{{ __('Name') }}:</b> {{ $customer->name }}<br>
                                             @foreach($contacts as $contact)
@@ -37,7 +37,20 @@
                                         <b></b> <br>
                                         <b></b> 
                                     </td>
-                                    <td>
+                                    <td class="text-left" style="width:30%">
+                                        <b>{{ __('Factory')}}:</b> {{ $factories->name }}<br>
+                                        <b>{{ __('Address')}}:</b> {{ $factories->address }}<br>
+                                        <b>{{ __('Site')}}:</b> {{ $ticket_location->site }}<br>
+                                        <b>{{ __('Location')}}:</b> 
+                                            @if($ticket_location->location == 'L')
+                                                {{ __('Local') }}
+                                            @else
+                                                {{ __('Foreign') }}
+                                            @endif
+                                        <br>
+                                        <br>
+                                    </td>
+                                    <td class="text-left" style="width:30%">
                                         <b>{{ __('Ticket') }}:</b> {{ $tickets }}<br>
                                         <b>{{ __('Order') }}:</b> {{ $service->order_service_id }}<br>
                                         <!--b>{{ __('Report') }}:</b>{{ $service->service_id }} <br>-->
@@ -185,6 +198,7 @@
                                     <!-- cabecera del diálogo -->
                                         <div class="modal-header">
                                             <h4 class="modal-title">{{ __('Add')}}</h4>
+                                            <img src="{{ asset('images/icons/schedule.png') }}" width="6%">
                                         </div>
                                                         
                                     <!-- cuerpo del diálogo -->
@@ -242,6 +256,7 @@
                                     <!-- cabecera del diálogo -->
                                         <div class="modal-header">
                                             <h4 class="modal-title">{{ __('Add material')}}</h4>
+                                            <img src="{{ asset('images/icons/add2.png') }}" width="8%">
                                         </div>
                                                         
                                     <!-- cuerpo del diálogo -->
@@ -298,6 +313,7 @@
                                     <!-- cabecera del diálogo -->
                                         <div class="modal-header">
                                             <h4 class="modal-title">{{ __('Add tool')}}</h4>
+                                            <img src="{{ asset('images/icons/add2.png') }}" width="8%">
                                         </div>
                                                         
                                     <!-- cuerpo del diálogo -->
@@ -636,7 +652,7 @@
                                         <td hidden></td>
                                         
                                         <td style="text-align:right;" colspan="2">
-                                        @if($service->service_status_id=='2')    
+                                        @if($serviceOrder_id=='8')    
                                             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2" hidden>{{ __('Add material')}}</button>
                                         @else
                                             @method('GET')

@@ -12,8 +12,11 @@ use App\Models\ServiceOrder;
 use App\Models\TypeService;
 use App\Models\Warranty;
 use App\Models\TypeMaintenance;
-use App\Models\Priority;
+use App\Models\TicketPriority;
 use App\Models\Status;
+use App\Models\Factory;
+use App\Models\TicketLocation;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use PDF;
@@ -39,7 +42,7 @@ class TicketController extends Controller
 
         $maintenance = TypeMaintenance::pluck('name','type_maintenance_id');
 
-        $priority = Priority::pluck('name','ticket_priority_id');
+        $priority = TicketPriority::pluck('name','ticket_priority_id');
 
         $contacts = Contact::all();
 
@@ -74,7 +77,7 @@ class TicketController extends Controller
         //$contact2 = "SELECT 'name' FROM contact WHERE customer_id = '$customer'";
         //$contact = Contact::where('customer_id', $customer2)->pluck('name','contact_id'); //
         $contacts = Contact::pluck('name','contact_id');
-        $priority = Priority::pluck('name','ticket_priority_id');
+        $priority = TicketPriority::pluck('name','ticket_priority_id');
         
         $customer = new Customer();
         $contact = new Contact();
@@ -87,8 +90,10 @@ class TicketController extends Controller
         $projects = Project::all();
         $warranty_of = Warranty::all();
 
+        $factory = new Factory();
+
         return view('ticket.create', compact('ticket','status','customers2','contacts2','priority','customers','contacts','customer','contact',
-        'countries','projects','warranty_of'));
+        'countries','projects','warranty_of', 'factory'));
         //return view('ticket.create', compact('ticket','status','priority','customers','contacts'));
     }
 
@@ -104,9 +109,11 @@ class TicketController extends Controller
         request()->validate(Ticket::$rules);
         $statement = DB::statement("SET @user_id = 9999");
 
-        $tickets = request()->except('_token','contact','customer_id','priority_id','project_id_s','project_id');
+        $tickets = request()->except('_token','contact','customer_id','priority_id','project_id_s','project_id','factory_id','site','location');
 
-        $ticket_project = request()->except('_token','contact','customer_id','priority_id','subject','problem','contact_id','project_id_s');
+        $ticket_project = request()->except('_token','contact','customer_id','priority_id','subject','problem','contact_id','project_id_s','factory_id','site','location');
+
+        $ticket_location = request()->except('_token','contact','customer_id','priority_id','subject','problem','contact_id','project_id_s','project_id');
 
         $fechaActual = date('y/m/d');
 
@@ -118,11 +125,16 @@ class TicketController extends Controller
 
         $tickets ['ticket_origin_id'] = 2;
 
+        $tickets ['user_id'] = 9999;
+
         $ticket_project ['user_id'] = 9999;
 
-        //return response()->json($ticket_project);
+        $ticket_location ['user_id'] = 9999;
+
+        // return response()->json($ticket_location);
 
         Ticket::insert($tickets);
+
 
         $last_ticket = Ticket::latest('ticket_id')->first();
 
@@ -130,7 +142,11 @@ class TicketController extends Controller
 
         $ticket_project ['ticket_id'] = $last_ticket;
 
+        $ticket_location ['ticket_id'] = $last_ticket;
+
         TicketProject::insert($ticket_project);
+
+        TicketLocation::insert($ticket_location);
 
         $data = Ticket::latest('ticket_id')->first();
 
