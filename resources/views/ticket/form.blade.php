@@ -98,7 +98,7 @@
                 </thead> -->
                 <tbody>
                     <tr style="text-align: left; font-size: 15px; vertical-align: center;">
-                        <td><b>{{ _('Factory')}}:</b></td>
+                        <td><b>{{ __('Factory')}}:</b></td>
                         <td>
                             <select class="form-select" name="factory_id" id="factory_id" style="width:500px; height:38px;" required></select>
 
@@ -215,7 +215,7 @@
                 <div  class="spinner-grow" id="status_warranty_color" style="width:20px; height:20px;" data-toggle="tooltip" title="selecciona una opción"></div>
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> Garantía = <strong><span id="texto_status_garantía"></span></strong> <br> Fecha de hoy = 
                 <span  id="texto_fecha_hoy_garantia"></span> <br> Fecha de final = <strong><span id="texto_fecha_final_garantia"></span> </strong> </p> </div>
-                <a hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:88%; margin-top:-150px;"  id="boton_de_creacion_garantia">{{ __('Create_waranty')}}</a>
+                <a hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:88%; margin-top:-150px;"  id="boton_de_creacion_garantia">{{ __('Create waranty')}}</a>
             </div>
             
             <script src="{{ asset('js/tickets_js/Tickets_js.js') }}" defer></script>

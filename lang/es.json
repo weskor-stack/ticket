@@ -898,5 +898,6 @@
     "OrderPurchase created successfully." : "Orden de compra almacenado satisfactoriamente",
     "Update location" : "Actualizar ubicación",
     "Updated successfully." : "Actualizado satisfactoriamente",
-    "Select fatory" : "Seleccionar fabrica"
+    "Select fatory" : "Seleccionar fabrica",
+    "Create waranty": "Crear garantia"
 }
