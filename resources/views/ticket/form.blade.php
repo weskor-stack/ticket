@@ -216,7 +216,7 @@
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> Garantía = <strong><span id="texto_status_garantía"></span></strong> <br> Fecha de hoy = 
                 <span  id="texto_fecha_hoy_garantia"></span> <br> Fecha de final = <strong><span id="texto_fecha_final_garantia"></span> </strong> </p> </div>
 
-                <a hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:88%; margin-top:-150px;"  id="boton_de_creacion_garantia">{{ __('Create waranty')}}</a>           
+                <a hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:35%; margin-top:-150px;"  id="boton_de_creacion_garantia">{{ __('Create waranty')}}</a>           
 
             </div>
             
