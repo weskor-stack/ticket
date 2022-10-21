@@ -114,7 +114,7 @@
                         </td>
                         <td>
                             <!-- <div class="resultado"></div> -->
-                            <input type="text" id="result" class="form-control" style="width:600px; height:38px;" dissabled>
+                            <input type="text" id="result" class="form-control" style="width:600px; height:38px;" disabled>
                         </td>
                     </tr>
                     <tr>

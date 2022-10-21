@@ -131,6 +131,10 @@ class TicketController extends Controller
 
         $ticket_location ['user_id'] = 9999;
 
+        if($ticket_location ['site'] == null){
+            $ticket_location ['site'] = "-";
+        }
+
         // return response()->json($ticket_location);
 
         Ticket::insert($tickets);
