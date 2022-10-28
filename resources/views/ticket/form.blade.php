@@ -52,11 +52,12 @@
             </script>
             <select class="form-select" name="contact" id="contact" style="width:600px; height:38px;" required></select>            
             
-            <a  style="margin-left:620px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo2">+</a> <br>
+            <a name="add_contacto" style="margin-left:620px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add2" data-toggle="modal" data-target="#dialogo2" hidden >+</a> <br>
 
             <script>
                 // $('#contact').select2();
                 var customer = document.getElementById('customer_id').value;
+                var add_contact = document.getElementsByName("add_contacto");
                 $("#customer").on("select2:select", function (e) {
                         var countryId = $(this).val();
                         customer = document.getElementById('customer_id').value= countryId;
@@ -73,12 +74,12 @@
                                 });
                             }
                         });
-                    
+                    (document.getElementById("add2").removeAttribute("hidden",""));
 
                     $('#contact').on("change", function () {
                         var contactId = this.value;
                         document.getElementById('contact_id').value= contactId;
-                        
+                        (document.getElementById("add").removeAttribute("hidden",""));
                     });
                 });
             </script>
@@ -102,7 +103,7 @@
                         <td>
                             <select class="form-select" name="factory_id" id="factory_id" style="width:500px; height:38px;" required></select>
 
-                            <a  style="margin-left:520px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo4">+</a> <br>
+                            <a  name="add_fabrica" style="margin-left:520px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo4" hidden>+</a> <br>
 
                            
                             <!-- <input type="text" name="factory" id="factory2"> -->
@@ -170,7 +171,7 @@
                         const resultado = document.querySelector('.resultado');
                         // resultado.textContent = contactId;
                         // alert( document.getElementById('contact_factory').value);
-
+                        document.getElementById('contact_factory').value= contactId;
                         $('.resultado').html('');
                         $.ajax({
                             url: "{{ route('getAddress') }}?factory_id="+contactId,
