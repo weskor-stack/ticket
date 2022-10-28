@@ -19,7 +19,20 @@
 
                 <!-- pie del diálogo -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="history.go(0)"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="limpiar2"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</button>
+
+                        <script>
+                            var elementos = document.getElementsByTagName('input');
+
+                            limpiar2.onclick = (e)=> { 
+                                e.preventDefault();
+                                for (let i = 0; i < elementos.length; i++) {
+                                    elementos[i].value='';          
+                                }
+
+                                // location.reload();
+                            }
+                        </script>
                     </div>
             </div>
         </div>

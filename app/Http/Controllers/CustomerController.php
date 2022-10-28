@@ -66,10 +66,12 @@ class CustomerController extends Controller
         //return response()->json( $customers['name']);
         if($customer[0]== "[]"){
             Customer::insert($customers);
-            return '<script>
+            return redirect()->back()
+            ->with('success', __('Customer created successfully'));
+            /*return '<script>
                         alert("'.__('Customer created successfully').'"); 
                         javascript:history.go(-1); 
-                    </script>';
+                    </script>';*/
         }else{
             return '<script>
                     alert("'.__('Duplicate customer, please perform the process again.').'"); 

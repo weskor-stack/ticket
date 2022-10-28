@@ -3,7 +3,7 @@
 
         <div class="form-group" >
             {{ Form::label( __('Key')) }}
-            {{ Form::text('key', $customer->key, ['class' => 'form-control' . ($errors->has('key') ? ' is-invalid' : ''), 'placeholder' => __('customer_id'), 'maxlength' => 5, 'minlength'=>5, 'required']) }}
+            {{ Form::text('key', $customer->key, ['class' => 'form-control' . ($errors->has('key') ? ' is-invalid' : ''), 'placeholder' => __('Key'), 'maxlength' => 5, 'minlength'=>5, 'required']) }}
             <!--<input type="text" name="customer_id" id="customer_id" class="form-control" maxlength="10" minlength="10" placeholder="{{ __('customer_id') }}" required>-->
             {!! $errors->first('key', '<div class="invalid-feedback">:message</div>') !!}
         </div>
