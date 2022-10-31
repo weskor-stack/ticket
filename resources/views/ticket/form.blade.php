@@ -61,7 +61,7 @@
                     var e = document.getElementById('customer');
                     var datos = e.options[e.selectedIndex].text;
 
-                    alert (customer + " - " + contact);
+                    //alert (customer + " - " + contact);
                     if (customer == ""){
                         $('#contact').html('');
                         $.ajax({
