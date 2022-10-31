@@ -296,7 +296,7 @@
 <!--------------------------------------------------------------Submit de datos generales----------------------------------------------------------------------------------->    
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
-        <a class="btn btn-secondary btn-lg" href="{{ route('tickets.index') }}"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</a>
+        <a onclick="cancel_tickets()" class="btn btn-secondary btn-lg" href="{{ route('tickets.index') }}"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</a>
     </div>
 </div>
 
@@ -317,7 +317,7 @@
 
         localStorage.setItem("salida_ticket",input_data_ticket);
        // alert("tema "+input_data_ticket[0]+" problematica "+input_data_ticket[1]+" prioridad "+input_data_ticket[2]+" proyecto "+input_data_ticket[3]);
-        alert(localStorage.getItem("salida_ticket"));
+      //  alert(localStorage.getItem("salida_ticket"));
 
 
 
@@ -327,12 +327,26 @@
 
 
     $(document).ready(function(){
-        document.getElementById('subject').value = ((localStorage.getItem("salida_ticket").split(','))[0]);
-        document.getElementById('problem').value = ((localStorage.getItem("salida_ticket").split(','))[1]);
-        document.getElementById("priority_id").selectedIndex = ((localStorage.getItem("salida_ticket").split(','))[2]);
-       document.getElementById("project_id_s").selectedIndex = ((localStorage.getItem("salida_ticket").split(','))[3]);
-       document.getElementById("project_id").value = ((localStorage.getItem("salida_ticket").split(','))[4]);
-//document.getElementById("project_id_s").selectedIndex = 4;
+        var datos_cancel  = localStorage.getItem("salida_ticket");
+        if(datos_cancel == ""){
+            //alert("nopasa");
+                              }
+        else
+                              {  
+            document.getElementById('subject').value = ((localStorage.getItem("salida_ticket").split(','))[0]);
+            document.getElementById('problem').value = ((localStorage.getItem("salida_ticket").split(','))[1]);
+            document.getElementById("priority_id").selectedIndex = ((localStorage.getItem("salida_ticket").split(','))[2]);
+            document.getElementById("project_id_s").selectedIndex = ((localStorage.getItem("salida_ticket").split(','))[3]);
+            document.getElementById("project_id").value = ((localStorage.getItem("salida_ticket").split(','))[4]);
+                              }
     });
+
+
+
+    
+function cancel_tickets(){
+    localStorage.setItem("salida_ticket","");
+}
+
 
 </script>

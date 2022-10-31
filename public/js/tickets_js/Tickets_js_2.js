@@ -23,7 +23,7 @@ $(document).ready(function()
      let dia_hoy_transform = new Date().toLocaleDateString('en-CA');
      dia_hoy = Date.parse(dia_hoy_transform);
      
-     alert(dia_hoy);
+    // alert(dia_hoy);
 
 function sleep (time) 
 {
@@ -122,7 +122,7 @@ function sleep (time)
                 }
                 else
                 {
-                    alert(dia_hoy+"  "+control_tabla_transformada[1]);
+                  //  alert(dia_hoy+"  "+control_tabla_transformada[1]);
                         (document.getElementById("texto_fecha_final_garantia")).setAttribute("class","text-danger");
                         document.getElementById("texto_fecha_final_garantia").innerHTML = control_tabla_transformada[1];
                         (document.getElementById("texto_status_garantía")).setAttribute("class","text-danger");

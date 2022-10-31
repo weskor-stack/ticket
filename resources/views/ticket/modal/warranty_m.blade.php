@@ -115,7 +115,7 @@
                   });
                     
                   function save_data() {
-                    alert(nombre_proyecto_form.value);
+                    //alert(nombre_proyecto_form.value);
                                         }
                     </script>
          </div>
