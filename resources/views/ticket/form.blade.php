@@ -55,6 +55,75 @@
             <a onclick="save_data_ticket()" name="add_contacto" style="margin-left:620px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add2" data-toggle="modal" data-target="#dialogo2" hidden >+</a> <br>
 
             <script>
+                $(document).ready(function() {
+                    var customer = document.getElementById('customer_id').value;
+                    var contact = document.getElementById('contact_id').value;
+                    var e = document.getElementById('customer');
+                    var datos = e.options[e.selectedIndex].text;
+
+                    //alert (customer + " - " + contact);
+                    if (customer == ""){
+                        $('#contact').html('');
+                        $.ajax({
+                            url: "{{ route('getStates') }}?customer_id="+customer,
+                            type: 'get',
+                            success: function (res) {
+                                // document.getElementById('contact_id').value="";
+                                $('#contact').html("<option value='0' selected disabled>{{ __('Select contact')}}</option>");
+                                $.each(res, function (key, value) {
+                                    $('#contact').append('<option value="' + value
+                                        .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
+                                });
+                            }
+                        });
+                        $('#factory_id').html('');
+                        $.ajax({
+                            url: "{{ route('getFactories') }}?customer_id="+customer,
+                            type: 'get',
+                            success: function (res) {
+                                $('#factory_id').html("<option value=''>{{ __('Select fatory')}}</option>");
+                                $.each(res, function (key, value) {
+                                    $('#factory_id').append('<option value="' + value
+                                    .factory_id +'">' + value.name + '</option>');
+                                });
+                            }
+                        });
+                    }
+                    else{
+                        $('#contact').html('');
+                        $.ajax({
+                            url: "{{ route('getStates') }}?customer_id="+customer,
+                            type: 'get',
+                            success: function (res) {
+                                // document.getElementById('contact_id').value="";
+                                $('#contact').html("<option value='0' selected disabled>{{ __('Select contact')}}</option>");
+                                $.each(res, function (key, value) {
+                                    $('#contact').append('<option value="' + value
+                                        .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
+                                });
+                            }
+                        });
+                        $('#factory_id').html('');
+                        $.ajax({
+                            url: "{{ route('getFactories') }}?customer_id="+customer,
+                            type: 'get',
+                            success: function (res) {
+                                $('#factory_id').html("<option value=''>{{ __('Select fatory')}}</option>");
+                                $.each(res, function (key, value) {
+                                    $('#factory_id').append('<option value="' + value
+                                    .factory_id +'">' + value.name + '</option>');
+                                });
+                            }
+                        });
+                        (document.getElementById("add2").removeAttribute("hidden",""));
+
+                        $('#contact').on("change", function () {
+                            var contactId = this.value;
+                            document.getElementById('contact_id').value= contactId;
+                            (document.getElementById("add").removeAttribute("hidden",""));
+                        });
+                    }
+                });
                 // $('#contact').select2();
                 var customer = document.getElementById('customer_id').value;
                 var add_contact = document.getElementsByName("add_contacto");
