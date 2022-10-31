@@ -88,7 +88,7 @@
                       var fecha_inicio_split = fecha_inicio_txt.split('-');
                       var fecha_inicio_acomodo = String(fecha_inicio_split[0]+"/"+fecha_inicio_split[1]+"/"+fecha_inicio_split[2]);
                       
-
+//coment
                      // alert(fecha_inicio_acomodo);
 
                       //alert(hola);

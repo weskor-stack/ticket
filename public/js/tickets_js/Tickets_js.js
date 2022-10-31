@@ -103,7 +103,7 @@ $(document).ready(function(){
             var clase_warning = "spinner-grow text-warning";
             var clase_off = "spinner-grow text-danger";
       
-      
+      //coment
             var btn_creacion_garantia = document.getElementById("boton_de_creacion_garantia");
             var control_tabla = String(document.getElementById('project_id_s').value);
             const control_tabla_transformada = (control_tabla).split(',');
