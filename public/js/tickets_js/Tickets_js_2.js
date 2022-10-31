@@ -138,8 +138,8 @@ function sleep (time)
     });
 
 //coment
-   
-    if(document.getElementById("project_id").value =! undefined){
+   id_de_proyecto_input = document.getElementById("project_id").value ;
+    if( id_de_proyecto_input =! undefined){
         
         document.getElementById("project_id").setAttribute('value',((localStorage.getItem("salida_ticket").split(','))[4]));
         //alert(((localStorage.getItem("salida_ticket").split(','))[4]));

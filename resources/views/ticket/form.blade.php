@@ -280,7 +280,7 @@
         </select>
         <br>
 <!------------------------------------------------------------Datos de garantía al seleccionar proyecto-------------------------------------------------------------------->            
-            <div  id="status_warranty_principal">
+            <div id="status_warranty_principal">
                 <input type="text" name="project_id" id="project_id" style="margin-left:-15%;" hidden>
                 <div  class="spinner-grow" id="status_warranty_color" style="width:20px; height:20px;" data-toggle="tooltip" title="selecciona una opción"></div>
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> {{ __('Warranty')}} = <strong><span id="texto_status_garantía"></span></strong> <br> {{ __('Today_date')}} = 
