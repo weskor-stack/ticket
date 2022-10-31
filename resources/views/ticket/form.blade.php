@@ -5,12 +5,12 @@
         
         <div class="form-group">
             {{ Form::label( __('Subject')) }}
-            {{ Form::text('subject', $ticket->subject, ['class' => 'form-control' . ($errors->has('subject') ? ' is-invalid' : ''), 'placeholder' =>  __('Subject'), 'style'=>'width:700px', 'required']) }}
+            {{ Form::text('subject', $ticket->subject, ['class' => 'form-control' . ($errors->has('subject') ? ' is-invalid' : ''),'id' => 'subject', 'placeholder' =>  __('Subject'), 'style'=>'width:700px', 'required']) }}
             {!! $errors->first('subject', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label( __('Problem')) }}
-            {{ Form::text('problem', $ticket->problem, ['class' => 'form-control' . ($errors->has('problem') ? ' is-invalid' : ''), 'placeholder' => __('Problem'),'style'=>'width:700px', 'required']) }}
+            {{ Form::text('problem', $ticket->problem, ['class' => 'form-control' . ($errors->has('problem') ? ' is-invalid' : ''), 'id' => 'problem', 'placeholder' => __('Problem'),'style'=>'width:700px', 'required']) }}
             {!! $errors->first('problem', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>
@@ -67,7 +67,7 @@
                             url: "{{ route('getStates') }}?customer_id="+customer,
                             type: 'get',
                             success: function (res) {
-                                $('#contact').html("<option value=''>{{ __('Select contact')}}</option>");
+                                $('#contact').html("<option value='' selected disabled>{{ __('Select contact')}}</option>");
                                 $.each(res, function (key, value) {
                                     $('#contact').append('<option value="' + value
                                         .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
@@ -200,34 +200,31 @@
         
         <br>
         <div>
+<!----------------------------------------------------------------------Select proyecto----------------------------------------------------------------------------------->
         {{ Form::label( __('Project')) }} 
         <select name="project_id_s" id="project_id_s" class="form-select" style="width:700px; height:38px;">
                 <option value ="Project" selected disabled >{{ __('Project') }}</option>
                 @foreach($projects as $project)
-                
                     <option value="{{ $project->project_id }}
                     @foreach($warranty_of as $cons_garantia) @if($cons_garantia->project_id == $project->project_id) ,{{$cons_garantia->date_end}} @endif @endforeach  ">{{ $project->name }}</option>
-                    
-                    
                 @endforeach
-            </select><br>
+        </select>
+        <br>
+<!------------------------------------------------------------Datos de garantía al seleccionar proyecto-------------------------------------------------------------------->            
             <div  hidden id="status_warranty_principal">
                 <input type="text" name="project_id" id="project_id" style="margin-left:-15%;" hidden>
                 <div  class="spinner-grow" id="status_warranty_color" style="width:20px; height:20px;" data-toggle="tooltip" title="selecciona una opción"></div>
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> {{ __('Warranty')}} = <strong><span id="texto_status_garantía"></span></strong> <br> {{ __('Today_date')}} = 
                 <span  id="texto_fecha_hoy_garantia"></span> <br> {{ __('Final Date')}} = <strong><span id="texto_fecha_final_garantia"></span> </strong> </p> </div>
-
                 <a hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:520px; margin-top:-61px;"  id="boton_de_creacion_garantia">{{ __('Create waranty')}}</a>           
-
             </div>
-            
-            <script src="{{ asset('js/tickets_js/Tickets_js_2.js') }}" defer></script>
-            
+            <script src="{{ asset('js/tickets_js/Tickets_js_2.js') }}" defer></script> <!--script para detectar la garantía -->
         </div>
+
         <br>
-                
     </div>
     <br>
+<!--------------------------------------------------------------Submit de datos generales----------------------------------------------------------------------------------->    
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
         <a class="btn btn-secondary btn-lg" href="{{ route('tickets.index') }}"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</a>

@@ -26,9 +26,13 @@
 
                             limpiar2.onclick = (e)=> { 
                                 e.preventDefault();
-                                for (let i = 0; i < elementos.length; i++) {
-                                    elementos[i].value='';          
-                                }
+                                $('#dialogo2').find('input').val('');
+                                pass_not = document.getElementById('emailOK2');
+                                valido.innerText = "";
+
+                                // for (let i = 0; i < elementos.length; i++) {
+                                //     elementos[i].value='';          
+                                // }
 
                                 // location.reload();
                             }

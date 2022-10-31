@@ -35,13 +35,14 @@
         </div>
         <div class="form-group">
             {{ Form::label('E-mail') }}
-            <b><span id="emailOK"></span></b>
+            <b><span id="emailOK2"></span></b>
             <!-- {{ Form::text('email', $contact->email, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => 'Email', 'maxlength' => 50,'required']) }}
             {!! $errors->first('email', '<div class="invalid-feedback">:message</div>') !!} -->
 
-            <input type="email" id="email" name="email" class="form-control" pattern='[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}' title="Entre un email válido"  placeholder="Email" style="text-transform:lowercase;" required>
+            <input type="email" id="email2" name="email" class="form-control" pattern='[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}' title="Entre un email válido"  placeholder="Email" style="text-transform:lowercase;" required>
 
-            <script src="{{ asset('js/JS_Customer/JS_Customer_email.js') }}"></script>
+            <script src="{{ asset('js/JS_Contact/JS_Contact_email.js') }}"></script> 
+         
         </div>
         <div class="form-group">
             {{ Form::label( __('phone')) }}

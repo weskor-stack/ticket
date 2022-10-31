@@ -23,14 +23,12 @@
 
                         <script>
                             var elementos = document.getElementsByTagName('input');
-
+                            
                             limpiar.onclick = (e)=> { 
                                 e.preventDefault();
-                                for (let i = 0; i < elementos.length; i++) {
-                                    elementos[i].value='';          
-                                }
-
-                                // location.reload();
+                                $('#dialogo1').find('input').val('');
+                                pass_not = document.getElementById('emailOK');
+                                valido.innerText = "";
                             }
                         </script>
                     </div>

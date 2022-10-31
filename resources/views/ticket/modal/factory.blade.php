@@ -28,9 +28,10 @@
 
                             limpiar3.onclick = (e)=> { 
                                 e.preventDefault();
-                                for (let i = 0; i < elementos.length; i++) {
-                                    elementos[i].value='';          
-                                }
+                                $('#dialogo4').find('input').val('')
+                                // for (let i = 0; i < elementos.length; i++) {
+                                //     elementos[i].value='';          
+                                // }
 
                                 // location.reload();
                             }
