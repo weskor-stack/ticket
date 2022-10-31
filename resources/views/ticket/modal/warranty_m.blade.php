@@ -65,7 +65,12 @@
   
 
                       $(document).ready(function(){
-                        
+                        var nombre_proyecto_form = document.getElementById('project_id_s'); 
+                      var id_project = ((nombre_proyecto_form.value).split(','))[0];
+                      document.getElementById('save_data_modal').setAttribute("value",id_project);
+                      
+                      document.getElementById('nombre_proyecto_modal').innerHTML = (nombre_proyecto_form.options[nombre_proyecto_form.selectedIndex].text);
+
                     $('#project_id_s').on('change', function(){
 
                       var nombre_proyecto_form = document.getElementById('project_id_s'); 

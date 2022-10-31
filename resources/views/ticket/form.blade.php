@@ -34,7 +34,7 @@
                 @endforeach
             </select>
             <br>
-            <a style="margin-left:620px; margin-top:-50px;" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</a> <br>
+            <a onclick="save_data_ticket()" style="margin-left:620px; margin-top:-50px;" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</a> <br>
         </div>
         <script>$('.select2').select2();</script>
         <br>
@@ -52,7 +52,7 @@
             </script>
             <select class="form-select" name="contact" id="contact" style="width:600px; height:38px;" required></select>            
             
-            <a name="add_contacto" style="margin-left:620px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add2" data-toggle="modal" data-target="#dialogo2" hidden >+</a> <br>
+            <a onclick="save_data_ticket()" name="add_contacto" style="margin-left:620px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add2" data-toggle="modal" data-target="#dialogo2" hidden >+</a> <br>
 
             <script>
                 // $('#contact').select2();
@@ -103,7 +103,7 @@
                         <td>
                             <select class="form-select" name="factory_id" id="factory_id" style="width:500px; height:38px;" required></select>
 
-                            <a  name="add_fabrica" style="margin-left:520px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo4" hidden>+</a> <br>
+                            <a onclick="save_data_ticket()" name="add_fabrica" style="margin-left:520px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo4" hidden>+</a> <br>
 
                            
                             <!-- <input type="text" name="factory" id="factory2"> -->
@@ -194,7 +194,7 @@
 
         <div>
             {{ Form::label( __('Priority')) }} 
-            {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''), 'placeholder' => __('Priority'), 'style'=>'width:700px','required']) }}
+            {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''), 'id'=>'priority_id', 'placeholder' => __('Priority'), 'style'=>'width:700px','required']) }}
             {!! $errors->first('priority_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         
@@ -211,7 +211,7 @@
         </select>
         <br>
 <!------------------------------------------------------------Datos de garantía al seleccionar proyecto-------------------------------------------------------------------->            
-            <div  hidden id="status_warranty_principal">
+            <div  id="status_warranty_principal">
                 <input type="text" name="project_id" id="project_id" style="margin-left:-15%;" hidden>
                 <div  class="spinner-grow" id="status_warranty_color" style="width:20px; height:20px;" data-toggle="tooltip" title="selecciona una opción"></div>
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> {{ __('Warranty')}} = <strong><span id="texto_status_garantía"></span></strong> <br> {{ __('Today_date')}} = 
@@ -220,7 +220,7 @@
             </div>
             <script src="{{ asset('js/tickets_js/Tickets_js_2.js') }}" defer></script> <!--script para detectar la garantía -->
         </div>
-
+        
         <br>
     </div>
     <br>
@@ -230,3 +230,40 @@
         <a class="btn btn-secondary btn-lg" href="{{ route('tickets.index') }}"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</a>
     </div>
 </div>
+
+
+<script>
+    function save_data_ticket(){
+        var input_data_ticket = [];
+            var tema = document.getElementById('subject'); 
+            var problematica = document.getElementById('problem');
+            var prioridad = document.getElementById('priority_id');
+            var proyecto = document.getElementById('project_id_s');
+            input_data_ticket.push(tema.value);
+            input_data_ticket.push(problematica.value);
+            input_data_ticket.push(prioridad.value);
+            input_data_ticket.push(proyecto.selectedIndex);
+            input_data_ticket.push(proyecto.value);
+        //
+
+        localStorage.setItem("salida_ticket",input_data_ticket);
+       // alert("tema "+input_data_ticket[0]+" problematica "+input_data_ticket[1]+" prioridad "+input_data_ticket[2]+" proyecto "+input_data_ticket[3]);
+        alert(localStorage.getItem("salida_ticket"));
+
+
+
+
+
+    }
+
+
+    $(document).ready(function(){
+        document.getElementById('subject').value = ((localStorage.getItem("salida_ticket").split(','))[0]);
+        document.getElementById('problem').value = ((localStorage.getItem("salida_ticket").split(','))[1]);
+        document.getElementById("priority_id").selectedIndex = ((localStorage.getItem("salida_ticket").split(','))[2]);
+       document.getElementById("project_id_s").selectedIndex = ((localStorage.getItem("salida_ticket").split(','))[3]);
+       document.getElementById("project_id").value = ((localStorage.getItem("salida_ticket").split(','))[4]);
+//document.getElementById("project_id_s").selectedIndex = 4;
+    });
+
+</script>

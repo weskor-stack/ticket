@@ -14,9 +14,64 @@ $(document).ready(function(){
 
 
 });
-$(document).ready(function()
-{
-    document.getElementById("project_id_s").selectedIndex = "Proyecto";
+
+
+
+
+
+$(document).ready(function(){
+
+
+    if(datos == "Project"){
+        alert(datos);
+    }else{
+        alert(datos);
+        document.getElementById("project_id").setAttribute('value',control_tabla_transformada[0]);
+        if(control_tabla_transformada[1] == undefined)
+            {
+                //alert("no tiene garantia hecha");
+                (document.getElementById("texto_fecha_final_garantia")).setAttribute("class","text-warning");
+                document.getElementById("texto_status_garantía").innerHTML = "Sin definir";
+                document.getElementById("texto_fecha_final_garantia").innerHTML = "Fecha sin definir";
+                (document.getElementById("texto_status_garantía")).setAttribute("class","text-warning");
+                color_garantia.setAttribute("class",clase_warning);
+                color_garantia.setAttribute("title","Garantía no dada de alta");
+                (document.getElementById("boton_de_creacion_garantia")).removeAttribute("hidden","");
+                (document.getElementById("boton_de_creacion_garantia")).setAttribute("class","animate pop btn btn-warning");
+            }
+        else
+            {
+                (document.getElementById("boton_de_creacion_garantia")).setAttribute("class","animate fade btn btn-warning");
+                sleep(290).then(() => 
+                {
+                    (document.getElementById("boton_de_creacion_garantia")).setAttribute("hidden","");
+                });
+                    
+                    
+                    
+                    
+                if(Date.parse(control_tabla_transformada[1]) > dia_hoy)
+                {
+                        (document.getElementById("texto_fecha_final_garantia")).setAttribute("class","text-success");
+                        document.getElementById("texto_status_garantía").innerHTML = "Activa";
+                        document.getElementById("texto_fecha_final_garantia").innerHTML = control_tabla_transformada[1];
+                        (document.getElementById("texto_status_garantía")).setAttribute("class","text-success");
+                        color_garantia.setAttribute("class",clase_on);
+                        color_garantia.setAttribute("title","Garantía activa");
+                }
+                else
+                {
+                        (document.getElementById("texto_fecha_final_garantia")).setAttribute("class","text-danger");
+                        document.getElementById("texto_fecha_final_garantia").innerHTML = control_tabla_transformada[1];
+                        (document.getElementById("texto_status_garantía")).setAttribute("class","text-danger");
+                        document.getElementById("texto_status_garantía").innerHTML = "Finalizada";
+                        color_garantia.setAttribute("class",clase_off);
+                        color_garantia.setAttribute("title","Garantía terminada");
+                }
+            }
+    }
+
+    //document.getElementById("project_id_s").selectedIndex = "Project";
     $('#project_id_s').on('change', function()
     {
         
