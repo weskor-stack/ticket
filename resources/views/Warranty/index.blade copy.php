@@ -118,36 +118,41 @@ consulta_garantia_9
 
 {{-- //////////////////////////////////////////////////////// Sección de muestra de información del proyecto seleccionado/////////////////////////////////////////////////////// --}}  
     <div class="collapse" id="crear">
-
         <div  class="col-sm-12"style="background: rgb(0,0,0);
             background: linear-gradient(90deg, rgba(0,0,0,0.0) 0%, rgba(237,237,237,1) 50%, rgba(0,0,0,0.0) 100%);"> <strong> <center> {{ __('Project info')}} </center> </strong> </div>
         <div  name="informacion_proyecto"   style="background:#f5f7fc;">
-    <div>  
-        
+        <div>  
+    <div>
     <div class="row">
             <div class="col-md-8">
- 
-                    <label for="p_project" id="nombre_proyecto" style="width:50%;  position:center; margin-left:50%;">{{ __('Project name')}}</label>
-                    <input type="text", id="nombre_proyecto2" style="width:50%;   text-align: center;   position:center; margin-left:50%;" placeholder="" readonly="readonly" disabled >
-<br>
-                    <label for="p_project"style="width:50%; position:center; margin-left:50%;">Project Manager  </label>
-                    <br>
-                    <input type="text", id="project_manager" style="width:50%; position:center;  text-align: center; margin-left:50%;"placeholder="Project Manager" readonly="readonly" style="width:50%;" disabled> </input>
-           
-<br> <br><br>
-<div style="width:100%; position:center; margin-left:23%; ">
-                    <label for="p_project">{{ __('Project status')}}</label>
-                    <input style="text-align:center;" type="text", id="status_input"  placeholder="" readonly="readonly"  disabled>
-             
-                    <label for="p_project">{{ __('Start date')}}</label>
-                    <input style="text-align:center;" type="text", id="Fecha_inicio_vista" placeholder="Fecha inicio" readonly="readonly" disabled>
-                            
-                    <label for="p_project">{{ __('End date')}}</label>
-                    <input style="text-align:center;" type="text", id="Fecha_final_vista" placeholder="Fecha final" readonly="readonly" disabled>  
-</div>                            
-                    
-                <br><br><br>
+                <div class="pb-4" style="margin-left:-250px;">
+                    <label for="p_project" id="nombre_proyecto">{{ __('Project name')}}</label>
+                    <input type="text", id="nombre_proyecto2" style="width:57%;" placeholder="" readonly="readonly" disabled >
+                </div>
+                <div class="row">
+                <div class="col-md-2">
+                        <label for="p_project">{{ __('Project status')}}</label>
+                        <input type="text", id="status_input"  placeholder="" readonly="readonly"  disabled>
+                    </div>
+                    <div class="col-md-3" style="margin-left:60px;; width:auto;">
+                        <label for="p_project">Project Manager  </label>
+                        <input type="text", id="project_manager" placeholder="Project Manager" readonly="readonly" style="width:100%;" disabled> </input>
+                    </div>
+
+                        <br>
+                        <br>
+                    <div class="row">
+                            <div class="col-md-3">
+                                <label for="p_project">{{ __('Start date')}}</label>
+                                <input type="text", id="Fecha_inicio_vista" placeholder="Fecha inicio" readonly="readonly" disabled>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="p_project">{{ __('End date')}}</label>
+                                <input type="text", id="Fecha_final_vista" placeholder="Fecha final" readonly="readonly" disabled>  
+                            </div>
+                    </div>
                 
+                </div>
             </div>
         </div>
 
@@ -202,11 +207,11 @@ consulta_garantia_9
                     
                     <label for="fecha_inicio_creada"><strong>Fecha inicio</strong></label>
                     <br>
-                    <input disabled type="text" id="fecha_inicio_creada" style="width:250px;height:30px;  text-align: center;">
+                    <input disabled type="text" id="fecha_inicio_creada" style="width:250px;height:30px">
                     <br>
                     <label for="fecha_final_creada"><strong>Fecha Final</strong></label>
                     <br>
-                    <input disabled type="text" id="fecha_final_creada" style="width:250px;height:30px;  text-align: center;">
+                    <input disabled type="text" id="fecha_final_creada" style="width:250px;height:30px">
                     <br>
 
                     
