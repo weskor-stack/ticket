@@ -25,6 +25,7 @@
                             var elementos = document.getElementsByTagName('input');
 
                             limpiar2.onclick = (e)=> { 
+                                location.reload();
                                 e.preventDefault();
                                 $('#dialogo2').find('input').val('');
                                 pass_not = document.getElementById('emailOK2');

@@ -27,6 +27,7 @@
                             var elementos = document.getElementsByTagName('input');
 
                             limpiar3.onclick = (e)=> { 
+                                location.reload();
                                 e.preventDefault();
                                 $('#dialogo4').find('input').val('')
                                 // for (let i = 0; i < elementos.length; i++) {
