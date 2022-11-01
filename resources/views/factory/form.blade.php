@@ -2,18 +2,18 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('key') }}
-            {{ Form::text('key', $factory->key, ['class' => 'form-control' . ($errors->has('key') ? ' is-invalid' : ''), 'placeholder' => 'Key', 'maxlength' => 7, 'minlength'=>7,'required']) }}
+            {{ Form::label( __('key')) }}
+            {{ Form::text('key', $factory->key, ['class' => 'form-control' . ($errors->has('key') ? ' is-invalid' : ''), 'placeholder' =>  __('key'), 'maxlength' => 7, 'minlength'=>7,'required']) }}
             {!! $errors->first('key', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('name') }}
-            {{ Form::text('name', $factory->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name', 'maxlength' => 50, 'style'=>'text-transform:uppercase;', 'required']) }}
+            {{ Form::label( __('Name')) }}
+            {{ Form::text('name', $factory->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' =>  __('Name'), 'maxlength' => 50, 'style'=>'text-transform:uppercase;', 'required']) }}
             {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('address') }}
-            {{ Form::text('address', $factory->address, ['class' => 'form-control' . ($errors->has('address') ? ' is-invalid' : ''), 'placeholder' => 'Address', 'maxlength' => 100,'style'=>'text-transform:uppercase;', 'required']) }}
+            {{ Form::label(__('Address')) }}
+            {{ Form::text('address', $factory->address, ['class' => 'form-control' . ($errors->has('address') ? ' is-invalid' : ''), 'placeholder' => __('Address'), 'maxlength' => 100,'style'=>'text-transform:uppercase;', 'required']) }}
             {!! $errors->first('address', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group" hidden>
