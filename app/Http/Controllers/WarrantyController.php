@@ -120,9 +120,11 @@ class WarrantyController extends Controller
         Warranty::insert($datosWarranty);
         //dsds
       //return response()->json($datosWarranty);
-      return redirect()->route('Warranty.index')
-      ->with('success', 'creado correctamente');
- 
+      //return redirect()->route('Warranty.index')
+     // ->with('success', 'creado correctamente');
+        //return '<script> history.go(-1); </script>';
+        return redirect()->back()
+        ->with('success', __('Customer created successfully'));
     }
 
     /**

@@ -30,7 +30,7 @@
         <div class="modal-body">
 
             
-<form action="{{ route('Warranty.index') }}" method="post" function>
+<form id="salida_garantia" action="{{ route('Warranty.index') }}" method="post" function>
 @csrf
                     <p><strong>{{ __('Add warranty for')}}: <br>- <span id="nombre_proyecto_modal" class="text-warning"> </span></strong> </p><br> 
                     <label for="fecha_inicio"> <strong>{{ __('Start date')}} :</strong></label> 
@@ -52,12 +52,12 @@
                    
         </div>
          <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Cancel')}}</button> 
-                    <button  class="btn btn-success" onclick="save_data()">{{ __('Save')}}</button>                    
+          <!--boton cambiar-->
                     
+                    
+                    <button  class="btn btn-success btn-lg" onclick="save_data() history.go(0)"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>                    
+                    <button onclick="history.go(0)" type="button" class="btn btn-secondary btn-lg" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</button> 
                     <script src="{{ asset('tickets_js/Tickets_js.js') }}" defer></script>
-
-
                     <script>
                       
       
@@ -65,11 +65,16 @@
   
 
                       $(document).ready(function(){
+                        
                         var nombre_proyecto_form = document.getElementById('project_id_s'); 
                       var id_project = ((nombre_proyecto_form.value).split(','))[0];
                       document.getElementById('save_data_modal').setAttribute("value",id_project);
                       
                       document.getElementById('nombre_proyecto_modal').innerHTML = (nombre_proyecto_form.options[nombre_proyecto_form.selectedIndex].text);
+                        
+                        
+
+
 
                     $('#project_id_s').on('change', function(){
 
@@ -108,15 +113,13 @@
 
                   });
 
-
-       
-               
-                  
                   });
                     
                   function save_data() {
                     //alert(nombre_proyecto_form.value);
+
                                         }
+
                     </script>
          </div>
         </form>    
