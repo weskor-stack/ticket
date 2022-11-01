@@ -8,6 +8,7 @@ use App\Models\SupervisorEmployee;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use DB;
 /**
  * Class EmployeeController
  * @package App\Http\Controllers
@@ -48,6 +49,7 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         request()->validate(Employee::$rules);
         //$datosEmpleado = $request->all();
         $datosEmpleado = $request->except('_token');
@@ -103,6 +105,7 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         $datosEmpleado = $request->except('_token','_method');
         //Employee::where('employee_id','=',$id) -> update($datosEmpleado);
         
@@ -134,6 +137,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         $employee = Employee::find($id);
 
         if (Storage::delete('public/'.$employee->picture)) {

@@ -13,6 +13,11 @@
             {!! $errors->first('last_name', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
+            {{ Form::label('Second Last name: ') }}
+            {{ Form::text('second_last_name', $employee->second_last_name, ['class' => 'form-control' . ($errors->has('second_last_name') ? ' is-invalid' : ''), 'placeholder' => 'Second Last Name']) }}
+            {!! $errors->first('last_name', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
             {{ Form::label('E-mail: ') }}
             {{ Form::text('email', $employee->email, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => 'Email', 'maxlength' => 50]) }}
             {!! $errors->first('email', '<div class="invalid-feedback">:message</div>') !!}
@@ -38,7 +43,7 @@
         </div>
         <div class="form-group" hidden>
             {{ Form::label('user_id') }}
-            {{ Form::text('user_id', 0) }}
+            {{ Form::text('user_id', 9999) }}
             {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         
