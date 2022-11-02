@@ -110,7 +110,7 @@ consulta_garantia_9
                                             @endforeach
                                           "
 {{-- ////////////////////////////////////////////////////////////// texto que muestra valor de opción ////////////////////////////////////////////////////////// --}}
-                                    id="proyecto_cb" >- {{$cons_db->key}} -- {{$cons_db->name}}</option>
+                                    id="proyecto_cb" > {{$cons_db->key}} -- {{$cons_db->name}}</option>
                         @endforeach
 
                 </select>

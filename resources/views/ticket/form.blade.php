@@ -5,12 +5,12 @@
         
         <div class="form-group">
             {{ Form::label( __('Subject')) }}
-            {{ Form::text('subject', $ticket->subject, ['class' => 'form-control' . ($errors->has('subject') ? ' is-invalid' : ''),'id' => 'subject', 'placeholder' =>  __('Subject'), 'style'=>'width:700px', 'required']) }}
+            {{ Form::text('subject', $ticket->subject, ['class' => 'form-control' . ($errors->has('subject') ? ' is-invalid' : ''),'id' => 'subject', 'oninput' => 'save_data_ticket()' , 'placeholder' =>  __('Subject'), 'style'=>'width:700px', 'required']) }}
             {!! $errors->first('subject', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label( __('Problem')) }}
-            {{ Form::text('problem', $ticket->problem, ['class' => 'form-control' . ($errors->has('problem') ? ' is-invalid' : ''), 'id' => 'problem', 'placeholder' => __('Problem'),'style'=>'width:700px', 'required']) }}
+            {{ Form::text('problem', $ticket->problem, ['class' => 'form-control' . ($errors->has('problem') ? ' is-invalid' : ''), 'id' => 'problem','oninput' => 'save_data_ticket()' , 'placeholder' => __('Problem'),'style'=>'width:700px', 'required']) }}
             {!! $errors->first('problem', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>
@@ -263,7 +263,7 @@
 
         <div>
             {{ Form::label( __('Priority')) }} 
-            {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''), 'id'=>'priority_id', 'placeholder' => __('Priority'), 'style'=>'width:700px','required']) }}
+            {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''),'onclick' => 'save_data_ticket()' , 'id'=>'priority_id', 'placeholder' => __('Priority'), 'style'=>'width:700px','required']) }}
             {!! $errors->first('priority_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         
@@ -271,7 +271,7 @@
         <div>
 <!----------------------------------------------------------------------Select proyecto----------------------------------------------------------------------------------->
         {{ Form::label( __('Project')) }} 
-        <select name="project_id_s" id="project_id_s" class="form-select" style="width:700px; height:38px;">
+        <select onclick="save_data_ticket()" name="project_id_s" id="project_id_s" class="form-select" style="width:700px; height:38px;">
                 <option value ="Project" selected disabled >{{ __('Project') }}</option>
                 @foreach($projects as $project)
                     <option value="{{ $project->project_id }}
@@ -285,7 +285,7 @@
                 <div  class="spinner-grow" id="status_warranty_color" style="width:20px; height:20px;" data-toggle="tooltip" title="selecciona una opción"></div>
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> {{ __('Warranty')}} = <strong><span id="texto_status_garantía"></span></strong> <br> {{ __('Today_date')}} = 
                 <span  id="texto_fecha_hoy_garantia"></span> <br> {{ __('Final Date')}} = <strong><span id="texto_fecha_final_garantia"></span> </strong> </p> </div>
-                <a hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:520px; margin-top:-61px;"  id="boton_de_creacion_garantia">{{ __('Create waranty')}}</a>           
+                <a onclick="save_data_ticket()" hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:520px; margin-top:-61px;"  id="boton_de_creacion_garantia">{{ __('Create waranty')}}</a>           
             </div>
             <script src="{{ asset('js/tickets_js/Tickets_js_2.js') }}" defer></script> <!--script para detectar la garantía -->
         </div>
