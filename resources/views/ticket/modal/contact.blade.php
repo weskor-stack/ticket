@@ -31,11 +31,7 @@
                                 pass_not = document.getElementById('emailOK2');
                                 valido.innerText = "";
 
-                                // for (let i = 0; i < elementos.length; i++) {
-                                //     elementos[i].value='';          
-                                // }
-
-                                // location.reload();
+             
                             }
                         </script>
                     </div>

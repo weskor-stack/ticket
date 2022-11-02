@@ -86,12 +86,12 @@ class ContactController extends Controller
             //$contact = Contact::create($request->all());
     
             //return redirect()->route('tickets.create')
-            return '<script>
-                        alert("'.__('Contact created successfully').'"); 
-                        javascript:history.go(-1); 
-                    </script>';
-            /*return redirect()->back()
-                ->with('success', __('Contact created successfully'));*/
+            // return '<script>
+            //             alert("'.__('Contact created successfully').'"); 
+            //             javascript:history.go(-1); 
+            //         </script>';
+            return redirect()->back()
+                ->with('success', __('Contact created successfully'));
         }else{
             
             if( $contact['last_name'] == $contacto[0]['last_name'] and $contact['email'] == $contacto[0]['email']){

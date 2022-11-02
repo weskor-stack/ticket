@@ -61,12 +61,12 @@ class FactoryController extends Controller
 
         // $factory = Factory::create($request->all());
 
-        // return redirect()->route('factories.index')
-        //     ->with('success', 'Factory created successfully.');
-        return '<script>
-                        alert("'.__('Created successfully').'"); 
-                        javascript:history.go(-1); 
-                    </script>';
+         return redirect()->back()
+             ->with('success', 'La fábrica ha sido agregada correctamente.');
+        // return '<script>
+        //                 alert("'.__('Created successfully').'"); 
+        //                 javascript:history.go(-1); 
+        //             </script>';
     }
 
     /**
