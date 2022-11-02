@@ -8,7 +8,7 @@
                 <!-- <option selected disabled> {{$factories->name}}</option> -->
                 @foreach($factory_customer as $factory)
                     @if( $ticketLocation->factory_id == $factory->factory_id)
-                        <option selected> {{$factories->name}}</option>
+                        <option value="{{ $factory->factory_id }}" selected> {{$factories->name}}</option>
                     @else
                         <option value="{{ $factory->factory_id }}">{{ $factory->name }}</option>
                     @endif

@@ -14,7 +14,7 @@
                             <span class="card-title">Show Ticket Location</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('ticket-locations.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('ticket_locations.index') }}"> Back</a>
                         </div>
                     </div>
 
