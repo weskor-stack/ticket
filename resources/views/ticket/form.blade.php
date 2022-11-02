@@ -295,7 +295,7 @@
     <br>
 <!--------------------------------------------------------------Submit de datos generales----------------------------------------------------------------------------------->    
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
+        <button onclick="cancel_tickets()"type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
         <a onclick="cancel_tickets()" class="btn btn-secondary btn-lg" href="{{ route('tickets.index') }}"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</a>
     </div>
 </div>
