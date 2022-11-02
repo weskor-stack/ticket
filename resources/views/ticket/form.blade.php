@@ -274,8 +274,8 @@
         <select onclick="save_data_ticket()" name="project_id_s" id="project_id_s" class="form-select" style="width:700px; height:38px;">
                 <option value ="Project" selected disabled >{{ __('Project') }}</option>
                 @foreach($projects as $project)
-                    <option value="{{ $project->project_id }}
-                    @foreach($warranty_of as $cons_garantia) @if($cons_garantia->project_id == $project->project_id) ,{{$cons_garantia->date_end}} @endif @endforeach  ">{{ $project->name }}</option>
+                    <option value="{{ $project->project_id }},
+                    @foreach($warranty_of as $cons_garantia) @if($cons_garantia->project_id == $project->project_id) ,{{$cons_garantia->date_end}} @endif @endforeach">{{ $project->name }}</option>
                 @endforeach
         </select>
         <br>

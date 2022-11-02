@@ -148,6 +148,12 @@ class TicketController extends Controller
 
         $ticket_location ['ticket_id'] = $last_ticket;
 
+        $project_id = explode(',',$ticket_project['project_id']);
+
+        $ticket_project['project_id'] = $project_id[0];
+
+        // return response()->json($ticket_project);
+
         TicketProject::insert($ticket_project);
 
         TicketLocation::insert($ticket_location);
