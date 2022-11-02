@@ -40,7 +40,7 @@ Route::resource('factories', App\Http\Controllers\FactoryController::class);
 
 Route::resource('order-purchases', App\Http\Controllers\OrderPurchaseController::class);
 
-Route::resource('ticket-locations', App\Http\Controllers\TicketLocationController::class);
+Route::resource('ticket_locations', App\Http\Controllers\TicketLocationController::class);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
