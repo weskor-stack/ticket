@@ -8,6 +8,10 @@ use App\Http\Controllers\DropdownController;
 use App\Http\Controllers\ServiceOrderController;
 use App\Http\Controllers\OrderEmployeeSchedule;
 
+
+//datos para garantía
+use App\Http\Controllers\WarrantyDropdownController;
+
 use App\Mail\TicketsMailable;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\NotifyTicketController;
@@ -33,6 +37,11 @@ Route::get('get-states', [DropdownController::class, 'getStates'])->name('getSta
 Route::get('get-stock', [DropdownController::class, 'getStockes'])->name('getStockes');
 Route::get('get-factories', [DropdownController::class, 'getFactories'])->name('getFactories');
 Route::get('get-address', [DropdownController::class, 'getAddress'])->name('getAddress');
+
+//datos para ganrantia
+Route::get('WarrantyDropdownController', [WarrantyDropdownController::class, 'get_Warranty_Id'])->name('get_Warranty_Id');
+
+
 
 Route::get('inicio', [ServiceOrderController::class, 'inicio'])->name('inicio');
 
@@ -178,3 +187,19 @@ Route::get('orders-pdf', [App\Http\Controllers\ServiceOrderController::class, 'p
 Route::get('services-pdf', [App\Http\Controllers\ServiceController::class, 'pdf'])->name('service.pdf');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+// Route::get('/table', function () {
+//     for($i =1; $i <= 10 ; $i++){
+//         echo "$i * 2 = ". $i*2 ."<br>";
+//     }   
+//  })->name('tablita');
+
+//  Route::get('/table/{number}', function ($number) {
+//     $project =Project::paginate();
+//     foreach($project as $pj){
+//         echo " ",$number->$pj->name;}
+ 
+//  });

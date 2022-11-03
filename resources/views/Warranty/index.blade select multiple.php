@@ -1,12 +1,18 @@
 {{-- /////////////////////////////////////////////////////////////////// Index de garantía /////////////////////////////////////////////////////////////////////// --}}  
 @extends('layouts.app')
     <!--vínculo de mis scripts-->
+    <!--este index tiene select con busqueda pero integrada en el select, no por fuera-->
     <script src="warranty_js/Warranty_js.js"></script>
 @section('template_title')
     Ticket
 @endsection
 
 @section('content')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
 
 {{-- /////////////////////////////////////////////////////////////////// div principal /////////////////////////////////////////////////////////////////////// --}}  
 <div>
@@ -25,13 +31,13 @@
     </div>
     
  {{-- /////////////////////////////////////////////////////////División de selección de proyecto /////////////////////////////////////////////////////////--}}   
-    <div  name="seleccion_proyecto" class="jumbotron text-center" >
+    <div  name="seleccion_proyecto" class="jumbotron text-center" style="">
                 @csrf
                 <div style="background: rgb(0,0,0);background: linear-gradient(90deg, rgba(0,0,0,0.0) 0%, rgba(237,237,237,1) 50%, rgba(0,0,0,0.0) 100%); width:100%;">
                     <label for="proyecto_cb">Nombre_proyecto</label>
                 </div>
-
-                <select href="#crear"  data-toggle="collapse" multiple name="proyecto_cb" id="proyecto_cb" class="custom-select mb-3" style=" margin-top:15px; width:50%;" onchange="info_selected()"  href="#crear">
+                <div style=" margin-top:15px; margin-left:35%; width:60%;">
+                <select  data-toggle="collapse"  name="proyecto_cb" id="proyecto_cb" class="select- mb-3" style=" margin-top:15px; margin-left:300px; width:50%;" onchange="info_selected()"  href="#crear">
                     <option disabled selected >Nombre_Proyecto</option>
 {{-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -114,7 +120,7 @@ consulta_garantia_9
                         @endforeach
 
                 </select>
-
+                </div>                  
 
 {{-- //////////////////////////////////////////////////////// Sección de muestra de información del proyecto seleccionado/////////////////////////////////////////////////////// --}}  
     <div class="collapse" id="crear">
@@ -134,42 +140,16 @@ consulta_garantia_9
                     <br>
                     <input type="text", id="project_manager" style="width:50%; position:center;  text-align: center; margin-left:50%;"placeholder="Project Manager" readonly="readonly" style="width:50%;" disabled> </input>
            
-<br> 
-<div style="width:100%; position:center; margin-left:25%; ">
-<table class="table">
-
-    <tbody style="text-align:center;">
-        <tr>
-            
-        </tr>
-        <tr>
-            <td scope="row"><label for="p_project">{{ __('Project status')}}</label>
-            <br>
-            <input style="text-align:center;" type="text", id="status_input"  placeholder="" readonly="readonly"  disabled>
-        </td>
-      
-        </tr>
-        <tr>
-            <td scope="row"> <label for="p_project">{{ __('Start date')}}</label>
-            <br>
-            <input style="text-align:center;" type="text", id="Fecha_inicio_vista" placeholder="Fecha inicio" readonly="readonly" disabled>
-        </td>
-
-        </tr>
-        <tr>
-            <td>
-            <label for="p_project">{{ __('End date')}}</label>
-            <br>
-            <input style="text-align:center;" type="text", id="Fecha_final_vista" placeholder="Fecha final" readonly="readonly" disabled>  
-            </td>
-        </tr>
-    </tbody>
-</table>
-                    
+<br> <br><br>
+<div style="width:100%; position:center; margin-left:23%; ">
+                    <label for="p_project">{{ __('Project status')}}</label>
+                    <input style="text-align:center;" type="text", id="status_input"  placeholder="" readonly="readonly"  disabled>
              
-                   
+                    <label for="p_project">{{ __('Start date')}}</label>
+                    <input style="text-align:center;" type="text", id="Fecha_inicio_vista" placeholder="Fecha inicio" readonly="readonly" disabled>
                             
-                    
+                    <label for="p_project">{{ __('End date')}}</label>
+                    <input style="text-align:center;" type="text", id="Fecha_final_vista" placeholder="Fecha final" readonly="readonly" disabled>  
 </div>                            
                     
                 <br><br><br>
@@ -273,11 +253,24 @@ consulta_garantia_9
                function cerrar_modal(){
                    $("#modelId").modal("toggle");
                 }
-            </script>  
+
+
+                $(document).ready(function () {
+                      $('select').selectize
+                      ({
+                         sortField: 'text'
+                        });
+                });
+              </script>  
+
+
 {{-- ///////////////////////////////////////////////////// divisiones de pantalla pricipal y final de sección //////////////////////////////////////////////////////// --}}  
                 <br>
                 @endsection
             </div>   
+
+
+            
 </div>
 
 

@@ -3,9 +3,9 @@ function info_selected(){
     var crear = document.getElementById("crear");
     var input_nombre_proyecto = document.getElementById("nombre_proyecto2");
     var input_op_proyecto = document.getElementById("op_proyecto");
-    
-    var selected = combo.options[combo.selectedIndex].text;
     var myCollapse = new bootstrap.Collapse(crear); 
+    var selected = combo.options[combo.selectedIndex].text;
+ //   
 if(selected != "Nombre_proyecto"){
     myCollapse.toggle();
     input_op_proyecto.value = selected;
