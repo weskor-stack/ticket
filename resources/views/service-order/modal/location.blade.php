@@ -1,4 +1,4 @@
-<form action="{{ route('ticket-locations.update', $serviceOrder->ticket_id) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('ticket_locations.update', $serviceOrder->ticket_id) }}" method="post" enctype="multipart/form-data">
     {{ method_field('patch') }}
     {{ csrf_field() }}
     <div class="modal fade" id="location{{ $customers2->customer_id }}" data-backdrop="static">
