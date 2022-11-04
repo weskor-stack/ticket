@@ -152,7 +152,7 @@ class ServiceTaskSpecificController extends Controller
 
             $serviceId = preg_replace('/[^0-9]/', '', $serviceId);
 
-            $serviceOrderId = ServiceOrder::select('ticket_id')
+            $serviceOrderId = ServiceOrder::select('order_service_id')
             ->where('order_service_id', '=', $serviceId)->get();
 
             $serviceOrderId = preg_replace('/[^0-9]/', '', $serviceOrderId);
