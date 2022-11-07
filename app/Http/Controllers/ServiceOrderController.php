@@ -307,7 +307,9 @@ Ticket
         $hierarchical_structure = HierarchicalStructure::all();
         // return response()->json($serviceOrder);
 
-        $shcedules = OrderEmployeeSchedule::all();
+        $shcedules = OrderEmployeeSchedule::select('order_employee_schedule_id', 'time_entry', 'time_departure', 'lunchtime', 
+        'hours_service', 'hours_travel', 'date', 'order_service_id', 'employee_id', 'user_id', 'date_registration')
+        ->where('order_service_id', '=', $datas)->get();
 
         $employee2 = Employee::all();
 
