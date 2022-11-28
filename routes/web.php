@@ -186,6 +186,8 @@ Route::get('orders-pdf', [App\Http\Controllers\ServiceOrderController::class, 'p
 
 Route::get('services-pdf', [App\Http\Controllers\ServiceController::class, 'pdf'])->name('service.pdf');
 
+Route::get('services2-pdf', [App\Http\Controllers\ServiceController::class, 'pdf'])->name('service.pdf_supervisor');
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

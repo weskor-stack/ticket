@@ -1046,6 +1046,9 @@
                                                             @foreach($hierarchical as $jerarquia)
                                                                 @if($jerarquia->hierarchical_id == $position->hierarchical_id)
                                                                     <td style="width:20%">{{$jerarquia->position}} {{$position->name}} </td>
+                                                                    @if($jerarquia->position == "Director" and $position->name == "general")
+                                                                        <td>-</td>
+                                                                    @else
                                                                     @foreach($hierarchical_structure as $structure)
                                                                         @if($structure->hierarchical_position_id == $supervisor->hierarchical_position_id)
                                                                             @foreach($employee_hierarchical_position as $supervisor2)
@@ -1061,6 +1064,7 @@
                                                                             
                                                                         @endif
                                                                     @endforeach
+                                                                    @endif
                                                                 @endif
                                                             @endforeach
                                                         @endif

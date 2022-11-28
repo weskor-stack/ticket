@@ -5,23 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="{{ public_path('css/pdf_tables2.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ public_path('css/pdf_tables.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <!-- Define header and footer blocks before your content -->
-    <header style="text-align: center;">
-        <img src="{{ public_path('images/pdf_customer/header.png') }}" width="800px" height="90px"/>
+    <header>
+        <img src="{{ public_path('images/logoAutomatyco3.png') }}" width="30%" height="150%" style="text-align: left;"/>
     </header>
     <footer>
-        <img src="{{ public_path('images/pdf_customer/footer.png') }}" width="800px" height="185px"/>
+        <p>Av. 5 de Mayo #15 Bod. #8 Colonia San Juan de Ocotan. Tel/Fax: (33) 3120-1000 C.P. 45019, Zapopan, Jalisco</p>
+        <p>R.F.C. AMC-030901-P69</p>
     </footer>
-   
+<br>
+<br>    
     <div>
         <table id=customers3>
             <thead>
                 <b><legend>{{ __('Customer')}}</legend></b>
             </thead>
-            
+            <br><br>
             <tbody>
                 <tr>
                     <th>
@@ -171,10 +173,8 @@
         </table>
     </div>
 
-    
-    <div style="page-break-before: always;">
+    <div>
         <div>
-        <br>
             @foreach($activity2 as $activity)
                 <div class="box box-info padding-1">
                     <div class="box-body">

@@ -10,10 +10,17 @@
 <body>
     <!-- Define header and footer blocks before your content -->
     <header style="text-align: center;">
-        <img src="{{ public_path('images/pdf_customer/header.png') }}" width="800px" height="90px"/>
+        <table id="customers5">
+            <tr>
+                <th style="width:30%"><img src="{{ public_path('images/logoAutomatyco.png') }}" width="80%" height="auto" style="text-align: center;"/></th>
+                <th style="width:30%">{{ __('Report')}}</th>
+                <th style="width:20%"><b>{{ __('Order')}}:</b> {{ $service->order_service_id }}</th>
+                <th style="width:20%"><b>{{ __('Ticket')}}:</b> {{ $tickets }} </th>
+            </tr>
+        </table>
     </header>
     <footer>
-        <img src="{{ public_path('images/pdf_customer/footer.png') }}" width="800px" height="185px"/>
+        <!-- PIE DE PÁGINA -->
     </footer>
    
     <div>

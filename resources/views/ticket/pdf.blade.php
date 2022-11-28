@@ -11,14 +11,19 @@
 <body>
     <!-- Define header and footer blocks before your content -->
     <header>
-        <img src="{{ public_path('images/logoAutomatyco3.png') }}" width="30%" height="150%" style="text-align: left;"/>
+        <table id="customers5">
+            <tr>
+                <th style="width:30%"><img src="{{ public_path('images/logoAutomatyco.png') }}" width="80%" height="auto" style="text-align: center;"/></th>
+                <th style="width:30%">{{ __('Tickets')}}</th>
+                <th style="width:20%"><b>{{ __('No. Ticket')}}:</b> {{ $tickets_number }}</th>
+                <th style="width:20%"><b>{{ __('Date')}}:</b> <br> <?php echo date("d-m-Y");?></th>
+            </tr>
+        </table>
     </header>
     <footer>
-        <p>Av. 5 de Mayo #15 Bod. #8 Colonia San Juan de Ocotan. Tel/Fax: (33) 3120-1000 C.P. 45019, Zapopan, Jalisco</p>
-        <p>R.F.C. AMC-030901-P69</p>
+        <!-- PIE DE PÁGINA -->
     </footer>
-<br>
-<br>
+
     <h2>Lista de Tickets</h2>
     
     <div>
@@ -30,7 +35,7 @@
 					<th>{{ __('Tickets date') }}</th>
 					<th>{{ __('Tickets status') }}</th>
 					<th>{{ __('Customer') }}</th>
-                    <th>{{ __('Contact') }}</th>
+                    <!-- <th>{{ __('Contact') }}</th> -->
                     <th>{{ __('Priority') }}</th>
 
                 </tr>
@@ -56,7 +61,7 @@
 
                         @foreach ($contacts as $contact)
                             @if ($contact->contact_id == $ticket->contact_id)
-                                <td style="width: 15%;">{{ $contact->name }} {{ $contact->last_name }}</td>
+                                <!-- <td style="width: 15%;">{{ $contact->name }} {{ $contact->last_name }}</td> -->
                             @endif
                         @endforeach
                         
