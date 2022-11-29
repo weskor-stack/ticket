@@ -1,13 +1,17 @@
 {{-- /////////////////////////////////////////////////////////////////// Index de garantía /////////////////////////////////////////////////////////////////////// --}}  
 @extends('layouts.app')
     <!--vínculo de mis scripts-->
-    <script src="warranty_js/Warranty_js.js"></script>
+
 @section('template_title')
     Ticket
 @endsection
 
 @section('content')
-
+<script src="{{ asset('js/warranty_js/Warranty_js.js')}}" defer></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>  
 {{-- /////////////////////////////////////////////////////////////////// div principal /////////////////////////////////////////////////////////////////////// --}}  
 <div>
 
@@ -31,7 +35,7 @@
                     <label for="proyecto_cb">Nombre_proyecto</label>
                 </div>
 
-                <select href="#crear"  data-toggle="collapse" multiple name="proyecto_cb" id="proyecto_cb" class="custom-select mb-3" style=" margin-top:15px; width:50%;" onchange="info_selected()"  href="#crear">
+                <select href="#crear"  multiple name="proyecto_cb" id="proyecto_cb" class="custom-select mb-3" style=" margin-top:15px; width:50%;" onchange="info_selected()"  href="#crear">
                     <option disabled selected >Nombre_Proyecto</option>
 {{-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -271,7 +275,7 @@ consulta_garantia_9
             
             <script>
                function cerrar_modal(){
-                   $("#modelId").modal("toggle");
+                   $("#modelId").modal("show");
                 }
             </script>  
 {{-- ///////////////////////////////////////////////////// divisiones de pantalla pricipal y final de sección //////////////////////////////////////////////////////// --}}  
