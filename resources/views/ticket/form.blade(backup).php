@@ -3,19 +3,19 @@
     <div class="box-body">
         
         
-        <div class="form-group table-responsive">
+        <div class="form-group">
             {{ Form::label( __('Subject')) }}
-            {{ Form::text('subject', $ticket->subject, ['class' => 'form-control' . ($errors->has('subject') ? ' is-invalid' : ''),'id' => 'subject', 'oninput' => 'save_data_ticket()' , 'placeholder' =>  __('Subject'), 'style'=>'width:80%', 'required']) }}
+            {{ Form::text('subject', $ticket->subject, ['class' => 'form-control' . ($errors->has('subject') ? ' is-invalid' : ''),'id' => 'subject', 'oninput' => 'save_data_ticket()' , 'placeholder' =>  __('Subject'), 'style'=>'width:700px', 'required']) }}
             {!! $errors->first('subject', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group table-responsive">
+        <div class="form-group">
             {{ Form::label( __('Problem')) }}
-            {{ Form::text('problem', $ticket->problem, ['class' => 'form-control' . ($errors->has('problem') ? ' is-invalid' : ''), 'id' => 'problem','oninput' => 'save_data_ticket()' , 'placeholder' => __('Problem'),'style'=>'width:80%', 'required']) }}
+            {{ Form::text('problem', $ticket->problem, ['class' => 'form-control' . ($errors->has('problem') ? ' is-invalid' : ''), 'id' => 'problem','oninput' => 'save_data_ticket()' , 'placeholder' => __('Problem'),'style'=>'width:700px', 'required']) }}
             {!! $errors->first('problem', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>
         
-        <div class="form-group table-responsive">
+        <div class="form-group">
             <link rel="stylesheet" href="/path/to/select2.css">
             <link rel="stylesheet" href="{{ asset('css_tickets/tickets_css_summon_button.css') }}">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
@@ -27,18 +27,18 @@
             <input type="text" id="customer_id" name="customer_id" class="form-control.<?php echo ($errors->has('customer_id') ? ' is-invalid' : ''); ?>" required hidden>
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
             <script> $('.select2').select2();</script>
-            <select class="form-select select2" id="customer" style="width:60%; height:100%;" required>
+            <select class="form-select select2" id="customer" style="width:600px; height:100%;" required>
                 <option selected disabled>{{ __('Select customer')}}</option>
                 @foreach ($countries as $country)
                 <option value="{{ $country->customer_id }}">{{ $country->name }}</option>
                 @endforeach
             </select>
             <br>
-            <a onclick="save_data_ticket()" style="margin-left:65%; margin-top:-50px;" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</a> <br>
+            <a onclick="save_data_ticket()" style="margin-left:620px; margin-top:-50px;" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</a> <br>
         </div>
         <script>$('.select2').select2();</script>
         <br>
-        <div class="form-group table-responsive">
+        <div class="form-group">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
             {{ Form::label( __('Contact')) }} <br>
@@ -50,9 +50,9 @@
             <script>
                 $('.select2').select2();
             </script>
-            <select class="form-select" name="contact" id="contact" style="width:60%; height:38px;" required></select>            
+            <select class="form-select" name="contact" id="contact" style="width:600px; height:38px;" required></select>            
             
-            <a onclick="save_data_ticket()" name="add_contacto" style="margin-left:65%; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add2" data-toggle="modal" data-target="#dialogo2" hidden >+</a> <br>
+            <a onclick="save_data_ticket()" name="add_contacto" style="margin-left:620px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add2" data-toggle="modal" data-target="#dialogo2" hidden >+</a> <br>
 
             <script>
                 $(document).ready(function() {
@@ -156,9 +156,9 @@
         
         <br>
 
-        <div class="form-group table-responsive">
+        <div class="table-responsive">
             
-            <table class="table" style="width:85%;">
+            <table class="table" style="width:700px;">
                 <!-- <thead class="thead">
                     <tr style="text-align: center">
                         <th></th>
@@ -168,29 +168,29 @@
                 </thead> -->
                 <tbody>
                     <tr style="text-align: left; font-size: 15px; vertical-align: center;">
-                        <td style="width:10%;"><b>{{ __('Factory')}}:</b> <br> </td> 
-                        <td style="width:90%;">
-                            <select class="form-select" name="factory_id" id="factory_id" style="width:90%; height:38px;" required></select>
+                        <td><b>{{ __('Factory')}}:</b></td>
+                        <td>
+                            <select class="form-select" name="factory_id" id="factory_id" style="width:500px; height:38px;" required></select>
 
-                            <a onclick="save_data_ticket()" name="add_fabrica" style="margin-left:92%; margin-top:-63px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo4" hidden>+</a> <br>
+                            <a onclick="save_data_ticket()" name="add_fabrica" style="margin-left:520px; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo4" hidden>+</a> <br>
 
                            
                             <!-- <input type="text" name="factory" id="factory2"> -->
                         </td>                                          
                     </tr>
                     <tr>
-                        <td style="width:10%;">
+                        <td>
                             <b>{{ __('Address') }}: </b>
                         </td>
-                        <td style="width:90%;">
+                        <td>
                             <!-- <div class="resultado"></div> -->
-                            <input type="text" id="result" class="form-control" style="width:100%; height:38px;" disabled>
+                            <input type="text" id="result" class="form-control" style="width:600px; height:38px;" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <td style="width:10%;"><b>{{ __('Site') }}:</b></td>
-                        <td style="width:90%;">
-                            <input type="text" name="site" id="site" class="form-control" style="width:100%; height:38px;">
+                        <td><b>{{ __('Site') }}:</b></td>
+                        <td>
+                            <input type="text" name="site" id="site" class="form-control" style="width:600px; height:38px;">
                             <!-- <textarea name="site" id="site" cols="120" rows="5" ></textarea> -->
                         </td>
                     </tr>
@@ -261,17 +261,17 @@
         </div>
         <br>
 
-        <div class="form-group table-responsive">
+        <div>
             {{ Form::label( __('Priority')) }} 
-            {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''),'onclick' => 'save_data_ticket()' , 'id'=>'priority_id', 'placeholder' => __('Priority'), 'style'=>'width:80%','required']) }}
+            {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''),'onclick' => 'save_data_ticket()' , 'id'=>'priority_id', 'placeholder' => __('Priority'), 'style'=>'width:700px','required']) }}
             {!! $errors->first('priority_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         
         <br>
-        <div class="form-group table-responsive">
+        <div>
 <!----------------------------------------------------------------------Select proyecto----------------------------------------------------------------------------------->
         {{ Form::label( __('Project')) }} 
-        <select onclick="save_data_ticket()" name="project_id_s" id="project_id_s" class="form-select" style="width:80%; height:38px;">
+        <select onclick="save_data_ticket()" name="project_id_s" id="project_id_s" class="form-select" style="width:700px; height:38px;">
                 <option value ="Project" selected disabled >{{ __('Project') }}</option>
                 @foreach($projects as $project)
                     <option value="{{ $project->project_id }}

@@ -1,24 +1,24 @@
-<div class="box box-info padding-1">
-    <div class="box-body">
+<div class="box box-info padding-1 table-responsive">
+    <div class="box-body table-responsive">
         
-        <div class="form-group" hidden>
+        <div class="form-group table-responsive" hidden>
             {{ Form::label('Servicio') }}
             {{ Form::text('service_id', $service->service_id, ['class' => 'form-control' . ($errors->has('service_id') ? ' is-invalid' : ''), 'placeholder' => 'Service Report Id']) }}
             {!! $errors->first('service_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         
-        <div class="form-group">
+        <div class="form-group table-responsive">
         <h1 style="text-align:center;">{{ __('Activities implemented')}}</h1>
             <legend>{{ __('Activities implemented')}}</legend>
             {{ Form::textarea('description', $serviceTaskSpecific->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => __('Description task'), 'required']) }}
             {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
-        <div class="form-group">
+        <div class="form-group table-responsive">
         <legend>{{ __('Evidence') }} </legend>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             
-            <table class=table align="center">
+            <table class="table-responsive" align="center">
                 <tr>
                     <td align="center">
                         <h5>{{ __('Before')}}:</h5>
@@ -43,7 +43,7 @@
             </table>
             <script type="text/javascript" src="{{ asset('js/site.js') }}"></script>
         </div>
-        <div class="form-group">
+        <div class="form-group table-responsive">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <legend>{{ __('Signature') }}</legend>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" />     
@@ -71,41 +71,43 @@
                                         <br/>
                                         <div id="sig"></div>
                                         <br><br>
-                                        <table class="table table-striped table-hover">
-                                            <tr>
-                                                <td style="text-align:center;">
-                                                    <div class="form-group">
-                                                        <legend style="text-align:center">{{ __('Executor')}}</legend>
-                                                        <!--{{ Form::text('executor', $serviceTaskSpecific->executor, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50]) }}
-                                                        {!! $errors->first('executor', '<div class="invalid-feedback">:message</div>') !!}-->
-                                                        <select class="form-select" id="employee_id" name="employee_id" style="width:600px; height:38px; text-align:center;" required>
-                                                            @foreach ($employeeOrders as $item)
-                                                                @foreach ($employees as $employee)
-                                                                    @if($item->employee_id == $employee->employee_id)
-                                                                        <option value="{{$item->employee_id}}">{{$employee->name}} {{$employee->last_name}}</option>
-                                                                    @endif
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover">
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <div class="form-group table-responsive">
+                                                            <legend style="text-align:center">{{ __('Executor')}}</legend>
+                                                            <!--{{ Form::text('executor', $serviceTaskSpecific->executor, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50]) }}
+                                                            {!! $errors->first('executor', '<div class="invalid-feedback">:message</div>') !!}-->
+                                                            <select class="form-select" id="employee_id" name="employee_id" style="width:600px; height:38px; text-align:center;" required>
+                                                                @foreach ($employeeOrders as $item)
+                                                                    @foreach ($employees as $employee)
+                                                                        @if($item->employee_id == $employee->employee_id)
+                                                                            <option value="{{$item->employee_id}}">{{$employee->name}} {{$employee->last_name}}</option>
+                                                                        @endif
+                                                                    @endforeach
                                                                 @endforeach
-                                                            @endforeach
-                                                        </select>      
-                                                    </div>
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <div class="form-group">
-                                                        <legend style="text-align:center">{{ __('Contact')}}</legend>
-                                                            @foreach($contacts as $contact)
-                                                                
-                                                                    <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact_id" id="contact_id" value="{{$contact->contact_id}}" maxlength="50" style="width:600px; height:38px;text-align:center;" require hidden>
-                                                                    <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact" id="contact" value="{{$contact->job_title}} {{$contact->name}} {{$contact->last_name}}" maxlength="50" style="width:600px; height:38px;text-align:center;" disabled require>
-                                                                
-                                                            @endforeach
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <button id="clear" title="{{ __('Clear')}}" class="btn btn-warning btn-sm"><i class="material-icons" style="font-size:20px">cleaning_services</i>&nbsp; {{ __('Clear')}}</button>
-                                        
-                                        <textarea id="signature_evidence" name="signature_evidence" style="display: none" class="form-control.<?php echo ($errors->has('signature_evidence') ? ' is-invalid' : ''); ?>" required></textarea>
-                                        {!! $errors->first('signature_evidence', '<div class="invalid-feedback">:message</div>') !!}
+                                                            </select>      
+                                                        </div>
+                                                    </td>
+                                                    <td style="text-align:center;">
+                                                        <div class="form-group table-responsive">
+                                                            <legend style="text-align:center">{{ __('Contact')}}</legend>
+                                                                @foreach($contacts as $contact)
+                                                                    
+                                                                        <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact_id" id="contact_id" value="{{$contact->contact_id}}" maxlength="50" style="width:600px; height:38px;text-align:center;" require hidden>
+                                                                        <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact" id="contact" value="{{$contact->job_title}} {{$contact->name}} {{$contact->last_name}}" maxlength="50" style="width:600px; height:38px;text-align:center;" disabled require>
+                                                                    
+                                                                @endforeach
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <button id="clear" title="{{ __('Clear')}}" class="btn btn-warning btn-sm"><i class="material-icons" style="font-size:20px">cleaning_services</i>&nbsp; {{ __('Clear')}}</button>
+                                            
+                                            <textarea id="signature_evidence" name="signature_evidence" style="display: none" class="form-control.<?php echo ($errors->has('signature_evidence') ? ' is-invalid' : ''); ?>" required></textarea>
+                                            {!! $errors->first('signature_evidence', '<div class="invalid-feedback">:message</div>') !!}
+                                        </div>
                                     </div>
                                 </form>
                         </div>
