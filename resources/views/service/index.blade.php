@@ -157,7 +157,7 @@
                         
                     </div>
                     
-                    <div>
+                    <div class="table-responsive">
                     
                         <!--@method('GET')
                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
@@ -481,8 +481,9 @@
                         <br>
                     </div>
 
-                    <div>
+                    <div class="form-group table-responsive">
                         <!----------------------->
+                        <div class="form-group table-responsive">
                         <table class="table table-striped table-hover">
                                 
                                 <thead style="text-align: center">
@@ -572,6 +573,7 @@
                             </table>
                             <br>
                             <br>
+                        </div>
                         <!----------------------->
                         <h1 style="text-align:center;">{{ __('Items to use') }}</h1>
                         <div>
