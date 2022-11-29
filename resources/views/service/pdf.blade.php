@@ -52,23 +52,23 @@
         <table id="customers3">
            <tr>
                @foreach($maintenances as $manitenance)
-                    @foreach($serviceOrder2 as $order)
-                        @if($manitenance->type_maintenance_id == $order->type_maintenance_id)
+                   
+                        @if($manitenance->type_maintenance_id == $type_maintenance)
                             <td>
                                 <b>* {{ __('Type of maintenance')}}: </b> {{$manitenance->name}}.
                             </td>
                         @endif
-                    @endforeach
+                    
                 @endforeach
                 
                 @foreach($typeServices as $service)
-                    @foreach($serviceOrder2 as $order)
-                        @if($service->type_service_id == $order->type_service_id)
+                    
+                        @if($service->type_service_id == $type_service)
                             <td>
-                                <b>* {{ __('Type of maintenance')}}: </b> {{$service->name}}.
+                                <b>* {{ __('Type of service')}}: </b> {{$service->name}}.
                             </td>
                         @endif
-                    @endforeach
+                    
                 @endforeach
             </tr>
         </table>
