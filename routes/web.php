@@ -190,7 +190,9 @@ Route::get('services2-pdf', [App\Http\Controllers\ServiceController::class, 'pdf
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+Route::get('/offline', function () {
+    return view('vendor.laravelpwa.offline');
+});
 
 
 // Route::get('/table', function () {
