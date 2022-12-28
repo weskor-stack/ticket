@@ -48,10 +48,10 @@
             <legend>{{ __('Signature') }}</legend>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" />     
             <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
-            <!-- <style>
+            <style>
                 .kbw-signature { width: 100%; height: 200px;}
                 #sig canvas{ width: 100% !important; height: auto;}
-            </style> -->
+            </style>
 
             <div>
             <div>
@@ -69,124 +69,9 @@
                                     <div class="col-md-12">
                                         <!--<label class="" for="">Firmas de evidencia</label>-->
                                         <br/>
-                                        <!-- <div id="sig"></div> -->
-                                        <style>
-                                            canvas {
-                                                width: 100%;
-                                                height: 5%;
-                                                background-color: #F0F0EF;
-                                            } 
-                                        </style>
-                                        <div><canvas id="sig"></canvas></div>
-
-                                        <script>
-                                            //======================================================================
-                                            // VARIABLES
-                                            //======================================================================
-                                            let miCanvas = document.querySelector('#sig');
-                                            let lineas = [];
-                                            let correccionX = 0;
-                                            let correccionY = 0;
-                                            let pintarLinea = false;
-                                            // Marca el nuevo punto
-                                            let nuevaPosicionX = 0;
-                                            let nuevaPosicionY = 0;
-
-                                            let posicion = miCanvas.getBoundingClientRect()
-                                            correccionX = posicion.x;
-                                            correccionY = posicion.y;
-
-                                            miCanvas.width = innerWidth;
-                                            miCanvas.height = 300;
-
-                                            //======================================================================
-                                            // FUNCIONES
-                                            //======================================================================
-
-                                            /**
-                                             * Funcion que empieza a dibujar la linea
-                                             */
-                                            function empezarDibujo () {
-                                                pintarLinea = true;
-                                                lineas.push([]);
-                                            };
-                                            
-                                            /**
-                                             * Funcion que guarda la posicion de la nueva línea
-                                             */
-                                            function guardarLinea() {
-                                                lineas[lineas.length - 1].push({
-                                                    x: nuevaPosicionX,
-                                                    y: nuevaPosicionY
-                                                });
-                                            }
-
-                                            /**
-                                             * Funcion dibuja la linea
-                                             */
-                                            function dibujarLinea (event) {
-                                                event.preventDefault();
-                                                if (pintarLinea) {
-                                                    let ctx = miCanvas.getContext('2d')
-                                                    // Estilos de linea
-                                                    ctx.lineJoin = ctx.lineCap = 'round';
-                                                    ctx.lineWidth = 1;
-                                                    // Color de la linea
-                                                    ctx.strokeStyle = '#000';
-                                                    // Marca el nuevo punto
-                                                    if (event.changedTouches == undefined) {
-                                                        // Versión ratón
-                                                        nuevaPosicionX = event.layerX;
-                                                        nuevaPosicionY = event.layerY;
-                                                    } else {
-                                                        // Versión touch, pantalla tactil
-                                                        nuevaPosicionX = event.changedTouches[0].pageX - correccionX;
-                                                        nuevaPosicionY = event.changedTouches[0].pageY - correccionY;
-                                                    }
-                                                    // Guarda la linea
-                                                    guardarLinea();
-                                                    // Redibuja todas las lineas guardadas
-                                                    ctx.beginPath();
-                                                    lineas.forEach(function (segmento) {
-                                                        ctx.moveTo(segmento[0].x, segmento[0].y);
-                                                        segmento.forEach(function (punto, index) {
-                                                            ctx.lineTo(punto.x, punto.y);
-                                                        });
-                                                    });
-                                                    ctx.stroke();
-                                                }
-                                            }
-
-                                            /**
-                                             * Funcion que deja de dibujar la linea
-                                             */
-                                            function pararDibujar () {
-                                                pintarLinea = false;
-                                                guardarLinea();
-                                                document.getElementById('clear').addEventListener('click', function() {
-                                                    let ctx = miCanvas.getContext('2d')
-                                                    ctx.clearRect(0, 0, miCanvas.width, miCanvas.height);
-                                                    lineas = [];
-                                                    // alert("hola");
-                                                }, false);
-                                            }
-
-                                            //======================================================================
-                                            // EVENTOS
-                                            //======================================================================
-
-                                            // Eventos raton
-                                            miCanvas.addEventListener('mousedown', empezarDibujo, false);
-                                            miCanvas.addEventListener('mousemove', dibujarLinea, false);
-                                            miCanvas.addEventListener('mouseup', pararDibujar, false);
-
-                                            // Eventos pantallas táctiles
-                                            miCanvas.addEventListener('touchstart', empezarDibujo, false);
-                                            miCanvas.addEventListener('touchmove', dibujarLinea, false);
-
-                                        </script>
+                                        <div id="sig"></div>
                                         <br><br>
-                                        <div  class="container">
+                                        <div class="table-responsive">
                                             <table class="table table-striped table-hover">
                                                 <tr>
                                                     <td style="text-align:center;">
@@ -194,7 +79,7 @@
                                                             <legend style="text-align:center">{{ __('Executor')}}</legend>
                                                             <!--{{ Form::text('executor', $serviceTaskSpecific->executor, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50]) }}
                                                             {!! $errors->first('executor', '<div class="invalid-feedback">:message</div>') !!}-->
-                                                            <select class="form-select" id="employee_id" name="employee_id" style="width:100%; height:38px; text-align:center;" required>
+                                                            <select class="form-select" id="employee_id" name="employee_id" style="width:600px; height:38px; text-align:center;" required>
                                                                 @foreach ($employeeOrders as $item)
                                                                     @foreach ($employees as $employee)
                                                                         @if($item->employee_id == $employee->employee_id)
@@ -210,18 +95,16 @@
                                                             <legend style="text-align:center">{{ __('Contact')}}</legend>
                                                                 @foreach($contacts as $contact)
                                                                     
-                                                                        <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact_id" id="contact_id" value="{{$contact->contact_id}}" maxlength="50" style="width:100%; height:38px;text-align:center;" require hidden>
-                                                                        <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact" id="contact" value="{{$contact->job_title}} {{$contact->name}} {{$contact->last_name}}" maxlength="50" style="width:100%; height:38px;text-align:center;" disabled require>
+                                                                        <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact_id" id="contact_id" value="{{$contact->contact_id}}" maxlength="50" style="width:600px; height:38px;text-align:center;" require hidden>
+                                                                        <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact" id="contact" value="{{$contact->job_title}} {{$contact->name}} {{$contact->last_name}}" maxlength="50" style="width:600px; height:38px;text-align:center;" disabled require>
                                                                     
                                                                 @endforeach
                                                         </div>
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!-- <button id="clear" title="{{ __('Clear')}}" class="btn btn-warning btn-sm"><i class="material-icons" style="font-size:20px">cleaning_services</i>&nbsp; {{ __('Clear')}}</button> -->
+                                            <button id="clear" title="{{ __('Clear')}}" class="btn btn-warning btn-sm"><i class="material-icons" style="font-size:20px">cleaning_services</i>&nbsp; {{ __('Clear')}}</button>
                                             
-                                            <a class="btn btn-warning btn-sm" id="clear"><i class="material-icons" style="font-size:20px">cleaning_services</i> {{ __('Clear')}}</a>
-
                                             <textarea id="signature_evidence" name="signature_evidence" style="display: none" class="form-control.<?php echo ($errors->has('signature_evidence') ? ' is-invalid' : ''); ?>" required></textarea>
                                             {!! $errors->first('signature_evidence', '<div class="invalid-feedback">:message</div>') !!}
                                         </div>
@@ -237,11 +120,11 @@
             <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
             <script type="text/javascript">
                 var sig = $('#sig').signature({syncField: '#signature_evidence', syncFormat: 'PNG'});
-                // $('#clear').click(function(e) {
-                //     e.preventDefault();
-                //     sig.signature('clear');
-                //     $("#signature_evidence").val('');
-                // });
+                $('#clear').click(function(e) {
+                    e.preventDefault();
+                    sig.signature('clear');
+                    $("#signature_evidence").val('');
+                });
             </script>
         </div>
 
