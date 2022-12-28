@@ -1097,6 +1097,7 @@
                         @if($employeeOrders->isEmpty())
 
                         @else
+                        <div class="form-group table-responsive">
                         <table class="table table-striped table-hover">
                                 
                             <thead style="text-align: center">
@@ -1173,6 +1174,7 @@
                                     
                             </tbody>
                         </table>
+                        </div>
                         <br>
                         <br>
                         @endif
