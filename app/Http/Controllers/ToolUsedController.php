@@ -80,9 +80,9 @@ class ToolUsedController extends Controller
             ->with('success', __('Insufficient').' '.'material.');      */      
             
         }else {
-            $data = Tool::find($toolUseds['tool_id']);
-            $data->stock=$result2;
-            $data->save();
+            // $data = Tool::find($toolUseds['tool_id']);
+            // $data->stock=$result2;
+            // $data->save();
             ToolUsed::insert($toolUseds);           
             return redirect()->back()
             ->with('success', __('The material') .' '.__('updated successfully'));

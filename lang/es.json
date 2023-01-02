@@ -909,5 +909,7 @@
     "End date":"Fecha final",
     "Project status":"Status de proyecto",
     "Project name":"Nombre del proyecto",
-    "Project info":"Información del proyecto"
+    "Project info":"Información del proyecto",
+    "OrderPurchase updated successfully." : "Orden de compra actualizado satisfactoriamente",
+    "Update purchase":  "Actualizar orden de compra"
 }

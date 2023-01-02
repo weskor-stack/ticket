@@ -25,6 +25,9 @@
                                     <!--<img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20">-->
                                     <i class="material-icons">help</i>
                                 </button>
+
+                                <script src="{{ asset('js/update.js') }}" defer></script>
+                                <a href="#" class="btn btn-primary btn-lg" id="update" data-placement="left" title="{{ __('New Ticket') }}"><i class="material-icons">bookmarks</i>&nbsp; {{ __('Update') }} </a>
                                 <!--@method('GET')
                                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#dialogo0" hidden>{{ __('Create report') }}</button>
                                 @method('GET')

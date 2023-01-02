@@ -842,12 +842,13 @@
 
                                         @include('service-order.modal.purchase')
                                         @include('service-order.modal.purchase_index')
+                                        @include('service-order.modal.purchase_edit')
 
                                         <!----------------------->
                                         @if($orderPurchases->isEmpty())
                                             <a title="{{ __('Purchase')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchase{{ $serviceOrder->order_service_id }}" ><i class="material-icons" style="font-size:20px">attach_money</i>&nbsp; {{ __('Purchase')}}</a>
                                         @else
-                                            <a title="{{ __('View Purchase')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchase_index"><i class="material-icons" >visibility</i>&nbsp; {{__('Purchase')}}</a>
+                                            <a title="{{ __('View Purchase')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchase_edit"><i class="material-icons" >visibility</i>&nbsp; {{__('Purchase')}}</a>
                                             <!-- @if($serviceOrder->order_status_id=='8')
 
                                             @else

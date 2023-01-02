@@ -271,8 +271,8 @@
         <div class="form-group table-responsive">
 <!----------------------------------------------------------------------Select proyecto----------------------------------------------------------------------------------->
         {{ Form::label( __('Project')) }} 
-        <select onclick="save_data_ticket()" name="project_id_s" id="project_id_s" class="form-select" style="width:80%; height:38px;">
-                <option value ="Project" selected disabled >{{ __('Project') }}</option>
+        <select onclick="save_data_ticket()" name="project_id_s" id="project_id_s" class="form-select" style="width:80%; height:38px;" required>
+                <option value ="" selected disabled >{{ __('Project') }}</option>
                 @foreach($projects as $project)
                     <option value="{{ $project->project_id }}
                     @foreach($warranty_of as $cons_garantia) @if($cons_garantia->project_id == $project->project_id) ,{{$cons_garantia->date_end}} @endif @endforeach  ">{{ $project->name }}</option>
@@ -280,7 +280,7 @@
         </select>
         <br>
 <!------------------------------------------------------------Datos de garantía al seleccionar proyecto-------------------------------------------------------------------->            
-            <div id="status_warranty_principal">
+            <div id="status_warranty_principal" hidden>
                 <input type="text" name="project_id" id="project_id" style="margin-left:-15%;" hidden>
                 <div  class="spinner-grow" id="status_warranty_color" style="width:20px; height:20px;" data-toggle="tooltip" title="selecciona una opción"></div>
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> {{ __('Warranty')}} = <strong><span id="texto_status_garantía"></span></strong> <br> {{ __('Today_date')}} = 

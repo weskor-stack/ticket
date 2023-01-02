@@ -97,12 +97,12 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-                    <div>
+                    <div class="table-responsive">
                         <!----------------------->
                         <table class="table table-striped table-hover">
                             <tr style="text-align: left">
-                                <td style="width:20%"></td>
-                                <td style="width:30%">
+                                <!-- <td style="width:10%"></td> -->
+                                <td style="width:40%; text-align: center">
                                     <div class="form-group">
                                     <legend>Type of maintenance</legend>
                                         @foreach($serviceOrder as $serviceOrder)
@@ -127,7 +127,7 @@
                                         @endforeach
                                     </div>
                                 </td>
-                                <td style="width:30%">
+                                <td style="width:40%; text-align: center">
                                     <div class="form-group">
                                     <legend>Type of service</legend><br>
                                         @if ($serviceOrder->type_service_id=='1')
@@ -157,7 +157,7 @@
                         
                     </div>
                     
-                    <div class="table-responsive">
+                    <div>
                     
                         <!--@method('GET')
                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
@@ -481,7 +481,7 @@
                         <br>
                     </div>
 
-                    <div class="form-group table-responsive">
+                    <div>
                         <!----------------------->
                         <div class="form-group table-responsive">
                         <table class="table table-striped table-hover">
@@ -575,9 +575,10 @@
                             <br>
                         </div>
                         <!----------------------->
+                        @if ($activity2->isEmpty())
                         <h1 style="text-align:center;">{{ __('Items to use') }}</h1>
-                        <div>
-                        <b><legend>{{ __('Materials')}}</legend></b>
+                        <div class="table-responsive">
+                            <b><legend>{{ __('Materials')}}</legend></b>
                             <table class="table table-striped table-hover">
                                 <thead class="thead">                                
                                     <tr style="text-align: center">
@@ -641,11 +642,14 @@
                                 </tbody>
                             </table>
                         </div>
+                        @else
+
+                        @endif
                         <!----------------------->
                         <br>
                         <h1 style="text-align:center;">{{ __('Elements used') }}</h1>
-
-                        <table class="table table-striped table-hover">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr style="text-align: left">
                                         <td><b><legend>{{ __('Materials')}}</legend></b></td>
@@ -781,6 +785,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
                         <!----------------------->
                         <div>
                             <div class="card-body">

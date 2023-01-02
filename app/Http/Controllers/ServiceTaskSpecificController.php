@@ -140,7 +140,7 @@ class ServiceTaskSpecificController extends Controller
             
 
             $data3 = Ticket::find($serviceOrder2);
-            $data3->ticket_status_id='4';
+            $data3->ticket_status_id='3';
             $data3->save();
 
             
