@@ -5,18 +5,16 @@ function info_selected(){
     var input_op_proyecto = document.getElementById("op_proyecto");
     var myCollapse = new bootstrap.Collapse(crear); 
     var selected = combo.options[combo.selectedIndex].text;
- //   
-if(selected != "Nombre_proyecto"){
-    myCollapse.toggle();
-    input_op_proyecto.value = selected;
-    input_nombre_proyecto.value = selected;
-    
-}
-    //this.value para obtener   
+    var bsCollapse = new bootstrap.Collapse(crear, {
+        toggle: true,
+        show: true, //useless
 
+      });
+// alert("tocado");
 }
 
 $(document).ready(function(){
+    
 $('#proyecto_cb').on('change', function(){
 //variables
 var input_status_proyecto = document.getElementById("status_input");
@@ -123,7 +121,7 @@ if(String((document.getElementsByName('date_end')[0]).value) == "" && String((do
                 });
             }else{
                 if(Date.parse((document.getElementsByName('date_end')[0]).value) < Date.parse((document.getElementsByName('date_start')[0]).value)){
-                        $("#modelId").modal("toggle");
+                        $("#modelId").modal("show");
                     }else{
                     document.getElementById('guardado_fecha').submit();
                     }}
@@ -137,7 +135,6 @@ if(String((document.getElementsByName('date_end')[0]).value) == "" && String((do
 
 
 $(document).ready(function(){
-
 
     $( function() {
       

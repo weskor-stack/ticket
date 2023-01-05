@@ -62,6 +62,10 @@ class ServiceController extends Controller
 
         $serviceOrder_id = $serviceOrder[0]['order_status_id'];
 
+        $type_maintenance = $serviceOrder[0]['type_maintenance_id'];
+
+        $type_service = $serviceOrder[0]['type_service_id'];
+
         // return response()->json($serviceOrder_id);
         //$serviceOrder = explode('"',$serviceOrder);
         //$serviceOrder = preg_replace('/[^0-9]/', '', $serviceOrder);
@@ -203,7 +207,7 @@ class ServiceController extends Controller
         return view('service.index', compact('services','service','serviceOrder','serviceReport','employee','service2','serviceOrder','materialAssigneds','toolAssigneds',
         'serviceReports','serviceTaskSpecific', 'activity2','employeeOrders', 'materialUseds', 'materialUsed','materials2','tools2','toolUsed','toolUseds','tool2','material2',
         'service_report','customers','contacts','tickets_contact','tickets','service_employees','employees','employee_order','service5',
-        'serviceOrder_id','serviceOrder_factory','ticket_location','factories'))
+        'serviceOrder_id','serviceOrder_factory','ticket_location','factories','type_maintenance','type_service'))
             ->with('i', (request()->input('page', 1) - 1) * $services->perPage());
     }
 
@@ -225,6 +229,11 @@ class ServiceController extends Controller
 
         $type_service = $serviceOrder[0]['type_service_id'];
 
+<<<<<<< HEAD
+=======
+        // return response()->json($type_service);
+
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
         $serviceOrder_id = $serviceOrder[0]['order_service_id'];
 
         $materialAssigneds = MaterialAssigned::select('material_id', 'quantity', 'order_service_id', 'user_id', 'date_registration')
@@ -287,7 +296,7 @@ class ServiceController extends Controller
 
         $employees = Employee::all();
 
-        //return response()->json($maintenances);
+        // return response()->json($type_maintenance);
         
         $pdf = PDF::loadView('service.pdf',['services' => $services], compact('services','service','serviceReports','materialUseds',
         'toolUseds','serviceTaskSpecific','contacts','customers','tickets','serviceOrder2','maintenances','typeServices','employees',

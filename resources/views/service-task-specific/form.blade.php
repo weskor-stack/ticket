@@ -79,7 +79,11 @@
                                                 background-color: #F0F0EF;
                                             } 
                                         </style>
+<<<<<<< HEAD
                                         <div><canvas id="sig" onclick="data_image()"></canvas></div>
+=======
+                                        <div><canvas id="sig"></canvas></div>
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
 
                                         <script>
                                             //======================================================================
@@ -156,9 +160,12 @@
                                                         });
                                                     });
                                                     ctx.stroke();
+<<<<<<< HEAD
                                                     let canvas = document.getElementById("sig");
                                                     var dataURL = canvas.toDataURL();
                                                     $("#signature_evidence").val(dataURL);
+=======
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                                                 }
                                             }
 
@@ -168,6 +175,7 @@
                                             function pararDibujar () {
                                                 pintarLinea = false;
                                                 guardarLinea();
+<<<<<<< HEAD
                                                 /*document.getElementById('clear').addEventListener('click', function() {
                                                     // let ctx = miCanvas.getContext('2d')
                                                     // ctx.clearRect(0, 0, miCanvas.width, miCanvas.height);
@@ -175,6 +183,14 @@
                                                     // alert("hola");
                                                     location.reload();
                                                 }, false);*/
+=======
+                                                document.getElementById('clear').addEventListener('click', function() {
+                                                    let ctx = miCanvas.getContext('2d')
+                                                    ctx.clearRect(0, 0, miCanvas.width, miCanvas.height);
+                                                    lineas = [];
+                                                    // alert("hola");
+                                                }, false);
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                                             }
 
                                             //======================================================================
@@ -226,7 +242,11 @@
                                             </table>
                                             <!-- <button id="clear" title="{{ __('Clear')}}" class="btn btn-warning btn-sm"><i class="material-icons" style="font-size:20px">cleaning_services</i>&nbsp; {{ __('Clear')}}</button> -->
                                             
+<<<<<<< HEAD
                                             <a onclick="data_image()" class="btn btn-warning btn-sm" id="clear"><i class="material-icons" style="font-size:20px">cleaning_services</i> {{ __('Clear')}}</a>
+=======
+                                            <a class="btn btn-warning btn-sm" id="clear"><i class="material-icons" style="font-size:20px">cleaning_services</i> {{ __('Clear')}}</a>
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
 
                                             <textarea id="signature_evidence" name="signature_evidence" style="display: none" class="form-control.<?php echo ($errors->has('signature_evidence') ? ' is-invalid' : ''); ?>" required></textarea>
                                             {!! $errors->first('signature_evidence', '<div class="invalid-feedback">:message</div>') !!}
@@ -242,6 +262,7 @@
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
             <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
             <script type="text/javascript">
+<<<<<<< HEAD
                 // var sig = $('#sig').signature({syncField: '#signature_evidence', syncFormat: 'PNG'});
                 $('#clear').click(function(e) {
                 //     e.preventDefault();
@@ -251,6 +272,14 @@
                     lineas = [];
                     $("#signature_evidence").val('');
                 });
+=======
+                var sig = $('#sig').signature({syncField: '#signature_evidence', syncFormat: 'PNG'});
+                // $('#clear').click(function(e) {
+                //     e.preventDefault();
+                //     sig.signature('clear');
+                //     $("#signature_evidence").val('');
+                // });
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
             </script>
         </div>
 

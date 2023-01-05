@@ -5,30 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="{{ public_path('css/pdf_tables2.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ public_path('css/pdf_tables.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <!-- Define header and footer blocks before your content -->
-    <header style="text-align: center;">
-        <table id="customers5">
-            <tr>
-                <th style="width:30%"><img src="{{ public_path('images/logoAutomatyco.png') }}" width="80%" height="auto" style="text-align: center;"/></th>
-                <th style="width:30%">{{ __('Report')}}</th>
-                <th style="width:20%"><b>{{ __('Order')}}:</b> {{ $service->order_service_id }}</th>
-                <th style="width:20%"><b>{{ __('Ticket')}}:</b> {{ $tickets }} </th>
-            </tr>
-        </table>
+    <header>
+        <img src="{{ public_path('images/logoAutomatyco3.png') }}" width="30%" height="150%" style="text-align: left;"/>
     </header>
     <footer>
-        <!-- PIE DE PÁGINA -->
+        <p>Av. 5 de Mayo #15 Bod. #8 Colonia San Juan de Ocotan. Tel/Fax: (33) 3120-1000 C.P. 45019, Zapopan, Jalisco</p>
+        <p>R.F.C. AMC-030901-P69</p>
     </footer>
-   
+<br>
+<br>    
     <div>
         <table id=customers3>
             <thead>
                 <b><legend>{{ __('Customer')}}</legend></b>
             </thead>
-            
+            <br><br>
             <tbody>
                 <tr>
                     <th>
@@ -178,10 +173,8 @@
         </table>
     </div>
 
-    
-    <div style="page-break-before: always;">
+    <div>
         <div>
-        <br>
             @foreach($activity2 as $activity)
                 <div class="box box-info padding-1">
                     <div class="box-body">
@@ -202,21 +195,13 @@
                                         <h5>{{ __('Before')}}:</h5>
 
                                         <div class="form-group">
-<<<<<<< HEAD
-                                            <img src="{{  $activity->previous_evidence }}" width="250" height="250" alt="">
-=======
                                             <img src="{{ asset('app/public').'/'.$activity->previous_evidence }}" width="200" height="200" alt="">
->>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                                         </div>
                                     </td>
                                     <td style="text-align:center;">
                                         <h5>{{ __('After') }}:</h5>
                                         <div class="form-group">
-<<<<<<< HEAD
-                                            <img src="{{  $activity->subsequent_evidence }}" width="250" height="250" alt="">
-=======
                                             <img src="{{ asset('app/public').'/'.$activity->subsequent_evidence }}" width="200" height="200" alt="">
->>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                                         </div>
                                     </td>
                                     <br>
@@ -225,11 +210,7 @@
                         </div>
                         <div>
                             <legend>{{ __('Signature') }}:</legend><br>
-<<<<<<< HEAD
-                            <img src="{{  $activity->signature_evidence }}" width="100%" height="200" alt="">
-=======
                             <img src="{{  $activity->signature_evidence }}" width="100%" height="300" alt="">
->>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                                             
                         </div>
                         <div>

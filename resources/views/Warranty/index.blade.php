@@ -1,12 +1,13 @@
 {{-- /////////////////////////////////////////////////////////////////// Index de garantía /////////////////////////////////////////////////////////////////////// --}}  
 @extends('layouts.app')
     <!--vínculo de mis scripts-->
-    <script src="warranty_js/Warranty_js.js"></script>
+
 @section('template_title')
     Ticket
 @endsection
 
 @section('content')
+<script src="{{ asset('js/warranty_js/Warranty_js.js')}}" defer></script>
 
 {{-- /////////////////////////////////////////////////////////////////// div principal /////////////////////////////////////////////////////////////////////// --}}  
 <div>
@@ -31,8 +32,13 @@
                     <label for="proyecto_cb">Nombre_proyecto</label>
                 </div>
 
+<<<<<<< HEAD
                 <select href="#crear"  data-toggle="collapse" name="proyecto_cb" id="proyecto_cb" class="form-select" size="3" aria-label="size 3 select example" style="margin-left:28%; margin-top:15px; width:50%;" onchange="info_selected()"  href="#crear">
                     <option disabled>Nombre_Proyecto</option>
+=======
+                <select href="#crear"  multiple name="proyecto_cb" id="proyecto_cb" class="custom-select mb-3" style=" margin-top:15px; width:50%;" onchange="info_selected()"  href="#crear">
+                    <option disabled selected >Nombre_Proyecto</option>
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
 {{-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                                                            Orden de los datos:
@@ -273,7 +279,7 @@ consulta_garantia_9
             
             <script>
                function cerrar_modal(){
-                   $("#modelId").modal("toggle");
+                   $("#modelId").modal("show");
                 }
             </script>  
 {{-- ///////////////////////////////////////////////////// divisiones de pantalla pricipal y final de sección //////////////////////////////////////////////////////// --}}  
