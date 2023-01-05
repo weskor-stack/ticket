@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderPurchase;
+use App\Models\ServiceOrder;
+
 use Illuminate\Http\Request;
 
 use DB;
@@ -52,7 +54,7 @@ class OrderPurchaseController extends Controller
 
         $orderPurchases ['order_service_id'] = $request['order_service_id'];
 
-        $orderPurchases ['purchase_id'] = 0;
+        // $orderPurchases ['purchase_id'] = 0;
 
         $orderPurchases ['user_id'] = 9999;
 
@@ -104,10 +106,14 @@ class OrderPurchaseController extends Controller
     {
         request()->validate(OrderPurchase::$rules);
 
+        // return response()->json($orderPurchase);
+
         $orderPurchase->update($request->all());
 
-        return redirect()->route('order-purchases.index')
-            ->with('success', 'OrderPurchase updated successfully');
+        /*return redirect()->route('order-purchases.index')
+            ->with('success', 'OrderPurchase updated successfully');*/
+        return redirect()->route('service-orders.index','id_ticket='. $orderPurchase['order_service_id'])
+            ->with('success', __('OrderPurchase updated successfully.'));
     }
 
     /**

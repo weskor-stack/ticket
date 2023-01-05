@@ -60,6 +60,9 @@ class NotifyTicketEndController extends Controller
         $serviceOrder = ServiceOrder::select('order_service_id','date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'order_status_id', 'user_id', 'date_registration')
         ->where('order_service_id', '=', $services)->get();
 
+        $type_maintenance = $serviceOrder[0]['type_maintenance_id'];
+
+        $type_service = $serviceOrder[0]['type_service_id'];
 
         $service3 = Service::select('service_id')
         ->where('order_service_id', '=', $serviceOrder[0]['order_service_id'])->get();
@@ -119,8 +122,13 @@ class NotifyTicketEndController extends Controller
 
         $pdf = PDF::loadView('service.pdf',['services' => $services], compact('services','service','serviceReports',
         'materialUseds','toolUseds','activity2','serviceTaskSpecific','contacts','customers','tickets','maintenances',
-        'serviceOrder2','typeServices','employees','service_employees','service3'));
-        $pdf->save(public_path('pdf/') . 'reporte-'.$customers[0]['name'].'-'.$ticket['ticket_id'].'.pdf'); 
+        'serviceOrder2','typeServices','employees','service_employees','service3','type_maintenance','type_service'));
+        $pdf->save(public_path('pdf/') . 'reporte-'.$customers[0]['name'].'-'.$ticket['ticket_id'].'.pdf');
+        
+        $pdf2 = PDF::loadView('service.pdf_supervisor',['services' => $services], compact('services','service','serviceReports',
+        'materialUseds','toolUseds','activity2','serviceTaskSpecific','contacts','customers','tickets','maintenances',
+        'serviceOrder2','typeServices','employees','service_employees','service3','type_maintenance','type_service'));
+        $pdf2->save(public_path('pdf_local/') . 'reporte-'.$customers[0]['name'].'-'.$ticket['ticket_id'].'.pdf'); 
 
         $this->client($ticket);
 
@@ -213,7 +221,7 @@ class NotifyTicketEndController extends Controller
         $dataEmail->paragraph4 = '  - '.$contact['name'].' '. $contact['last_name'];
         $dataEmail->email = __('E-mail').':';
         $dataEmail->paragraph5 = '  - '.$contact['email'];
-        $dataEmail->attach = public_path('pdf/') . 'reporte-'.$customer['name'].'-'.$ticket['ticket_id'].'.pdf';
+        $dataEmail->attach = public_path('pdf_local/') . 'reporte-'.$customer['name'].'-'.$ticket['ticket_id'].'.pdf';
 
         $this->send_email($dataEmail);
         

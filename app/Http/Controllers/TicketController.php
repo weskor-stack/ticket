@@ -57,9 +57,14 @@ class TicketController extends Controller
         $tickets = Ticket::paginate();
         $contacts = Contact::all();
         $customers = Customer::all();
+
+        $tickets_number = Ticket::count();
+
+        // return response()->json($tickets_number);
+
         //$data = array(['tickets' => $tickets],['contacts' => $contacts],['customers' => $customers]);
         //$pdf = PDF::loadView('ticket.pdf',['tickets' => $tickets],['contacts' => $contacts]);
-        $pdf = PDF::loadView('ticket.pdf',compact('tickets','contacts','customers'));
+        $pdf = PDF::loadView('ticket.pdf',compact('tickets','contacts','customers','tickets_number'));
         return $pdf->stream();
     }
 
@@ -84,7 +89,7 @@ class TicketController extends Controller
         $contacts2 = Contact::all();
         $customers2 = Customer::all();
 
-        $countries = \DB::table('Customer.customer')
+        $countries = \DB::table('customer.customer')
             ->get();
         
         $projects = Project::all();

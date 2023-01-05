@@ -67,17 +67,17 @@ class ServiceTaskSpecificController extends Controller
 
         $dataActivity = request()->except('_token','signed','contact');
 
-        //return response()->json($dataActivity);
+        // return response()->json($dataActivity);
 
-        if ($request->hasFile('previous_evidence')) {
-            $dataActivity['previous_evidence']=$request->file('previous_evidence')->store('previous_evidence','public');
-            # code...
-        }
+        // if ($request->hasFile('previous_evidence')) {
+        //     $dataActivity['previous_evidence']=$request->file('previous_evidence')->store('previous_evidence','public');
+        //     # code...
+        // }
 
-        if ($request->hasFile('subsequent_evidence')) {
-            $dataActivity['subsequent_evidence']=$request->file('subsequent_evidence')->store('subsequent_evidence','public');
-            # code...
-        }
+        // if ($request->hasFile('subsequent_evidence')) {
+        //     $dataActivity['subsequent_evidence']=$request->file('subsequent_evidence')->store('subsequent_evidence','public');
+        //     # code...
+        // }
 
         $image = explode(";base64,", $request->signature_evidence);
         $image_type = explode("image/", $image[0]);
@@ -116,7 +116,7 @@ class ServiceTaskSpecificController extends Controller
                         javascript:history.go(-1); 
                     </script>';
         }else{
-            //return response()->json($dataActivity);
+            // return response()->json($dataActivity);
             ServiceTaskSpecific::insert($dataActivity);
 
             $data = Service::find($dataActivity['service_id']);
@@ -140,7 +140,7 @@ class ServiceTaskSpecificController extends Controller
             
 
             $data3 = Ticket::find($serviceOrder2);
-            $data3->ticket_status_id='4';
+            $data3->ticket_status_id='3';
             $data3->save();
 
             

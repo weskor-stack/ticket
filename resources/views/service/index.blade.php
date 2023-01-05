@@ -66,7 +66,7 @@
                     </div>
                     <!----------------------------------------------------------------------------------->
                     <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;font-size: 30px; font-weight: bold;">
+                        <div class="table-responsive" style="display: flex; justify-content: space-between; align-items: center;font-size: 30px; font-weight: bold;">
 
                             <span id="card_title">
                                 {{ __('Reports') }}
@@ -97,12 +97,12 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-                    <div>
+                    <div class="table-responsive">
                         <!----------------------->
                         <table class="table table-striped table-hover">
                             <tr style="text-align: left">
-                                <td style="width:20%"></td>
-                                <td style="width:30%">
+                                <!-- <td style="width:10%"></td> -->
+                                <td style="width:40%; text-align: center">
                                     <div class="form-group">
                                     <legend>Type of maintenance</legend>
                                         @foreach($serviceOrder as $serviceOrder)
@@ -127,7 +127,7 @@
                                         @endforeach
                                     </div>
                                 </td>
-                                <td style="width:30%">
+                                <td style="width:40%; text-align: center">
                                     <div class="form-group">
                                     <legend>Type of service</legend><br>
                                         @if ($serviceOrder->type_service_id=='1')
@@ -191,8 +191,8 @@
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
                         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-                        <div class="modal fade" id="dialogo1" data-backdrop="static">
-                            <div class="modal-dialog modal-xl modal-dialog-centered">
+                        <div class="modal modal-fullscreen fade" id="dialogo1" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                                         
                                     <!-- cabecera del diálogo -->
@@ -204,10 +204,7 @@
                                     <!-- cuerpo del diálogo -->
                                         <div class="modal-body">
                                             
-                                            <div class="card-body">
-                                            
-                                            <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">-->
-
+                                        
                                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
                                             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
                                             
@@ -234,7 +231,7 @@
                                                         });
                                                     </script>
                                                 </form>
-                                            </div>                                                                                            
+                                                                                                                                      
                                         </div>
                                                         
                                     <!-- pie del diálogo -->
@@ -483,7 +480,8 @@
 
                     <div>
                         <!----------------------->
-                        <table class="table table-striped table-hover">
+                        <div class="form-group table-responsive">
+                            <table class="table table-striped table-hover">
                                 
                                 <thead style="text-align: center">
                                 <tr>
@@ -570,12 +568,13 @@
                                     
                                 </tbody>
                             </table>
-                            <br>
-                            <br>
+                            
+                        </div>
                         <!----------------------->
+                        @if ($activity2->isEmpty())
                         <h1 style="text-align:center;">{{ __('Items to use') }}</h1>
-                        <div>
-                        <b><legend>{{ __('Materials')}}</legend></b>
+                        <div class="table-responsive">
+                            <b><legend>{{ __('Materials')}}</legend></b>
                             <table class="table table-striped table-hover">
                                 <thead class="thead">                                
                                     <tr style="text-align: center">
@@ -639,11 +638,14 @@
                                 </tbody>
                             </table>
                         </div>
+                        @else
+
+                        @endif
                         <!----------------------->
                         <br>
                         <h1 style="text-align:center;">{{ __('Elements used') }}</h1>
-
-                        <table class="table table-striped table-hover">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr style="text-align: left">
                                         <td><b><legend>{{ __('Materials')}}</legend></b></td>
@@ -779,6 +781,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
                         <!----------------------->
                         <div>
                             <div class="card-body">
@@ -792,7 +795,7 @@
                             @else
                                 <p></p>
                                 @foreach($activity2 as $activity)
-                                <div class="box box-info padding-1">
+                                <div class="box box-info padding-1 table-responsive">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <h1 style="text-align:center;">{{ __('Activities implemented')}}</h1>
@@ -800,21 +803,21 @@
                                            
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $activity->description }}</textarea>
                                         </div>
-                                        <div>
+                                        <div class="form-group table-responsive">
                                             <legend>{{ __('Evidence') }} </legend>
-                                                <table class=table align="center">
-                                                    <tr>
-                                                        <td align="center">
-                                                            <h5>{{ __('Before')}}:</h5>
+                                                <table class="container">
+                                                    <tr class="table-responsive" style="text-align:center">
+                                                        <td class="table-responsive" style="text-align:center">
+                                                            <h5 style="text-align:center">{{ __('Before')}}:</h5>
 
                                                             <div class="form-group">
-                                                                <img src="{{ asset('app/public').'/'.$activity->previous_evidence }}" width="200" height="200" alt="">
+                                                                <img src="{{  $activity->previous_evidence }}" width="500" height="500" alt="">
                                                             </div>
                                                         </td>
-                                                        <td align="center">
-                                                            <h5>{{ __('After') }}:</h5>
+                                                        <td class="table-responsive" style="text-align:center">
+                                                            <h5 style="text-align:center">{{ __('After') }}:</h5>
                                                             <div class="form-group">
-                                                                <img src="{{ asset('app/public').'/'.$activity->subsequent_evidence }}" width="200" height="200" alt="">
+                                                                <img src="{{  $activity->subsequent_evidence }}" width="500" height="500" alt="">
                                                             </div>
                                                         </td>
                                                         <br>

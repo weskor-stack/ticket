@@ -15,7 +15,7 @@ class DropdownController extends Controller
      */
     public function view()
     {
-        $countries = \DB::table('Customer.customer')
+        $countries = \DB::table('customer.customer')
             ->get();
         
         return view('dropdown', compact('countries'));
@@ -28,7 +28,7 @@ class DropdownController extends Controller
      */
     public function getStates(Request $request)
     {
-        $states = \DB::table('Customer.contact')
+        $states = \DB::table('customer.contact')
             ->where('customer_id', $request->customer_id)
             ->get();
         
@@ -60,7 +60,7 @@ class DropdownController extends Controller
      */
     public function getFactories(Request $request)
     {
-        $factories = \DB::table('Customer.factory')
+        $factories = \DB::table('customer.factory')
             ->where('customer_id', $request->customer_id)
             ->get();
         
@@ -76,12 +76,28 @@ class DropdownController extends Controller
      */
     public function getAddress(Request $request)
     {
-        $factories = \DB::table('Customer.factory')
+        $factories = \DB::table('customer.factory')
             ->where('factory_id', $request->factory_id)
             ->get();
         
         if (count($factories) > 0) {
             return response()->json($factories);
+        }
+    }
+
+    /**
+     * return states list.
+     *
+     * @return json
+     */
+    public function getContacts(Request $request)
+    {
+        $contacts = \DB::table('customer.contact')
+            ->where('contact_id', $request->contact_id)
+            ->get();
+        
+        if (count($contacts) > 0) {
+            return response()->json($contacts);
         }
     }
 

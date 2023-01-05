@@ -5,20 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="{{ public_path('css/pdf_tables.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ public_path('css/pdf_tables2.css') }}" rel="stylesheet" type="text/css">
     
 </head>
 <body>
     <!-- Define header and footer blocks before your content -->
     <header>
-        <img src="{{ public_path('images/logoAutomatyco3.png') }}" width="30%" height="150%" style="text-align: left;"/>
+        <table id="customers5">
+            <tr>
+                <th style="width:30%"><img src="{{ public_path('images/logoAutomatyco.png') }}" width="80%" height="auto" style="text-align: center;"/></th>
+                <th style="width:30%">{{ __('Order service')}}</th>
+                <th style="width:20%"><b>{{ __('Order')}}:</b> {{ $serviceOrder->order_service_id }}</th>
+                <th style="width:20%"><b>{{ __('Ticket')}}:</b> {{ $serviceOrder->ticket->ticket_id }}</th>
+            </tr>
+        </table>
+        <br>
     </header>
     <footer>
-        <p>Av. 5 de Mayo #15 Bod. #8 Colonia San Juan de Ocotan. Tel/Fax: (33) 3120-1000 C.P. 45019, Zapopan, Jalisco</p>
-        <p>R.F.C. AMC-030901-P69</p>
+        <!-- PIE DE PÁGINA -->
     </footer>
-<br>
-<br>    
+    
     <div>
         <table id="customers3">
             <thead>
@@ -26,7 +32,7 @@
                     <b><legend>{{ __('Customer')}}:</legend></b>
                 </tr>
             </thead>
-            <br>
+            
                 <tr>
                     <th></th>
                     <th>
@@ -51,16 +57,15 @@
                     <td>
                         <b>{{ __('Ticket')}}:</b> {{ $serviceOrder->ticket->ticket_id }}<br>
                         <b>{{ __('Order')}}:</b> {{ $serviceOrder->order_service_id }}<br>
-                        <b></b><br><br>
-                        <b></b> 
+                        
                     </td>
                 </tr>
         </table>
     </div>
-    <br><br>
+    
     <div>
-        <h3>{{ __('Order of service')}}</h3>
         <table id="customers3">
+            <h3>{{ __('Order of service')}}</h3>
            <tr>
                 <td>
                     <b>* {{ __('Type of maintenance')}}: </b> {{$serviceOrder->typeMaintenance->name}}.
@@ -71,12 +76,10 @@
             </tr>
         </table>
     </div>
-    <br>
-    <b><legend>{{ __('Materials')}}</legend></b>
-    <br>
-    <br>
+    
     <div>
         <table id ="customers2">
+            <b><legend>{{ __('Materials')}}</legend></b>
             <thead>                           
                 <tr>
                     <th>{{ __('Name')}}</th>
@@ -97,12 +100,10 @@
             </tbody>
         </table>
     </div>
-    <br>
-    <b><legend>{{ __('Tools')}}</legend></b>
-    <br>
-    <br>
+    
     <div>
         <table id="customers2">
+            <b><legend>{{ __('Tools')}}</legend></b>
             <thead>      
                 <tr>
                     <th>{{ __('Name')}}</th>
@@ -123,12 +124,10 @@
             </tbody>
         </table>
     </div>
-    <br>
-    <b><legend>{{ __('Employees')}}</legend></b>
-    <br>
-    <br>
+    
     <div>
         <table id="customers2">
+            <b><legend>{{ __('Employees')}}</legend></b>
             <thead>
                 <tr>
                     <th>{{ __('ID Employees')}}</th>
@@ -154,6 +153,9 @@
                                         @foreach($hierarchical as $jerarquia)
                                             @if($jerarquia->hierarchical_id == $position->hierarchical_id)
                                                 <td style="width:20%">{{$jerarquia->position}} {{$position->name}} </td>
+                                                @if($jerarquia->position == "Director" and $position->name == "general")
+                                                    <td>-</td>
+                                                @else
                                                 @foreach($hierarchical_structure as $structure)
                                                     @if($structure->hierarchical_position_id == $supervisor->hierarchical_position_id)
                                                         @foreach($employee_hierarchical_position as $supervisor2)
@@ -167,6 +169,7 @@
                                                         @endforeach          
                                                     @endif
                                                 @endforeach
+                                                @endif
                                             @endif
                                         @endforeach
                                     @endif
@@ -179,11 +182,10 @@
         </table>
     </div>
 
-    <br><br>
-    <b><legend>{{ __('Schedule')}}</legend></b>
-    <br><br>
+    
     <div>
         <table class="table table-striped table-hover" id="customers2">
+            <b><legend>{{ __('Schedule')}}</legend></b>
                                 
             <thead style="text-align: center">
                 <tr style="text-align: center">

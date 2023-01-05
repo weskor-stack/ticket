@@ -108,9 +108,36 @@
     color: white;
 }
 
+#customers5 {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers5 td{
+    border: 0px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font: bold 90% monospace;
+}
+
+#customers5 tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers5 tr:hover {background-color: #ddd;}
+
+#customers5 th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #ffffff;
+    font: bold 90% monospace;
+    color: black;
+    border: 3px solid #ddd;
+}
+
 header {
     position: fixed;
-    top: -60px;
+    top: -70px;
     left: 0px;
     right: 0px;
     height: 50px;

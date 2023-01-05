@@ -37,6 +37,7 @@ Route::get('get-states', [DropdownController::class, 'getStates'])->name('getSta
 Route::get('get-stock', [DropdownController::class, 'getStockes'])->name('getStockes');
 Route::get('get-factories', [DropdownController::class, 'getFactories'])->name('getFactories');
 Route::get('get-address', [DropdownController::class, 'getAddress'])->name('getAddress');
+Route::get('get-contacts', [DropdownController::class, 'getContacts'])->name('getContacts');
 
 //datos para ganrantia
 Route::get('WarrantyDropdownController', [WarrantyDropdownController::class, 'get_Warranty_Id'])->name('get_Warranty_Id');
@@ -185,6 +186,8 @@ Route::get('tickets-pdf', [App\Http\Controllers\TicketController::class, 'pdf'])
 Route::get('orders-pdf', [App\Http\Controllers\ServiceOrderController::class, 'pdf'])->name('service-order.pdf');
 
 Route::get('services-pdf', [App\Http\Controllers\ServiceController::class, 'pdf'])->name('service.pdf');
+
+Route::get('services2-pdf', [App\Http\Controllers\ServiceController::class, 'pdf'])->name('service.pdf_supervisor');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

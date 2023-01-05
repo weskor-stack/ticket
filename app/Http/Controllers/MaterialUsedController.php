@@ -82,9 +82,9 @@ class MaterialUsedController extends Controller
             ->with('success', __('Insufficient').' '.'material.');    */        
             
         }else {
-            $data = Material::find($materialUsed['material_id']);
-            $data->stock=$result2;
-            $data->save();
+            // $data = Material::find($materialUsed['material_id']);
+            // $data->stock=$result2;
+            // $data->save();
             MaterialUsed::insert($materialUsed);            
             return redirect()->back()
             ->with('success', __('The material') .' '.__('updated successfully'));

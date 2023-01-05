@@ -5,25 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="{{ public_path('css/pdf_tables.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ public_path('css/pdf_tables2.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <!-- Define header and footer blocks before your content -->
-    <header>
-        <img src="{{ public_path('images/logoAutomatyco3.png') }}" width="30%" height="150%" style="text-align: left;"/>
+    <header style="text-align: center;">
+        <img src="{{ public_path('images/pdf_customer/header.png') }}" width="800px" height="90px"/>
     </header>
     <footer>
-        <p>Av. 5 de Mayo #15 Bod. #8 Colonia San Juan de Ocotan. Tel/Fax: (33) 3120-1000 C.P. 45019, Zapopan, Jalisco</p>
-        <p>R.F.C. AMC-030901-P69</p>
+        <img src="{{ public_path('images/pdf_customer/footer.png') }}" width="800px" height="185px"/>
     </footer>
-<br>
-<br>    
+   
     <div>
         <table id=customers3>
             <thead>
                 <b><legend>{{ __('Customer')}}</legend></b>
             </thead>
-            <br><br>
+            
             <tbody>
                 <tr>
                     <th>
@@ -54,23 +52,23 @@
         <table id="customers3">
            <tr>
                @foreach($maintenances as $manitenance)
-                    @foreach($serviceOrder2 as $order)
-                        @if($manitenance->type_maintenance_id == $order->type_maintenance_id)
+                   
+                        @if($manitenance->type_maintenance_id == $type_maintenance)
                             <td>
                                 <b>* {{ __('Type of maintenance')}}: </b> {{$manitenance->name}}.
                             </td>
                         @endif
-                    @endforeach
+                    
                 @endforeach
                 
                 @foreach($typeServices as $service)
-                    @foreach($serviceOrder2 as $order)
-                        @if($service->type_service_id == $order->type_service_id)
+                    
+                        @if($service->type_service_id == $type_service)
                             <td>
-                                <b>* {{ __('Type of maintenance')}}: </b> {{$service->name}}.
+                                <b>* {{ __('Type of service')}}: </b> {{$service->name}}.
                             </td>
                         @endif
-                    @endforeach
+                    
                 @endforeach
             </tr>
         </table>
@@ -173,8 +171,10 @@
         </table>
     </div>
 
-    <div>
+    
+    <div style="page-break-before: always;">
         <div>
+        <br>
             @foreach($activity2 as $activity)
                 <div class="box box-info padding-1">
                     <div class="box-body">
@@ -194,14 +194,14 @@
                                     <td style="text-align:center;">
                                         <h5>{{ __('Before')}}:</h5>
 
-                                        <div class="form-group">
-                                            <img src="{{ asset('app/public').'/'.$activity->previous_evidence }}" width="200" height="200" alt="">
+                                        <div class="form-group"style="text-align:center;">
+                                            <img src="{{  $activity->previous_evidence }}" width="250" height="250" alt="">
                                         </div>
                                     </td>
                                     <td style="text-align:center;">
                                         <h5>{{ __('After') }}:</h5>
-                                        <div class="form-group">
-                                            <img src="{{ asset('app/public').'/'.$activity->subsequent_evidence }}" width="200" height="200" alt="">
+                                        <div class="form-group" style="text-align:center;">
+                                            <img src="{{  $activity->subsequent_evidence }}" width="250" height="250" alt="">
                                         </div>
                                     </td>
                                     <br>
@@ -210,7 +210,7 @@
                         </div>
                         <div>
                             <legend>{{ __('Signature') }}:</legend><br>
-                            <img src="{{  $activity->signature_evidence }}" width="100%" height="300" alt="">
+                            <img src="{{  $activity->signature_evidence }}" width="100%" height="200" alt="">
                                             
                         </div>
                         <div>

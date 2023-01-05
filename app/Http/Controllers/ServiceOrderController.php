@@ -44,7 +44,7 @@ class ServiceOrderController extends Controller
     {
         $datas = $_GET['id_ticket'];
         
-        //$serviceOrders = ServiceOrder::paginate();
+        $serviceOrders = ServiceOrder::all();
 
         /*$serviceOrder2 = ServiceOrder::select('order_service_id', 'date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'status_order_id', 'user_id', 'date_registration')
         ->where('ticket_id', '=', $datas)->get();
@@ -69,7 +69,7 @@ Ticket
 
         // return response()->json($factories);
 
-        $serviceOrders = ServiceOrder::paginate();
+        // $serviceOrders = ServiceOrder::paginate();
         
         /*$service = Service::select('service_id', 'date_service', 'oreder_service_id', 'service_status_id', 'user_id', 'date_registration')
         ->where('order_service_id', '=', '2')->get();*/
@@ -102,14 +102,16 @@ Ticket
         /*$serviceOrder = str_replace('order_service_id','',$serviceOrder);
         $serviceOrder = $serviceOrder[6];*/
 
-        $serviceOrder_all = preg_replace('/[^0-9]/', '', $serviceOrder_all);
+        $serviceOrder_all = $serviceOrder_all[0]['order_service_id'];
 
-        //return response()->json($serviceOrder_all);
+        // return response()->json($serviceOrder_all);
 
         $serviceOrder2 = ServiceOrder::select('order_service_id')
         ->where('order_service_id', '=', $datas)->get();
         
-        $serviceOrder2 = preg_replace('/[^0-9]/', '', $serviceOrder2);
+        $serviceOrder2 = $serviceOrder2[0]['order_service_id'];
+
+        // return response()->json($serviceOrder2);
         
         $serviceOrder = ServiceOrder::find($serviceOrder2);
 
@@ -121,23 +123,23 @@ Ticket
         ->where('order_service_id', '=', $datas)->get();
 
         $materialAssigneds = MaterialAssigned::select('order_material_id', 'quantity', 'order_service_id', 'user_id', 'date_registration','material_id')
-        ->where('order_service_id', '=', $serviceOrder_all[0])->get();
+        ->where('order_service_id', '=', $serviceOrder_all)->get();
 
         //return response()->json($serviceOrder_all[0]);
 
         $toolAssigneds = ToolAssigned::select('order_tool_id', 'quantity', 'order_service_id', 'user_id', 'date_registration','tool_id')
-        ->where('order_service_id', '=', $serviceOrder_all[0])->get();
+        ->where('order_service_id', '=', $serviceOrder_all)->get();
 
         //return response()->json($toolAssigneds);
 
         $employeeOrders = EmployeeOrder::select('order_service_id', 'employee_id', 'user_id', 'date_registration')
-        ->where('order_service_id', '=', $serviceOrder_all[0])->get();
+        ->where('order_service_id', '=', $serviceOrder_all)->get();
 
         $employeeOrders_data = Employee::all();/*select('employee_id','name','last_name')
         ->where('employee_id', '=', $employeeOrders[0]['employee_id'])->get();*/
 
         $employeeOrders2 = EmployeeOrder::select('employee_id')
-        ->where('order_service_id', '=', $serviceOrder_all[0])->get();
+        ->where('order_service_id', '=', $serviceOrder_all)->get();
 
         $reports2 = ServiceOrder::select('order_service_id', 'date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'order_status_id', 'user_id', 'date_registration')
         ->where('order_service_id', '=', $datas)->get();
@@ -155,7 +157,7 @@ Ticket
         $serviceOrder3 = ServiceOrder::select('order_service_id')
         ->where('order_service_id', '=', $datas)->get();
 
-        $serviceOrder3 = preg_replace('/[^0-9]/', '', $serviceOrder3);
+        $serviceOrder3 = $serviceOrder3[0]['order_service_id'];
 
         $materialAssigneds_2 = MaterialAssigned::select('material_id')
         ->where('order_service_id', '=', $serviceOrder3)->get();
@@ -246,6 +248,15 @@ Ticket
         $employee_order = EmployeeOrder::select('order_service_id','employee_id','status_id')
         ->where('order_service_id', '=', $serviceOrder['order_service_id'])->get();
 
+        // $employee_assigned = Employee::whereNotIn('employee_id', EmployeeOrder::select('employee_id')
+        // ->where('order_service_id', '=', $serviceOrder3))->get();
+
+        // $employee_order2 = EmployeeOrder::select('employee_id')
+        // ->where('order_service_id', '=', $serviceOrder['order_service_id'])->get();
+        
+        // return response()->json($employee_order);
+
+
         $orderPurchase = new OrderPurchase();
 
         $orderPurchases = OrderPurchase::select('order_service_id','purchase_id','key')
@@ -257,8 +268,7 @@ Ticket
         'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure','material2','tool2','employee_assigned',
         'contacts','customers','employeeOrders_data','employee_hierarchical_position','hierarchical_position','hierarchical',
         'hierarchical_structure','shcedules','orderEmployeeSchedule','employee_order','orderPurchase','orderPurchases',
-        'serviceOrder_factory','ticket_location','factories','customers2','ticketLocation','factory_customer','serviceOrder_id'))
-            ->with('i', (request()->input('page', 1) - 1) * $serviceOrders->perPage());
+        'serviceOrder_factory','ticket_location','factories','customers2','ticketLocation','factory_customer','serviceOrder_id'));
     }
 
     public function pdf()
@@ -317,8 +327,8 @@ Ticket
         $pdf = PDF::loadView('service-order.pdf',['service-orders' => $serviceOrders], compact('serviceOrders','serviceOrder',
         'materialAssigneds','toolAssigneds','employeeOrders','supervisors','contacts','customers','tickets','employees',
         'employee_hierarchical_position','hierarchical_position','hierarchical','hierarchical_structure','shcedules','employee2'));
-        //return $pdf->stream();
-        return $pdf->download('order.pdf');
+        return $pdf->stream();
+        // return $pdf->download('order.pdf');
     }
 
     /**

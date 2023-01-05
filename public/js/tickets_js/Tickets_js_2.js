@@ -1,7 +1,7 @@
 $(document).ready(function(){
     let dia_hoy_transform = new Date().toLocaleDateString('en-CA');
     document.getElementById("texto_fecha_hoy_garantia").innerHTML = dia_hoy_transform;
-        if((document.getElementById("project_id_s").value) == "Project")
+        if((document.getElementById("project_id_s").value) == 'Project')
         {
             (document.getElementById("status_warranty_principal")).setAttribute("hidden","");
         }
@@ -44,7 +44,7 @@ $(document).ready(function()
     {
         document.getElementById("project_id").value = id_del_proyecto.value;
 // si el select de proyecto tiene valir distinto al defoult se muestra, si no se oculta/////////////////////////////////////////////////////////////////////////////
-        if( (document.getElementById("project_id_s").value) != "Project" )
+        if( (document.getElementById("project_id_s").value) != "Project")
         {
             (document.getElementById("status_warranty_principal")).removeAttribute("hidden","");
             
