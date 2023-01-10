@@ -55,7 +55,42 @@
             <a onclick="save_data_ticket()" name="add_contacto" style="margin-left:65%; margin-top:-61px;" type="button" class="btn btn-outline-dark" id="add2" data-toggle="modal" data-target="#dialogo2" hidden >+</a> <br>
 
             <script>
+                var contacto;
+                var contactos;
+                var contact_id2;
+                var customer = document.getElementById('customer_id').value;
+                var add_contact = document.getElementsByName("add_contacto");
+                $("#customer").on("select2:select", function (e) {
+                        var countryId = $(this).val();
+                        customer = document.getElementById('customer_id').value= countryId;
+                        document.getElementById('ejemplo').value= countryId;
+                        $('#contact').html('');
+                        $.ajax({
+                            url: "{{ route('getStates') }}?customer_id="+customer,
+                            type: 'get',
+                            success: function (res) {
+                                $('#contact').html("<option value='' selected disabled>{{ __('Select contact')}}</option>");
+                                $.each(res, function (key, value) {
+                                    $('#contact').append('<option value="' + value
+                                        .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
+                                });
+                            }
+                        });
+                    (document.getElementById("add2").removeAttribute("hidden",""));
+
+                    $('#contact').on("change", function () {
+                        var contactId = this.value;
+                        document.getElementById('contact_id').value= contactId;
+                        var ex = document.getElementById('contact');
+                        var datos2 = ex.options[ex.selectedIndex].text;
+                        contactos = datos2;
+                        contact_id2 = contactId;
+                        // alert(contact_id2);
+                        (document.getElementById("add").removeAttribute("hidden",""));
+                    });
+                });
                 $(document).ready(function() {
+                    // alert(contactos);
                     var customer = document.getElementById('customer_id').value;
                     var contact = document.getElementById('contact_id').value;
                     var e = document.getElementById('customer');
@@ -90,19 +125,49 @@
                         });
                     }
                     else{
+                        if (contact == "") {
+                            $('#contact').html('');
+                            $.ajax({
+                                url: "{{ route('getContacts') }}?contact_id="+contact,
+                                type: 'get',
+                                success: function (res) {
+                                    // document.getElementById('contact_id').value="";
+                                    // $('#contact').html("<option value='"+contact+"' selected disabled>"+res+"</option>");
+                                    $.each(res, function (key, value) {
+                                        $('#contact').append('<option value="' + value
+                                            .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
+                                    });
+                                    (document.getElementById("add")).removeAttribute("hidden","");
+                                }
+                            });
+                        }
+                        // $('#contact').html('');
+                        // $.ajax({
+                        //     url: "{{ route('getStates') }}?customer_id="+customer,
+                        //     type: 'get',
+                        //     success: function (res) {
+                        //         // document.getElementById('contact_id').value="";
+                        //         $('#contact').html("<option value='0' selected disabled>{{ __('Select contacts')}}</option>");
+                        //         $.each(res, function (key, value) {
+                        //             $('#contact').append('<option value="' + value
+                        //                 .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
+                        //         });
+                        //     }
+                        // });
                         $('#contact').html('');
-                        $.ajax({
-                            url: "{{ route('getStates') }}?customer_id="+customer,
-                            type: 'get',
-                            success: function (res) {
-                                // document.getElementById('contact_id').value="";
-                                $('#contact').html("<option value='0' selected disabled>{{ __('Select contact')}}</option>");
-                                $.each(res, function (key, value) {
-                                    $('#contact').append('<option value="' + value
-                                        .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
-                                });
-                            }
-                        });
+                            $.ajax({
+                                url: "{{ route('getContacts') }}?contact_id="+contact,
+                                type: 'get',
+                                success: function (res) {
+                                    (document.getElementById("add").removeAttribute("hidden",""));
+                                    // document.getElementById('contact_id').value="";
+                                    // $('#contact').html("<option value='"+contact+"' selected disabled>"+res+"</option>");
+                                    $.each(res, function (key, value) {
+                                        $('#contact').append('<option value="' + value
+                                            .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
+                                    });
+                                }
+                            });
                         $('#factory_id').html('');
                         $.ajax({
                             url: "{{ route('getFactories') }}?customer_id="+customer,
@@ -125,32 +190,32 @@
                     }
                 });
                 // $('#contact').select2();
-                var customer = document.getElementById('customer_id').value;
-                var add_contact = document.getElementsByName("add_contacto");
-                $("#customer").on("select2:select", function (e) {
-                        var countryId = $(this).val();
-                        customer = document.getElementById('customer_id').value= countryId;
-                        document.getElementById('ejemplo').value= countryId;
-                        $('#contact').html('');
-                        $.ajax({
-                            url: "{{ route('getStates') }}?customer_id="+customer,
-                            type: 'get',
-                            success: function (res) {
-                                $('#contact').html("<option value='' selected disabled>{{ __('Select contact')}}</option>");
-                                $.each(res, function (key, value) {
-                                    $('#contact').append('<option value="' + value
-                                        .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
-                                });
-                            }
-                        });
-                    (document.getElementById("add2").removeAttribute("hidden",""));
+                // var customer = document.getElementById('customer_id').value;
+                // var add_contact = document.getElementsByName("add_contacto");
+                // $("#customer").on("select2:select", function (e) {
+                //         var countryId = $(this).val();
+                //         customer = document.getElementById('customer_id').value= countryId;
+                //         document.getElementById('ejemplo').value= countryId;
+                //         $('#contact').html('');
+                //         $.ajax({
+                //             url: "{{ route('getStates') }}?customer_id="+customer,
+                //             type: 'get',
+                //             success: function (res) {
+                //                 $('#contact').html("<option value='' selected disabled>{{ __('Select contact')}}</option>");
+                //                 $.each(res, function (key, value) {
+                //                     $('#contact').append('<option value="' + value
+                //                         .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
+                //                 });
+                //             }
+                //         });
+                //     (document.getElementById("add2").removeAttribute("hidden",""));
 
-                    $('#contact').on("change", function () {
-                        var contactId = this.value;
-                        document.getElementById('contact_id').value= contactId;
-                        (document.getElementById("add").removeAttribute("hidden",""));
-                    });
-                });
+                //     $('#contact').on("change", function () {
+                //         var contactId = this.value;
+                //         document.getElementById('contact_id').value= contactId;
+                //         (document.getElementById("add").removeAttribute("hidden",""));
+                //     });
+                // });
             </script>
         </div>
         
@@ -270,6 +335,19 @@
         <br>
         <div class="form-group table-responsive">
 <!----------------------------------------------------------------------Select proyecto----------------------------------------------------------------------------------->
+<<<<<<< HEAD
+            {{ Form::label( __('Project')) }} 
+            <select onclick="save_data_ticket()" name="project_id_s" id="project_id_s" class="form-select" style="width:80%; height:38px;" required>
+                    <option value = '' selected disabled>{{ __('Project') }}</option>
+                    @foreach($projects as $project)
+                        <option value="{{ $project->project_id }}
+                        @foreach($warranty_of as $cons_garantia) @if($cons_garantia->project_id == $project->project_id) ,{{$cons_garantia->date_end}} @endif @endforeach  ">{{ $project->name }}</option>
+                    @endforeach
+            </select>
+            <br>
+<!------------------------------------------------------------Datos de garantía al seleccionar proyecto-------------------------------------------------------------------->            
+            <div class="form-group table-responsive" id="status_warranty_principal" hidden>
+=======
         {{ Form::label( __('Project')) }} 
         <select onclick="save_data_ticket()" name="project_id_s" id="project_id_s" class="form-select" style="width:80%; height:38px;" required>
                 <option value ="" selected disabled >{{ __('Project') }}</option>
@@ -281,11 +359,12 @@
         <br>
 <!------------------------------------------------------------Datos de garantía al seleccionar proyecto-------------------------------------------------------------------->            
             <div id="status_warranty_principal" hidden>
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                 <input type="text" name="project_id" id="project_id" style="margin-left:-15%;" hidden>
                 <div  class="spinner-grow" id="status_warranty_color" style="width:20px; height:20px;" data-toggle="tooltip" title="selecciona una opción"></div>
                 <div   style="margin-left:40px; margin-top:-25px;" > <p id="texto_garantia"> {{ __('Warranty')}} = <strong><span id="texto_status_garantía"></span></strong> <br> {{ __('Today_date')}} = 
                 <span  id="texto_fecha_hoy_garantia"></span> <br> {{ __('Final Date')}} = <strong><span id="texto_fecha_final_garantia"></span> </strong> </p> </div>
-                <a onclick="save_data_ticket()" hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:520px; margin-top:-61px;"  id="boton_de_creacion_garantia">{{ __('Create waranty')}}</a>           
+                <a onclick="save_data_ticket()" hidden data-toggle="modal" data-target="#dialogo3" style="margin-left:260px; margin-top:-11px;"  id="boton_de_creacion_garantia">{{ __('Create waranty')}}</a>           
             </div>
             <script src="{{ asset('js/tickets_js/Tickets_js_2.js') }}" defer></script> <!--script para detectar la garantía -->
         </div>
@@ -294,9 +373,9 @@
     </div>
     <br>
 <!--------------------------------------------------------------Submit de datos generales----------------------------------------------------------------------------------->    
-    <div class="box-footer mt20">
-        <button onclick="cancel_tickets()"type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
-        <a onclick="cancel_tickets()" class="btn btn-secondary btn-lg" href="{{ route('tickets.index') }}"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</a>
+    <div class="box-footer mt20 table-responsive">
+        <button onclick="cancel_tickets()"type="submit" class="btn btn-success"><i class="material-icons" style="font-size:20px; width:auto; height:auto;">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
+        <a onclick="cancel_tickets()" class="btn btn-secondary" href="{{ route('tickets.index') }}"><i class="material-icons" style="font-size:20px; width:auto; height:auto;">block</i>&nbsp; {{ __('Cancel')}}</a>
     </div>
 </div>
 

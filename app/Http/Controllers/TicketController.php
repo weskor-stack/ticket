@@ -89,7 +89,7 @@ class TicketController extends Controller
         $contacts2 = Contact::all();
         $customers2 = Customer::all();
 
-        $countries = \DB::table('Customer.customer')
+        $countries = \DB::table('customer.customer')
             ->get();
         
         $projects = Project::all();

@@ -16,7 +16,7 @@
         <div class="form-group">
             <table class="table table-striped table-hover">
                 <tr>
-                    <td style="width:30%"></td>
+                    <td style="width:10%"></td>
                     <td>
                         <div class="form-group">
                         {{ Form::label( __('Type of maintenance')) }}<br>
@@ -69,7 +69,7 @@
                             {!! $errors->first('type_service_id', '<div class="invalid-feedback">:message</div>') !!}-->
                         </div>
                     </td>
-                    <td style="width:20%"></td>
+                    <td style="width:10%"></td>
                 </tr>
             </table>
             

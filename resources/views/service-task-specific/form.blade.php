@@ -25,7 +25,8 @@
 
                         <div class="form-group">
                             <img src="{{ asset('storage').'/'.$serviceTaskSpecific->previous_evidence }}" id="blah" width="100" height="100" alt="">
-                            <input type="file" id="previous_evidence" class="form-control.<?php echo ($errors->has('previous_evidence') ? ' is-invalid' : ''); ?>" name="previous_evidence" multiple required><br><br>
+                            <input type="file" id="previous_evidence" class="form-control.<?php echo ($errors->has('previous_evidence') ? ' is-invalid' : ''); ?>" required><br><br>
+                            <input type="text" id="previous_evidence2" style="display: none" name="previous_evidence" class="form-control" required>
                             
                             {!! $errors->first('previous_evidence', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
@@ -34,7 +35,8 @@
                         <h5>{{ __('After') }}:</h5>
                         <div class="form-group">
                             <img src="{{ asset('storage').'/'.$serviceTaskSpecific->subsequent_evidence }}" id="blah2" width="100" height="100" alt="">
-                            <input type="file" id="subsequent_evidence" class="form-control.<?php echo ($errors->has('subsequent_evidence') ? ' is-invalid' : ''); ?>" name="subsequent_evidence" multiple required><br><br>
+                            <input type="file" id="subsequent_evidence" class="form-control.<?php echo ($errors->has('subsequent_evidence') ? ' is-invalid' : ''); ?>" required><br><br>
+                            <input type="text" id="subsequent_evidence2" style="display: none" name="subsequent_evidence" class="form-control" required>
                             {!! $errors->first('subsequent_evidence', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
@@ -77,7 +79,11 @@
                                                 background-color: #F0F0EF;
                                             } 
                                         </style>
+<<<<<<< HEAD
+                                        <div><canvas id="sig" onclick="data_image()"></canvas></div>
+=======
                                         <div><canvas id="sig"></canvas></div>
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
 
                                         <script>
                                             //======================================================================
@@ -154,6 +160,12 @@
                                                         });
                                                     });
                                                     ctx.stroke();
+<<<<<<< HEAD
+                                                    let canvas = document.getElementById("sig");
+                                                    var dataURL = canvas.toDataURL();
+                                                    $("#signature_evidence").val(dataURL);
+=======
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                                                 }
                                             }
 
@@ -163,12 +175,22 @@
                                             function pararDibujar () {
                                                 pintarLinea = false;
                                                 guardarLinea();
+<<<<<<< HEAD
+                                                /*document.getElementById('clear').addEventListener('click', function() {
+                                                    // let ctx = miCanvas.getContext('2d')
+                                                    // ctx.clearRect(0, 0, miCanvas.width, miCanvas.height);
+                                                    // lineas = [];
+                                                    // alert("hola");
+                                                    location.reload();
+                                                }, false);*/
+=======
                                                 document.getElementById('clear').addEventListener('click', function() {
                                                     let ctx = miCanvas.getContext('2d')
                                                     ctx.clearRect(0, 0, miCanvas.width, miCanvas.height);
                                                     lineas = [];
                                                     // alert("hola");
                                                 }, false);
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                                             }
 
                                             //======================================================================
@@ -220,7 +242,11 @@
                                             </table>
                                             <!-- <button id="clear" title="{{ __('Clear')}}" class="btn btn-warning btn-sm"><i class="material-icons" style="font-size:20px">cleaning_services</i>&nbsp; {{ __('Clear')}}</button> -->
                                             
+<<<<<<< HEAD
+                                            <a onclick="data_image()" class="btn btn-warning btn-sm" id="clear"><i class="material-icons" style="font-size:20px">cleaning_services</i> {{ __('Clear')}}</a>
+=======
                                             <a class="btn btn-warning btn-sm" id="clear"><i class="material-icons" style="font-size:20px">cleaning_services</i> {{ __('Clear')}}</a>
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
 
                                             <textarea id="signature_evidence" name="signature_evidence" style="display: none" class="form-control.<?php echo ($errors->has('signature_evidence') ? ' is-invalid' : ''); ?>" required></textarea>
                                             {!! $errors->first('signature_evidence', '<div class="invalid-feedback">:message</div>') !!}
@@ -236,12 +262,24 @@
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
             <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
             <script type="text/javascript">
+<<<<<<< HEAD
+                // var sig = $('#sig').signature({syncField: '#signature_evidence', syncFormat: 'PNG'});
+                $('#clear').click(function(e) {
+                //     e.preventDefault();
+                //     sig.signature('clear');
+                    let ctx = miCanvas.getContext('2d')
+                    ctx.clearRect(0, 0, miCanvas.width, miCanvas.height);
+                    lineas = [];
+                    $("#signature_evidence").val('');
+                });
+=======
                 var sig = $('#sig').signature({syncField: '#signature_evidence', syncFormat: 'PNG'});
                 // $('#clear').click(function(e) {
                 //     e.preventDefault();
                 //     sig.signature('clear');
                 //     $("#signature_evidence").val('');
                 // });
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
             </script>
         </div>
 
@@ -261,8 +299,53 @@
             @method('GET')
             <a type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#dialogo10"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</a>
         @else
-            <button type="submit" class="btn btn-success btn-lg" id="btnEnviar"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
+            <button onclick="data_image()" type="submit" class="btn btn-success btn-lg" id="btnEnviar"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
             <!--<a class="btn btn-danger btn-lg" href="{{ route('services.index') }}"> Cancel</a>-->
+            <script>
+                var base64String = "";
+                var subsequent = "";
+                function data_image() {
+                    
+                    // var input = document.getElementById('previous_evidence');
+                    // input.style.width = '156px';
+                    // input.style.height = 'auto';
+                    // if(input.files && input.files[0]){
+                    //     console.log("File Seleccionado : ", input.files[0]);
+                    //     alert(input.files[0]['size']);
+                    // }
+                    var file = document.querySelector('#previous_evidence')['files'][0];
+                    var file2 = document.querySelector('#subsequent_evidence')['files'][0];
+                    var reader = new FileReader();
+                    var reader2 = new FileReader();
+                    reader.onload = function () {
+                        base64String = reader.result.replace("data:", "")
+                            .replace(/^.+,/, "");
+                        imageBase64Stringsep = base64String;
+                    }
+                    reader2.onload = function () {
+                        subsequent = reader2.result.replace("data:", "")
+                            .replace(/^.+,/, "");
+                        imageBase64Stringsep = subsequent;
+                    }
+                    reader.readAsDataURL(file);   
+                    reader2.readAsDataURL(file2); 
+                    
+                    // alert("Guardando información");
+
+                    console.log("data:image/jpeg;base64,"+base64String);
+
+                    console.log("data:image/jpeg;base64,"+subsequent);
+                    // alert("data:image/jpeg;base64,"+base64String);
+                    document.getElementById('previous_evidence2').value="data:image/jpeg;base64,"+base64String;
+
+                    document.getElementById('subsequent_evidence2').value="data:image/jpeg;base64,"+subsequent;
+                    // alert("Hola");
+                    // alert("data:image/jpeg;base64,"+base64String);
+                    // document.getElementById('previous_evidence2').value='"data:image/jpeg;base64,'+base64String+'"';
+                    // alert(document.getElementById('previous_evidence').value);
+                }
+                
+            </script>
         @endif
         
         <div>

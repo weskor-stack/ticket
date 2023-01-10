@@ -37,6 +37,7 @@ Route::get('get-states', [DropdownController::class, 'getStates'])->name('getSta
 Route::get('get-stock', [DropdownController::class, 'getStockes'])->name('getStockes');
 Route::get('get-factories', [DropdownController::class, 'getFactories'])->name('getFactories');
 Route::get('get-address', [DropdownController::class, 'getAddress'])->name('getAddress');
+Route::get('get-contacts', [DropdownController::class, 'getContacts'])->name('getContacts');
 
 //datos para ganrantia
 Route::get('WarrantyDropdownController', [WarrantyDropdownController::class, 'get_Warranty_Id'])->name('get_Warranty_Id');

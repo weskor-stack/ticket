@@ -11,17 +11,16 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;font-size: 30px; font-weight: bold;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;font-size: 30px; font-weight: bold; width:100%;">
 
                             <span id="card_title">
                                 {{ __('Ticket') }}
                             </span>
 
                             <div class="float-right" style="text-align:right">
-                                <a href="{{ route('ticket.pdf') }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="material-icons">book</i>&nbsp; {{ __('PDF') }}</a>
-&nbsp;
-                                <a href="{{ route('tickets.create') }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('New Ticket') }}"><i class="material-icons">bookmarks</i>&nbsp; {{ __('New Ticket') }}</a>
-                                <button class="btn" width="5%" data-toggle="modal" data-target="#dialogo2" title="{{ __('Help') }}">
+                                <a href="{{ route('ticket.pdf') }}" class="btn btn-primary"  data-placement="left" title="{{ __('PDF') }}"><i class="material-icons">book</i>&nbsp; {{ __('PDF') }}</a>&nbsp;
+                                <a href="{{ route('tickets.create') }}" class="btn btn-primary"  data-placement="left" title="{{ __('New Ticket') }}"><i class="material-icons">bookmarks</i>&nbsp; {{ __('New Ticket') }}</a>
+                                <button class="btn" width="3%" data-toggle="modal" data-target="#dialogo2" title="{{ __('Help') }}">
                                     <!--<img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20">-->
                                     <i class="material-icons">help</i>
                                 </button>
@@ -43,12 +42,12 @@
                         </div>
                     @endif
 
-                    <div class="card-body" >
+                    <div class="card-body" style="width:100%;">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr style="text-align: center">
-                                        <th>No</th>
+                                        <!-- <th>No</th> -->
                                         
 										<th style="width: 14%;">{{ __('Subject') }}</th>
 										<th style="width: 18%;">{{ __('Problem') }}</th>
@@ -66,7 +65,7 @@
                                     
                                     
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
-                                            <td style="width: 4%;">{{ ++$i }}</td>
+                                            <!-- <td style="width: 4%;">{{ ++$i }}</td> -->
                                             
 											<td style="width: 14%;">{{ $ticket->subject }}</td>
 											<td style="width: 18%;">{{ $ticket->problem }}</td>

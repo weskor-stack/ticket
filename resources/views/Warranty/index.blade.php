@@ -32,8 +32,13 @@
                     <label for="proyecto_cb">Nombre_proyecto</label>
                 </div>
 
+<<<<<<< HEAD
+                <select href="#crear"  data-toggle="collapse" name="proyecto_cb" id="proyecto_cb" class="form-select" size="3" aria-label="size 3 select example" style="margin-left:28%; margin-top:15px; width:50%;" onchange="info_selected()"  href="#crear">
+                    <option disabled>Nombre_Proyecto</option>
+=======
                 <select href="#crear"  multiple name="proyecto_cb" id="proyecto_cb" class="custom-select mb-3" style=" margin-top:15px; width:50%;" onchange="info_selected()"  href="#crear">
                     <option disabled selected >Nombre_Proyecto</option>
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
 {{-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                                                            Orden de los datos:
@@ -116,8 +121,10 @@ consulta_garantia_9
 
                 </select>
 
+                <br>
 
 {{-- //////////////////////////////////////////////////////// Sección de muestra de información del proyecto seleccionado/////////////////////////////////////////////////////// --}}  
+    <br>
     <div class="collapse" id="crear">
 
         <div  class="col-sm-12"style="background: rgb(0,0,0);
@@ -128,15 +135,15 @@ consulta_garantia_9
     <div class="row">
             <div class="col-md-8">
  
-                    <label for="p_project" id="nombre_proyecto" style="width:50%;  position:center; margin-left:50%;">{{ __('Project name')}}</label>
-                    <input type="text", id="nombre_proyecto2" style="width:50%;   text-align: center;   position:center; margin-left:50%;" placeholder="" readonly="readonly" disabled >
+                    <label for="p_project" id="nombre_proyecto" style="width:50%;  position:center; margin-left:auto;">{{ __('Project name')}}</label>
+                    <input type="text", id="nombre_proyecto2" style="width:50%;   text-align: center;   position:center; margin-left:auto;" placeholder="" readonly="readonly" disabled >
 <br>
-                    <label for="p_project"style="width:50%; position:center; margin-left:50%;">Project Manager  </label>
+                    <label for="p_project"style="width:50%; position:center; margin-left:auto;">Project Manager  </label>
                     <br>
-                    <input type="text", id="project_manager" style="width:50%; position:center;  text-align: center; margin-left:50%;"placeholder="Project Manager" readonly="readonly" style="width:50%;" disabled> </input>
+                    <input type="text", id="project_manager" style="width:50%; position:center;  text-align: center; margin-left:auto;"placeholder="Project Manager" readonly="readonly" style="width:50%;" disabled> </input>
            
 <br> 
-<div style="width:100%; position:center; margin-left:25%; ">
+<div style="width:80%; position:center; margin-left:auto; ">
 <table class="table">
 
     <tbody style="text-align:center;">

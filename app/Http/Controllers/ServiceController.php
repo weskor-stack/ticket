@@ -229,8 +229,11 @@ class ServiceController extends Controller
 
         $type_service = $serviceOrder[0]['type_service_id'];
 
+<<<<<<< HEAD
+=======
         // return response()->json($type_service);
 
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
         $serviceOrder_id = $serviceOrder[0]['order_service_id'];
 
         $materialAssigneds = MaterialAssigned::select('material_id', 'quantity', 'order_service_id', 'user_id', 'date_registration')

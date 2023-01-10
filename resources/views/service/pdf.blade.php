@@ -194,14 +194,14 @@
                                     <td style="text-align:center;">
                                         <h5>{{ __('Before')}}:</h5>
 
-                                        <div class="form-group">
-                                            <img src="{{ asset('app/public').'/'.$activity->previous_evidence }}" width="200" height="200" alt="">
+                                        <div class="form-group"style="text-align:center;">
+                                            <img src="{{  $activity->previous_evidence }}" width="250" height="250" alt="">
                                         </div>
                                     </td>
                                     <td style="text-align:center;">
                                         <h5>{{ __('After') }}:</h5>
-                                        <div class="form-group">
-                                            <img src="{{ asset('app/public').'/'.$activity->subsequent_evidence }}" width="200" height="200" alt="">
+                                        <div class="form-group" style="text-align:center;">
+                                            <img src="{{  $activity->subsequent_evidence }}" width="250" height="250" alt="">
                                         </div>
                                     </td>
                                     <br>
@@ -210,7 +210,7 @@
                         </div>
                         <div>
                             <legend>{{ __('Signature') }}:</legend><br>
-                            <img src="{{  $activity->signature_evidence }}" width="100%" height="300" alt="">
+                            <img src="{{  $activity->signature_evidence }}" width="100%" height="200" alt="">
                                             
                         </div>
                         <div>

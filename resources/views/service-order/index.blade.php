@@ -10,7 +10,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <!--------------------------------------------------------------------->
-                    <div class="table-responsive">
+                    <div class="form-group table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="thead">
                                 <tr style="text-align: center">
@@ -346,8 +346,8 @@
                                                                                     <br>
                                                                                     <div class="form-group">
                                                                                         <table class="table table-striped table-hover">
-                                                                                            <tr>
-                                                                                                <td style="width:30%"></td>
+                                                                                            <tr style="text-align: center">
+                                                                                                <td style="width:10%"></td>
                                                                                                 <td>
                                                                                                     <div class="form-group">
                                                                                                     {{ Form::label( __('Type of maintenance')) }}<br>
@@ -400,7 +400,7 @@
                                                                                                         {!! $errors->first('type_service_id', '<div class="invalid-feedback">:message</div>') !!}-->
                                                                                                     </div>
                                                                                                 </td>
-                                                                                                <td style="width:20%"></td>
+                                                                                                <td style="width:10%"></td>
                                                                                             </tr>
                                                                                         </table>
                                                                                         
@@ -681,8 +681,8 @@
                                                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
                                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-                                                    <div class="modal fade" id="schedule" data-backdrop="static">
-                                                        <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                    <div class="modal modal-fullscreen fade" id="schedule" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                                     
                                                                 <!-- cabecera del diálogo -->
@@ -694,20 +694,17 @@
                                                                 <!-- cuerpo del diálogo -->
                                                                     <div class="modal-body">
                                                                         
-                                                                        <div class="card-body">
                                                                         
-                                                                        <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">-->
-
-                                                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-                                                                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-                                                                        
-                                                                        <!-- Include Moment.js CDN -->
-                                                                        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-                                                                        
-                                                                        <!-- Include Bootstrap DateTimePicker CDN -->
-                                                                        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-                                                                        
-                                                                        <script src="https://cdn.jsdelivr.net/npm/pc-bootstrap4-datetimepicker@4.17.51/src/js/bootstrap-datetimepicker.min.js"></script>
+                                                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+                                                                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                                                                            
+                                                                            <!-- Include Moment.js CDN -->
+                                                                            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+                                                                            
+                                                                            <!-- Include Bootstrap DateTimePicker CDN -->
+                                                                            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+                                                                            
+                                                                            <script src="https://cdn.jsdelivr.net/npm/pc-bootstrap4-datetimepicker@4.17.51/src/js/bootstrap-datetimepicker.min.js"></script>
                                                                         
                                                                             <form method="POST" action="{{ route('order-employee-schedules.store') }}"  role="form" enctype="multipart/form-data">
                                                                                 @csrf
@@ -724,7 +721,7 @@
                                                                                     });
                                                                                 </script>
                                                                             </form>
-                                                                        </div>                                                                                            
+                                                                                                                                                                    
                                                                     </div>
                                                                                     
                                                                 <!-- pie del diálogo -->
@@ -748,7 +745,7 @@
                     </div>
                     <!--------------------------------------------------------------------->
                     <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;font-size: 30px; font-weight: bold;">
+                        <div class="table-responsive" style="display: flex; justify-content: space-between; align-items: center;font-size: 30px; font-weight: bold;">
 
                             <span id="card_title">
                                 {{ __('Order of service') }}
@@ -758,9 +755,7 @@
                                 <link rel="stylesheet" href="{{ asset('css/CSS_Service_order/CSS_Service_order.css') }}">
                                 <a href="{{ route('service-order.pdf','id_ticket='.$serviceOrder->order_service_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="material-icons">book</i>&nbsp; {{ __('PDF') }}</a>
                                 &nbsp;
-                                <a href="{{ route('tickets.index') }}" class="myButton"  data-placement="left"><i class="material-icons">keyboard_double_arrow_left</i>&nbsp;
-                                  {{ __('Back') }}
-                                </a>
+                                <a href="{{ route('tickets.index') }}" class="myButton"  data-placement="left"><i class="material-icons">keyboard_double_arrow_left</i>&nbsp;{{ __('Back') }}</a>
                               </div>
                         </div>
                     </div>
@@ -770,12 +765,13 @@
                         </div>
                     @endif
 
-                    <div class="card-body">
+                    <div class="form-group table-responsive">
                         <!---->
+                        <div class="form-group table-responsive">
                             <table class="table table-striped table-hover">
-                                <tr style="text-align: left">
-                                    <td style="width:20%"></td>
-                                    <td style="width:25%">
+                                <tr style="text-align: center">
+                                    <!-- <td style="width:10%"></td> -->
+                                    <td style="width:40%">
                                         <div class="form-group">
                                         <legend>{{ __('Type of maintenance')}}</legend>
                                         @if ($serviceOrder->type_maintenance_id=='1')
@@ -799,7 +795,7 @@
                                        
                                         </div>
                                     </td>
-                                    <td style="width:30%">
+                                    <td style="width:40%">
                                         <div class="form-group">
                                         <legend>{{ __('Type of service')}}</legend>
                                             
@@ -826,10 +822,10 @@
                                             {!! $errors->first('type_service_id', '<div class="invalid-feedback">:message</div>') !!}-->
                                         </div>
                                     </td>
-                                    <td style="width:25%">
-                                        <br>
-                                        <br>
-                                        <br>
+                                    
+                                </tr>
+                                <tr style="text-align: center">
+                                    <td>
                                         @if($serviceOrder->order_status_id=='8')
 
                                         @else
@@ -843,8 +839,13 @@
                                         @include('service-order.modal.purchase')
                                         @include('service-order.modal.purchase_index')
                                         @include('service-order.modal.purchase_edit')
+<<<<<<< HEAD
+                                    </td>
+                                    <td>
+=======
 
                                         <!----------------------->
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                                         @if($orderPurchases->isEmpty())
                                             <a title="{{ __('Purchase')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchase{{ $serviceOrder->order_service_id }}" ><i class="material-icons" style="font-size:20px">attach_money</i>&nbsp; {{ __('Purchase')}}</a>
                                         @else
@@ -856,16 +857,19 @@
                                                 <a title="{{ __('View Purchase')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchase_index"><i class="material-icons" >visibility</i>&nbsp; {{__('Purchase')}}</a>
                                             @endif -->
                                         @endif
-                                        <!----------------------->
                                     </td>
                                 </tr>
                             </table>
+                        </div>
+                        <br><br>
                             <!----------------------->
 
+                            <div class="form-group table-responsive">
+                            <b><legend>{{ __('Materials')}}</legend></b>
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr style="text-align:right;">
-                                        <td><b><legend>{{ __('Materials')}}</legend></b></td>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td hidden></td>
@@ -899,7 +903,7 @@
                                     @foreach ($materialAssigneds as $materialAssigned)
                                         
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
-                                            <td hidden>{{ ++$i }}</td>
+                                            
                                             
                                             <td style="width:20%">{{ $materialAssigned->material->name }}</td>
 											<td style="width:20%">{{ $materialAssigned->material->key }}</td>
@@ -934,12 +938,14 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            </div>
 
-                            
+                            <div class="form-group table-responsive">
+                            <b><legend>{{ __('Tools')}}</legend></b>
                             <table class="table table-striped table-hover">
                                 <thead class="thead">      
                                     <tr style="text-align: left">
-                                        <td><b><legend>{{ __('Tools')}}</legend></b></td>
+                                        <td></td>
                                         <td hidden></td>
                                         <td></td>
                                         <td></td>
@@ -972,7 +978,7 @@
                                     @foreach ($toolAssigneds as $toolAssigned)
                                         
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
-                                            <td hidden>{{ ++$i }}</td>
+                                            
 
                                             <td style="width:20%">{{ $toolAssigned->tool->name }}</td>
 											<td style="width:20%">{{ $toolAssigned->tool->key }}</td>
@@ -999,11 +1005,14 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            
+                            </div>
+
+                            <div class="form-group table-responsive">
+                            <b><legend>{{ __('Employees')}}</legend></b>
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr style="text-align: left">
-                                        <td><legend>{{ __('Employees')}}</legend></td>
+                                        <td></td>
                                         <td></td>
                                         <td hidden></td>
                                         <td></td>
@@ -1092,19 +1101,24 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                        </table>
+                            </table>
+                        </div>
 
                         <!----------------------->
                         @if($employeeOrders->isEmpty())
 
                         @else
                         <div class="form-group table-responsive">
+<<<<<<< HEAD
+                        <b><legend>{{ __('Schedule')}}</legend></b>
+=======
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                         <table class="table table-striped table-hover">
                                 
                             <thead style="text-align: center">
                                 <tr>
                                     <td>
-                                    <b><legend>{{ __('Schedule')}}</legend></b>
+                                    
                                     </td>
                                     <td></td>
                                     <td></td>
@@ -1176,8 +1190,12 @@
                             </tbody>
                         </table>
                         </div>
+<<<<<<< HEAD
+                        
+=======
                         <br>
                         <br>
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                         @endif
                     <!----------------------->
                     <!----------------------->
@@ -1195,7 +1213,7 @@
                         <!---->
                     </div>
                 </div>
-                {!! $serviceOrders->links() !!}
+                
             </div>
         </div>
     </div>

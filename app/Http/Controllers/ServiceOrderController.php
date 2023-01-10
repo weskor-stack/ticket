@@ -44,7 +44,7 @@ class ServiceOrderController extends Controller
     {
         $datas = $_GET['id_ticket'];
         
-        //$serviceOrders = ServiceOrder::paginate();
+        $serviceOrders = ServiceOrder::all();
 
         /*$serviceOrder2 = ServiceOrder::select('order_service_id', 'date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'status_order_id', 'user_id', 'date_registration')
         ->where('ticket_id', '=', $datas)->get();
@@ -69,7 +69,7 @@ Ticket
 
         // return response()->json($factories);
 
-        $serviceOrders = ServiceOrder::paginate();
+        // $serviceOrders = ServiceOrder::paginate();
         
         /*$service = Service::select('service_id', 'date_service', 'oreder_service_id', 'service_status_id', 'user_id', 'date_registration')
         ->where('order_service_id', '=', '2')->get();*/
@@ -248,6 +248,15 @@ Ticket
         $employee_order = EmployeeOrder::select('order_service_id','employee_id','status_id')
         ->where('order_service_id', '=', $serviceOrder['order_service_id'])->get();
 
+        // $employee_assigned = Employee::whereNotIn('employee_id', EmployeeOrder::select('employee_id')
+        // ->where('order_service_id', '=', $serviceOrder3))->get();
+
+        // $employee_order2 = EmployeeOrder::select('employee_id')
+        // ->where('order_service_id', '=', $serviceOrder['order_service_id'])->get();
+        
+        // return response()->json($employee_order);
+
+
         $orderPurchase = new OrderPurchase();
 
         $orderPurchases = OrderPurchase::select('order_service_id','purchase_id','key')
@@ -260,9 +269,14 @@ Ticket
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2',
         'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure','material2','tool2','employee_assigned',
         'contacts','customers','employeeOrders_data','employee_hierarchical_position','hierarchical_position','hierarchical',
+<<<<<<< HEAD
+        'hierarchical_structure','shcedules','orderEmployeeSchedule','employee_order','orderPurchase','orderPurchases',
+        'serviceOrder_factory','ticket_location','factories','customers2','ticketLocation','factory_customer','serviceOrder_id'));
+=======
         'hierarchical_structure','shcedules','orderEmployeeSchedule','employee_order','orderPurchase','orderPurchases', //'orderPurchase2',
         'serviceOrder_factory','ticket_location','factories','customers2','ticketLocation','factory_customer','serviceOrder_id'))
             ->with('i', (request()->input('page', 1) - 1) * $serviceOrders->perPage());
+>>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
     }
 
     public function pdf()
