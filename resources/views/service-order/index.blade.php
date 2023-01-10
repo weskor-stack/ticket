@@ -839,13 +839,8 @@
                                         @include('service-order.modal.purchase')
                                         @include('service-order.modal.purchase_index')
                                         @include('service-order.modal.purchase_edit')
-<<<<<<< HEAD
                                     </td>
                                     <td>
-=======
-
-                                        <!----------------------->
->>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                                         @if($orderPurchases->isEmpty())
                                             <a title="{{ __('Purchase')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchase{{ $serviceOrder->order_service_id }}" ><i class="material-icons" style="font-size:20px">attach_money</i>&nbsp; {{ __('Purchase')}}</a>
                                         @else
@@ -1109,10 +1104,7 @@
 
                         @else
                         <div class="form-group table-responsive">
-<<<<<<< HEAD
                         <b><legend>{{ __('Schedule')}}</legend></b>
-=======
->>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                         <table class="table table-striped table-hover">
                                 
                             <thead style="text-align: center">
@@ -1190,12 +1182,7 @@
                             </tbody>
                         </table>
                         </div>
-<<<<<<< HEAD
                         
-=======
-                        <br>
-                        <br>
->>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                         @endif
                     <!----------------------->
                     <!----------------------->

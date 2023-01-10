@@ -481,11 +481,7 @@
                     <div>
                         <!----------------------->
                         <div class="form-group table-responsive">
-<<<<<<< HEAD
                             <table class="table table-striped table-hover">
-=======
-                        <table class="table table-striped table-hover">
->>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                                 
                                 <thead style="text-align: center">
                                 <tr>
@@ -572,12 +568,7 @@
                                     
                                 </tbody>
                             </table>
-<<<<<<< HEAD
                             
-=======
-                            <br>
-                            <br>
->>>>>>> 18d56eb7ac8b1920843f169b2446b8366b3482dc
                         </div>
                         <!----------------------->
                         @if ($activity2->isEmpty())
