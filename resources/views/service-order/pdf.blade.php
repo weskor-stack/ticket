@@ -146,7 +146,7 @@
                             @endif
                         @endforeach
                         
-                        @foreach($employee_hierarchical_position as $supervisor)
+                        <!-- @foreach($employee_hierarchical_position as $supervisor)
                             @if($supervisor->employee_id == $employeeOrder->employee_id)
                                 @foreach($hierarchical_position as $position)
                                     @if($position->hierarchical_position_id == $supervisor->hierarchical_position_id)
@@ -172,6 +172,22 @@
                                                 @endif
                                             @endif
                                         @endforeach
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach -->
+
+                        @foreach($tmp_employee as $department)
+                            @if($employeeOrder->employee_id == $department->employee_id)
+                                <td style="width:20%">{{ $department->department }}</td>
+                            @endif
+                        @endforeach
+                                            
+                        @foreach($employee_superior as $superior)
+                            @if($employeeOrder->employee_id == $superior->employee_id)
+                                @foreach($employees as $employee)
+                                    @if($superior->superior_employee_id == $employee->employee_id)
+                                        <td style="width:20%">{{ $employee->name }} {{ $employee->last_name }} {{ $employee->second_last_name }}</td>
                                     @endif
                                 @endforeach
                             @endif

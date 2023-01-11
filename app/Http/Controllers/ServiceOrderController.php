@@ -25,6 +25,9 @@ use App\Models\SupervisorEmployee;
 use App\Models\OrderEmployeeSchedule;
 use App\Models\OrderPurchase;
 
+use App\Models\tmp_Employee;
+use App\Models\EmployeeSuperior;
+
 use DB;
 use Illuminate\Http\Request;
 use PDF;
@@ -262,15 +265,19 @@ Ticket
         $orderPurchases = OrderPurchase::select('order_service_id','purchase_id','key')
         ->where('order_service_id', '=', $datas)->get();
 
+        $tmp_employee = tmp_Employee::all();
+
+        $employee_superior = EmployeeSuperior::all();
+
         // $orderPurchase2 = OrderPurchase::find($orderPurchases[0]['purchase_id']);
 
-        // return response()->json($orderPurchases);
+        // return response()->json($employee_superior);
 
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2',
         'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure','material2','tool2','employee_assigned',
         'contacts','customers','employeeOrders_data','employee_hierarchical_position','hierarchical_position','hierarchical',
-        'hierarchical_structure','shcedules','orderEmployeeSchedule','employee_order','orderPurchase','orderPurchases', //'orderPurchase2',
-        'serviceOrder_factory','ticket_location','factories','customers2','ticketLocation','factory_customer','serviceOrder_id'));
+        'hierarchical_structure','shcedules','orderEmployeeSchedule','employee_order','orderPurchase','orderPurchases', 'tmp_employee',//'orderPurchase2',
+        'employee_superior', 'serviceOrder_factory','ticket_location','factories','customers2','ticketLocation','factory_customer','serviceOrder_id'));
     }
 
     public function pdf()
@@ -325,9 +332,13 @@ Ticket
 
         $employee2 = Employee::all();
 
+        $tmp_employee = tmp_Employee::all();
+
+        $employee_superior = EmployeeSuperior::all();
+
         //return view('service-order.pdf', compact('serviceOrders','serviceOrder'));
         $pdf = PDF::loadView('service-order.pdf',['service-orders' => $serviceOrders], compact('serviceOrders','serviceOrder',
-        'materialAssigneds','toolAssigneds','employeeOrders','supervisors','contacts','customers','tickets','employees',
+        'materialAssigneds','toolAssigneds','employeeOrders','supervisors','contacts','customers','tickets','employees', 'tmp_employee', 'employee_superior',
         'employee_hierarchical_position','hierarchical_position','hierarchical','hierarchical_structure','shcedules','employee2'));
         return $pdf->stream();
         // return $pdf->download('order.pdf');

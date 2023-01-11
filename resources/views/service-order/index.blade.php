@@ -1029,7 +1029,7 @@
                                         <th style="width:20%">{{ __('ID Employees')}}</th>
                                         <th style="width:20%">{{ __('Employee')}}</th>
                                         <th style="width:20%">{{ __('Department')}}</th>
-                                        <th style="width:20%">{{ __('Supervisor')}}</th>
+                                        <th style="width:20%">{{ __('Superior')}}</th>
                                         <th style="width:20%" hidden>{{ __('Status')}}</th>
                                         <th style="width:20%"></th>
                                     </tr>
@@ -1044,7 +1044,7 @@
                                                     <td style="width:20%">{{ $employee->name }} {{ $employee->last_name }} {{ $employee->second_last_name }}</td>
                                                 @endif
                                             @endforeach
-                                            @foreach($employee_hierarchical_position as $supervisor)
+                                            <!-- @foreach($employee_hierarchical_position as $supervisor)
                                                 @if($supervisor->employee_id == $employeeOrder->employee_id)
                                                     @foreach($hierarchical_position as $position)
                                                         @if($position->hierarchical_position_id == $supervisor->hierarchical_position_id)
@@ -1065,7 +1065,7 @@
                                                                                     @endforeach
                                                                                 @endif
                                                                             @endforeach
-                                                                            <!--td>{{$structure->superior_hierarchical_position_id}} {{$supervisor->hierarchical_position_id}}</!--td-->
+                                                                            
                                                                             
                                                                         @endif
                                                                     @endforeach
@@ -1075,9 +1075,24 @@
                                                         @endif
                                                     @endforeach
                                                 @endif
-                                            @endforeach
+                                            @endforeach -->
 
-                                
+                                            @foreach($tmp_employee as $department)
+                                                @if($employeeOrder->employee_id == $department->employee_id)
+                                                    <td style="width:20%">{{ $department->department }}</td>
+                                                @endif
+                                            @endforeach
+                                            
+                                            @foreach($employee_superior as $superior)
+                                                @if($employeeOrder->employee_id == $superior->employee_id)
+                                                    @foreach($employeeOrders_data as $employee)
+                                                        @if($superior->superior_employee_id == $employee->employee_id)
+                                                            <td style="width:20%">{{ $employee->name }} {{ $employee->last_name }} {{ $employee->second_last_name }}</td>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
+                                            
                                             <th style="width:20%" hidden></th>
                                             <td style="width:20%">
                                                 @if($serviceOrder->order_status_id=='8')
@@ -1086,9 +1101,11 @@
                                                     <form action="{{ route('employee-orders.destroy',$employeeOrder->order_service_id) }} {{$employeeOrder->employee_id}}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('employee-orders.show',$employeeOrder->employee_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
                                                         <a class="btn btn-outline-success" hidden><i class="material-icons" style="font-size:20px">edit</i>&nbsp; {{ __('Edit')}}</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete employee?')"><i class="material-icons" style="font-size:20px">delete</i>&nbsp; {{ __('Delete')}}</button>
+                                                        @if($shcedules->isEmpty())
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete employee?')"><i class="material-icons" style="font-size:20px">delete</i>&nbsp; {{ __('Delete')}}</button>                                                            
+                                                        @endif
                                                     </form>
                                                 @endif
                                             </td>

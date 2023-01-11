@@ -9,6 +9,9 @@ use App\Models\SupervisorEmployee;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\ServiceOrder;
+
+use App\Models\tmp_Employee;
+use App\Models\EmployeeSuperior;
  
 use Mail;
  
@@ -87,9 +90,13 @@ class NotifySalesController extends Controller
 
         $employee2 = Employee::all();
 
+        $tmp_employee = tmp_Employee::all();
+
+        $employee_superior = EmployeeSuperior::all();
+
         //return view('service-order.pdf', compact('serviceOrders','serviceOrder'));
         $pdf = PDF::loadView('service-order.pdf',['service-orders' => $serviceOrders], compact('serviceOrders','serviceOrder',
-        'materialAssigneds','toolAssigneds','employeeOrders','supervisors','contacts','customers','tickets','employees',
+        'materialAssigneds','toolAssigneds','employeeOrders','supervisors','contacts','customers','tickets','employees','tmp_employee','employee_superior',
         'employee_hierarchical_position','hierarchical_position','hierarchical','hierarchical_structure','shcedules','employee2'));
 
         $pdf->save(public_path('pdf-orders/') . 'orden-'.$serviceOrder['order_service_id'].'-'.' ticket-'.$tickets['ticket_id'].'.pdf'); 
