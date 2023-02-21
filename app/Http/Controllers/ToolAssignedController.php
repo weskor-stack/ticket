@@ -94,26 +94,31 @@ class ToolAssignedController extends Controller
         
         $result = $tool_stock - $dataTool['quantity'];
 
-        if ($result >= 0) {
-            //return response()->json($result);
-            
-            ToolAssigned::insert($dataTool);
+        ToolAssigned::insert($dataTool);
 
-            /*$data = Tool::find($dataTool['tool_id']);
-            $data->stock=$result;
-            $data->save();*/
+        return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        ->with('success', __('Tool created successfully'));
 
-            return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', __('Tool created successfully'));
+        // if ($result >= 0) {
+        //     //return response()->json($result);
             
-        }else {
-            return '<script>
-                    alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
-                    javascript:history.go(-1); 
-                </script>';
-            /*return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success',  __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);*/
-        }
+        //     ToolAssigned::insert($dataTool);
+
+        //     /*$data = Tool::find($dataTool['tool_id']);
+        //     $data->stock=$result;
+        //     $data->save();*/
+
+        //     return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        //     ->with('success', __('Tool created successfully'));
+            
+        // }else {
+        //     return '<script>
+        //             alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
+        //             javascript:history.go(-1); 
+        //         </script>';
+        //     /*return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        //     ->with('success',  __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);*/
+        // }
 
         //return response()->json($result);
 
@@ -192,30 +197,34 @@ class ToolAssignedController extends Controller
 
         $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
 
-        if ($result2 < 0) {
-            
-            /*$data = Tool::find($toolAssigned['tool_id']);
-            $data->stock=$result2;
-            $data->save();*/
+        $toolAssigned->update($request->all());
+        return redirect()->back()
+        ->with('success', __('The tool').' '.__('updated successfully'));
 
-            //return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            return '<script>
-                    alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
-                    javascript:history.go(-1); 
-                </script>';
-            /*return redirect()->back()
-            ->with('success', __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);  */          
+        // if ($result2 < 0) {
             
-        }else {
-            //$toolAssigned->quantity=$data_toolAssigned;
+        //     /*$data = Tool::find($toolAssigned['tool_id']);
+        //     $data->stock=$result2;
+        //     $data->save();*/
+
+        //     //return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        //     return '<script>
+        //             alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
+        //             javascript:history.go(-1); 
+        //         </script>';
+        //     /*return redirect()->back()
+        //     ->with('success', __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);  */          
+            
+        // }else {
+        //     //$toolAssigned->quantity=$data_toolAssigned;
         
-            //$toolAssigned->save();
-            $toolAssigned->update($request->all());
-            //return response()->json($materialAssigned);
-            //return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            return redirect()->back()
-            ->with('success', __('The tool').' '.__('updated successfully'));
-        }
+        //     //$toolAssigned->save();
+        //     $toolAssigned->update($request->all());
+        //     //return response()->json($materialAssigned);
+        //     //return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        //     return redirect()->back()
+        //     ->with('success', __('The tool').' '.__('updated successfully'));
+        // }
 
         /*return redirect()->route('tool-assigneds.index')
             ->with('success', 'ToolAssigned updated successfully');*/

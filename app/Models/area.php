@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tmp_Employee extends Model
+class area extends Model
 {
-    protected $connection = 'Temporal';
-    protected $table = 'tmp_employee';
-    protected $primaryKey = 'employee_id';
+    protected $connection = 'Employee';
+    protected $table = 'area';
+    protected $primaryKey = 'area_id';
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;

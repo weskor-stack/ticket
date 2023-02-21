@@ -911,5 +911,7 @@
     "Project name":"Nombre del proyecto",
     "Project info":"Información del proyecto",
     "OrderPurchase updated successfully." : "Orden de compra actualizado satisfactoriamente",
-    "Update purchase":  "Actualizar orden de compra"
+    "Update purchase":  "Actualizar orden de compra",
+    "Area":"Área",
+    "Show Orders":"Ver órdenes"
 }

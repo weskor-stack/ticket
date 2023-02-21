@@ -23,7 +23,7 @@ class NotifyTicketController extends Controller
 
         $ticket = Ticket::latest('ticket_id')->first();
 
-        $this->client($ticket);
+        // $this->client($ticket);
         
         $this->supervisor($ticket);
         //return response()->json('Ticket '.$datas);
@@ -84,13 +84,13 @@ class NotifyTicketController extends Controller
         $receiver1->name = 'supervisor'.' '.$employee['name'].' '.$employee['last_name']; //nombre del supervisor
         $receiver1->email = $employee['email']; //email del supervisor
         
-        /*$receiver2 = new \stdClass();
-        $receiver2->name = 'Supervisor Faustino Cruz'; //nombre del supervisor
-        $receiver2->email = 'ifaustino@automatyco.com'; //email del supervisor*/
+        $receiver2 = new \stdClass();
+        $receiver2->name = 'Ing. Julio Cesar Gonzalez Palacios'; //nombre del supervisor
+        $receiver2->email = 'jgonzalez@automatyco.com'; //email del supervisor
         
         $receiver = array(
             $receiver1,
-            //$receiver2,
+            $receiver2,
         );
         
         $dataEmail = new \stdClass();

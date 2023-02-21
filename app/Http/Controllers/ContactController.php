@@ -74,6 +74,8 @@ class ContactController extends Controller
         $contacto = Contact::select('name','last_name','email')
         ->where('name','=',$contact['name'])->get();
 
+        $contact['phone'] = preg_replace('/[^0-9]/', '',  $contact['phone']);
+        
         // return response()->json($contact);
         // $contacto = $contacto[0];
         // $contacto = explode('"',$contacto);

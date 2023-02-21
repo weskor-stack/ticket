@@ -96,27 +96,32 @@ class MaterialAssignedController extends Controller
         
         $result = $material_stock - $dataMaterial['quantity'];
 
-        if ($result >= 0) {
-            //return response()->json($result);
+        MaterialAssigned::insert($dataMaterial);
+
+        return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        ->with('success', __('Material created successfully'));
+
+        // if ($result >= 0) {
+        //     //return response()->json($result);
             
-            MaterialAssigned::insert($dataMaterial);
+        //     MaterialAssigned::insert($dataMaterial);
 
-            /*$data = Material::find($dataMaterial['material_id']);
-            $data->stock=$result;
-            $data->save();*/
+        //     /*$data = Material::find($dataMaterial['material_id']);
+        //     $data->stock=$result;
+        //     $data->save();*/
 
-            return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', __('Material created successfully'));
+        //     return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        //     ->with('success', __('Material created successfully'));
             
-        }else {
+        // }else {
 
-            return '<script>
-                    alert("No hay suficiente material, hay en exixstencia: '.$material_stock.' "); 
-                    javascript:history.go(-1); 
-                </script>';
-            /*return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', __('Insufficient').' '.'material.');*/
-        }
+        //     return '<script>
+        //             alert("No hay suficiente material, hay en exixstencia: '.$material_stock.' "); 
+        //             javascript:history.go(-1); 
+        //         </script>';
+        //     /*return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        //     ->with('success', __('Insufficient').' '.'material.');*/
+        // }
 
         //return response()->json("No entra al if");
         

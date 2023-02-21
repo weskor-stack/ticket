@@ -104,7 +104,7 @@
                                 <!-- <td style="width:10%"></td> -->
                                 <td style="width:40%; text-align: center">
                                     <div class="form-group">
-                                    <legend>Type of maintenance</legend>
+                                    <legend>{{ __('Type of maintenance')}}</legend>
                                         @foreach($serviceOrder as $serviceOrder)
                                             @if ($serviceOrder->type_maintenance_id=='1')
                                             {{ Form::radio('type_maintenance_id','1',true,array('disabled')) }}
@@ -129,7 +129,7 @@
                                 </td>
                                 <td style="width:40%; text-align: center">
                                     <div class="form-group">
-                                    <legend>Type of service</legend><br>
+                                    <legend>{{ __('Type of service')}}</legend><br>
                                         @if ($serviceOrder->type_service_id=='1')
                                             {{ Form::radio('type_service_id','1',true,array('disabled')) }}
                                         @else

@@ -130,7 +130,7 @@ class NotifyTicketEndController extends Controller
         'serviceOrder2','typeServices','employees','service_employees','service3','type_maintenance','type_service'));
         $pdf2->save(public_path('pdf_local/') . 'reporte-'.$customers[0]['name'].'-'.$ticket['ticket_id'].'.pdf'); 
 
-        $this->client($ticket);
+        // $this->client($ticket);
 
         // return response()->json($ticket);
 
@@ -198,13 +198,13 @@ class NotifyTicketEndController extends Controller
         $receiver1->name = 'supervisor'.' '.$employee['name'].' '.$employee['last_name']; //nombre del supervisor
         $receiver1->email = $employee['email']; //email del supervisor
         
-        /*$receiver2 = new \stdClass();
-        $receiver2->name = 'Supervisor Faustino Cruz'; //nombre del supervisor
-        $receiver2->email = 'ifaustino@automatyco.com'; //email del supervisor*/
+        $receiver2 = new \stdClass();
+        $receiver2->name = 'Ing. Julio Cesar Gonzalez Palacios'; //nombre del supervisor
+        $receiver2->email = 'jgonzalez@automatyco.com'; //email del supervisor
         
         $receiver = array(
             $receiver1,
-            //$receiver2,
+            $receiver2,
         );
         
         $dataEmail = new \stdClass();

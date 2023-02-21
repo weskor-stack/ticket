@@ -61,6 +61,8 @@ class CustomerController extends Controller
         //$customer = preg_replace('/[^0-9]/', '', $customer);
        $customer = explode('"',$customer);
 
+       $customers['phone'] = preg_replace('/[^0-9]/', '',  $customers['phone']);
+
         //return response()->json( $customer[3]);
 
         //return response()->json( $customers['name']);

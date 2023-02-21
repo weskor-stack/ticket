@@ -177,10 +177,14 @@
                             @endif
                         @endforeach -->
 
-                        @foreach($tmp_employee as $department)
-                            @if($employeeOrder->employee_id == $department->employee_id)
-                                <td style="width:20%">{{ $department->department }}</td>
-                            @endif
+                        @foreach($area as $department)
+                            @foreach($area_employee as $department_employee)
+                                @if($department->area_id == $department_employee->area_id)
+                                    @if($employeeOrder->employee_id == $department_employee->employee_id)
+                                        <td style="width:20%">{{ $department->name }}</td>
+                                    @endif
+                                @endif
+                            @endforeach
                         @endforeach
                                             
                         @foreach($employee_superior as $superior)

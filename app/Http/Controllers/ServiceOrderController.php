@@ -27,6 +27,8 @@ use App\Models\OrderPurchase;
 
 use App\Models\tmp_Employee;
 use App\Models\EmployeeSuperior;
+use App\Models\area;
+use App\Models\area_Employee;
 
 use DB;
 use Illuminate\Http\Request;
@@ -82,13 +84,19 @@ Ticket
         $materialAssigned = new MaterialAssigned();
         $material = Material::select(DB::raw("CONCAT(material.key, ' - ', material.name) as full_name"))
         ->get()->pluck('full_name');
-        $materials = Material::all();
+
+        // se modificó aqui
+        $materials = Material::select('material_id','key','name','stock','material_classifier_id','unit_measure_id','status_id')
+        ->where('status_id', '=', '1')->get();
+        // $materials = Material::all();
         $unit_measure = UnitMeasure::all();
         //$material = Material::pluck('key','material_id');
 
         $toolAssigned = new ToolAssigned();
         $tool = Tool::pluck('key','tool_id');
-        $tools = Tool::all();
+        $tools = Tool::select( 'tool_id', 'key', 'name', 'stock', 'unit_measure_id', 'status_id', 'user_id',)
+        ->where('status_id', '=', '1')->get();
+        // $tools = Tool::all();
 
         $employeeOrder = new EmployeeOrder();
         $employee = Employee::pluck('name','employee_id');
@@ -181,7 +189,13 @@ Ticket
             $q->select('material_id')->from('material_assigned');
         })->get();*/
 
-        $material2 = Material::where('stock', '!=', 0)->whereNotIn('material_id', MaterialAssigned::select('material_id')
+        // $material2 = Material::where('stock', '!=', 0)->whereNotIn('material_id', MaterialAssigned::select('material_id')
+        // ->where('order_service_id', '=', $serviceOrder3))
+        // ->get();
+
+
+        //Se modificó aquí
+        $material2 = Material::where('status_id', '=', '1')->where('stock', '!=', 0)->whereNotIn('material_id', MaterialAssigned::select('material_id')
         ->where('order_service_id', '=', $serviceOrder3))
         ->get();
 
@@ -191,7 +205,7 @@ Ticket
             $q->select('tool_id')->from('tool_assigned')->where('order_service_id', '=', '2');
         })->get();*/
 
-        $tool2 = Tool::where('stock', '!=', 0)->select('tool_id','key', 'name', 'stock', 'unit_measure_id', 'user_id', 'date_registration')->whereNotIn('tool_id', ToolAssigned::select('tool_id')
+        $tool2 = Tool::where('status_id', '=', '1')->where('stock', '!=', 0)->select('tool_id','key', 'name', 'stock', 'unit_measure_id', 'user_id', 'date_registration')->whereNotIn('tool_id', ToolAssigned::select('tool_id')
         ->where('order_service_id', '=', $serviceOrder3))
         ->get();
 
@@ -269,15 +283,20 @@ Ticket
 
         $employee_superior = EmployeeSuperior::all();
 
+        $area = area::all();
+
+        $area_employee = area_Employee::all();
+
         // $orderPurchase2 = OrderPurchase::find($orderPurchases[0]['purchase_id']);
 
-        // return response()->json($employee_superior);
+        // return response()->json($area_employee);
 
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2',
         'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure','material2','tool2','employee_assigned',
         'contacts','customers','employeeOrders_data','employee_hierarchical_position','hierarchical_position','hierarchical',
         'hierarchical_structure','shcedules','orderEmployeeSchedule','employee_order','orderPurchase','orderPurchases', 'tmp_employee',//'orderPurchase2',
-        'employee_superior', 'serviceOrder_factory','ticket_location','factories','customers2','ticketLocation','factory_customer','serviceOrder_id'));
+        'employee_superior', 'serviceOrder_factory','ticket_location','factories','customers2','ticketLocation',
+        'factory_customer','serviceOrder_id', 'area','area_employee'));
     }
 
     public function pdf()
@@ -336,10 +355,14 @@ Ticket
 
         $employee_superior = EmployeeSuperior::all();
 
+        $area = area::all();
+
+        $area_employee = area_Employee::all();
+
         //return view('service-order.pdf', compact('serviceOrders','serviceOrder'));
         $pdf = PDF::loadView('service-order.pdf',['service-orders' => $serviceOrders], compact('serviceOrders','serviceOrder',
         'materialAssigneds','toolAssigneds','employeeOrders','supervisors','contacts','customers','tickets','employees', 'tmp_employee', 'employee_superior',
-        'employee_hierarchical_position','hierarchical_position','hierarchical','hierarchical_structure','shcedules','employee2'));
+        'employee_hierarchical_position','hierarchical_position','hierarchical','hierarchical_structure','shcedules','employee2','area','area_employee'));
         return $pdf->stream();
         // return $pdf->download('order.pdf');
     }

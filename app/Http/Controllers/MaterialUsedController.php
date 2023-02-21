@@ -73,22 +73,26 @@ class MaterialUsedController extends Controller
 
         //return response()->json($materialUsed);
 
-        if ($result2 < 0) {
-            return '<script>
-                    alert("No hay suficiente material, hay en exixstencia: '.$material_stock.' "); 
-                    javascript:history.go(-1); 
-                </script>';
-            /*return redirect()->back()
-            ->with('success', __('Insufficient').' '.'material.');    */        
+        MaterialUsed::insert($materialUsed);            
+        return redirect()->back()
+        ->with('success', __('The material') .' '.__('updated successfully'));
+
+        // if ($result2 < 0) {
+        //     return '<script>
+        //             alert("No hay suficiente material, hay en exixstencia: '.$material_stock.' "); 
+        //             javascript:history.go(-1); 
+        //         </script>';
+        //     /*return redirect()->back()
+        //     ->with('success', __('Insufficient').' '.'material.');    */        
             
-        }else {
-            // $data = Material::find($materialUsed['material_id']);
-            // $data->stock=$result2;
-            // $data->save();
-            MaterialUsed::insert($materialUsed);            
-            return redirect()->back()
-            ->with('success', __('The material') .' '.__('updated successfully'));
-        }
+        // }else {
+        //     // $data = Material::find($materialUsed['material_id']);
+        //     // $data->stock=$result2;
+        //     // $data->save();
+        //     MaterialUsed::insert($materialUsed);            
+        //     return redirect()->back()
+        //     ->with('success', __('The material') .' '.__('updated successfully'));
+        // }
 
         /*MaterialUsed::insert($materialUsed);
         //$materialUsed = MaterialUsed::create($request->all());

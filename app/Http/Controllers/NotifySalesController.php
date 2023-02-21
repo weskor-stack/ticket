@@ -12,6 +12,8 @@ use App\Models\ServiceOrder;
 
 use App\Models\tmp_Employee;
 use App\Models\EmployeeSuperior;
+use App\Models\area;
+use App\Models\area_Employee;
  
 use Mail;
  
@@ -26,6 +28,8 @@ use App\Models\Hierarchical;
 use App\Models\HierarchicalStructure;
 use App\Models\OrderEmployeeSchedule;
 use PDF;
+
+
  
 class NotifySalesController extends Controller
 {
@@ -94,10 +98,14 @@ class NotifySalesController extends Controller
 
         $employee_superior = EmployeeSuperior::all();
 
+        $area = area::all();
+
+        $area_employee = area_Employee::all();
+
         //return view('service-order.pdf', compact('serviceOrders','serviceOrder'));
         $pdf = PDF::loadView('service-order.pdf',['service-orders' => $serviceOrders], compact('serviceOrders','serviceOrder',
         'materialAssigneds','toolAssigneds','employeeOrders','supervisors','contacts','customers','tickets','employees','tmp_employee','employee_superior',
-        'employee_hierarchical_position','hierarchical_position','hierarchical','hierarchical_structure','shcedules','employee2'));
+        'employee_hierarchical_position','hierarchical_position','hierarchical','hierarchical_structure','shcedules','employee2','area','area_employee'));
 
         $pdf->save(public_path('pdf-orders/') . 'orden-'.$serviceOrder['order_service_id'].'-'.' ticket-'.$tickets['ticket_id'].'.pdf'); 
         
@@ -152,7 +160,7 @@ class NotifySalesController extends Controller
     
     public function supervisor($serviceOrder)
     {
-        $employee = Employee::find('1448');
+        $employee = Employee::find('1060');
         //$employee = Employee::find($supervisor_employee['supervisor_employee_id']);
 
         $serviceOrder = ServiceOrder::find($serviceOrder['order_service_id']);
@@ -163,21 +171,21 @@ class NotifySalesController extends Controller
         $customer = Customer::find($contact['customer_id']);
 
         $receiver1 = new \stdClass();
-        $receiver1->name = 'supervisor'.' '.$employee['name'].' '.$employee['last_name']; //nombre del supervisor
-        $receiver1->email = $employee['email']; //email del supervisor
+        $receiver1->name = 'Lic. Adriana Mendez'; //nombre del supervisor
+        $receiver1->email = 'amendez@automatyco.com'; //email del supervisor
         
-        /*$receiver2 = new \stdClass();
-        $receiver2->name = 'Supervisor Faustino Cruz'; //nombre del supervisor
-        $receiver2->email = 'ifaustino@automatyco.com'; //email del supervisor*/
+        $receiver2 = new \stdClass();
+        $receiver2->name = 'Lic. Carlos Salcido'; //nombre del supervisor
+        $receiver2->email = 'csalcido@automatyco.com'; //email del supervisor
         
         $receiver = array(
             $receiver1,
-            //$receiver2,
+            $receiver2,
         );
         
         $dataEmail = new \stdClass();
-        $dataEmail->sender = 'Israel Faustino Cruz'; //nombre del empleado
-        $dataEmail->senderEmail = 'ifaustino@automatyco.com'; //email del empleado
+        $dataEmail->sender = 'Edgar Bonilla Rivas'; //nombre del empleado
+        $dataEmail->senderEmail = 'weskorgenesis@gmail.com'; //email del empleado
         $dataEmail->receiver = $receiver;
         $dataEmail->format = 'ticketsales'; //formato del email a enviar
         $dataEmail->subject = $ticket['subject'].' '.'Ticket No:'.' '.$ticket['ticket_id'];
@@ -199,7 +207,7 @@ class NotifySalesController extends Controller
     public function send_email($dataEmail){
         
         foreach ($dataEmail->receiver as $i => $value){
-            $dataEmail->salute = 'Estimado '.$value->name.':';
+            $dataEmail->salute = 'Estimada '.$value->name.':';
             
             Mail::to($value->email)->send(new NotifyMail2($dataEmail));
             

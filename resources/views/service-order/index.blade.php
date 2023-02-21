@@ -1028,7 +1028,7 @@
                                         <th style="width:15%" hidden>{{ __('Order')}}</th>
                                         <th style="width:20%">{{ __('ID Employees')}}</th>
                                         <th style="width:20%">{{ __('Employee')}}</th>
-                                        <th style="width:20%">{{ __('Department')}}</th>
+                                        <th style="width:20%">{{ __('Area')}}</th>
                                         <th style="width:20%">{{ __('Superior')}}</th>
                                         <th style="width:20%" hidden>{{ __('Status')}}</th>
                                         <th style="width:20%"></th>
@@ -1077,10 +1077,14 @@
                                                 @endif
                                             @endforeach -->
 
-                                            @foreach($tmp_employee as $department)
-                                                @if($employeeOrder->employee_id == $department->employee_id)
-                                                    <td style="width:20%">{{ $department->department }}</td>
-                                                @endif
+                                            @foreach($area as $department)
+                                                @foreach($area_employee as $department_employee)
+                                                    @if($department->area_id == $department_employee->area_id)
+                                                        @if($employeeOrder->employee_id == $department_employee->employee_id)
+                                                            <td style="width:20%">{{ $department->name }}</td>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
                                             @endforeach
                                             
                                             @foreach($employee_superior as $superior)

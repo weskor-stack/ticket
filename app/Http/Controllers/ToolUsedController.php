@@ -71,22 +71,26 @@ class ToolUsedController extends Controller
 
         //return response()->json($toolUseds['tool_id']);
 
-        if ($result2 < 0) {
-            return '<script>
-                    alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
-                    javascript:history.go(-1); 
-                </script>';
-            /*return redirect()->back()
-            ->with('success', __('Insufficient').' '.'material.');      */      
+        ToolUsed::insert($toolUseds);           
+        return redirect()->back()
+        ->with('success', __('The material') .' '.__('updated successfully'));
+
+        // if ($result2 < 0) {
+        //     return '<script>
+        //             alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
+        //             javascript:history.go(-1); 
+        //         </script>';
+        //     /*return redirect()->back()
+        //     ->with('success', __('Insufficient').' '.'material.');      */      
             
-        }else {
-            // $data = Tool::find($toolUseds['tool_id']);
-            // $data->stock=$result2;
-            // $data->save();
-            ToolUsed::insert($toolUseds);           
-            return redirect()->back()
-            ->with('success', __('The material') .' '.__('updated successfully'));
-        }
+        // }else {
+        //     // $data = Tool::find($toolUseds['tool_id']);
+        //     // $data->stock=$result2;
+        //     // $data->save();
+        //     ToolUsed::insert($toolUseds);           
+        //     return redirect()->back()
+        //     ->with('success', __('The material') .' '.__('updated successfully'));
+        // }
         //$toolUsed = ToolUsed::create($request->all());
 
         /*$service = Service::find($toolUseds['service_id']);
@@ -164,22 +168,26 @@ class ToolUsedController extends Controller
 
         //return response()->json($result);
 
-        if ($result2 < 0) {
-            return '<script>
-                    alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
-                    javascript:history.go(-1); 
-                </script>';
-            /*return redirect()->back()
-            ->with('success', __('Insufficient').' '.'material.');    */        
+        $toolUsed->update($request->all());            
+        return redirect()->back()
+        ->with('success', __('The tool') .' '.__('updated successfully'));
+
+        // if ($result2 < 0) {
+        //     return '<script>
+        //             alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
+        //             javascript:history.go(-1); 
+        //         </script>';
+        //     /*return redirect()->back()
+        //     ->with('success', __('Insufficient').' '.'material.');    */        
             
-        }else {
-            $data = Tool::find($toolUseds['tool_id']);
-            $data->stock=$result2;
-            $data->save();
-            $toolUsed->update($request->all());            
-            return redirect()->back()
-            ->with('success', __('The tool') .' '.__('updated successfully'));
-        }
+        // }else {
+        //     $data = Tool::find($toolUseds['tool_id']);
+        //     $data->stock=$result2;
+        //     $data->save();
+        //     $toolUsed->update($request->all());            
+        //     return redirect()->back()
+        //     ->with('success', __('The tool') .' '.__('updated successfully'));
+        // }
 
         /*return redirect()->route('tool-useds.index')
             ->with('success', 'ToolUsed updated successfully');*/
